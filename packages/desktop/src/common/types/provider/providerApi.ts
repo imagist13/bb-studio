@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,7 +8,7 @@
  * Wire-contract types for `/api/providers/*`.
  *
  * Direct mirror of the Rust types in
- * `crates/aionui-api-types/src/provider.rs`. Keep in sync with the
+ * `crates/bb-api-types/src/provider.rs`. Keep in sync with the
  * backend spec.
  */
 

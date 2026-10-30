@@ -4,7 +4,7 @@
 
 - **Node.js** 22 or higher
 - **bun** — Package manager & runtime ([install](https://bun.sh))
-- **Rust stable + Cargo** — Required to build the local AionCore backend ([install](https://rustup.rs))
+- **Rust stable + Cargo** — Required to build the local BBCore backend ([install](https://rustup.rs))
 - **Python** 3.11+ (for native module compilation)
 - **prek** — PR code checker (`npm install -g @j178/prek`)
 
@@ -12,20 +12,20 @@ On Windows, install the Rust MSVC toolchain. If Rust compilation fails because n
 
 ## Repository Layout
 
-AionUi development uses two repositories:
+BBUI development uses two repositories:
 
-- **AionCore** (`https://github.com/iOfficeAI/AionCore.git`) builds the local backend binary: `aioncore` on macOS/Linux and `aioncore.exe` on Windows.
-- **AionUi** (`https://github.com/iOfficeAI/AionUi.git`) starts the Electron desktop app and launches the backend binary automatically.
+- **BBCore** (`https://github.com/iOfficeAI/AionCore.git`) builds the local backend binary: `bbcore` on macOS/Linux and `bbcore.exe` on Windows.
+- **BBUI** (`https://github.com/iOfficeAI/AionUi.git`) starts the Electron desktop app and launches the backend binary automatically.
 
 Keep the repositories side by side when possible:
 
 ```text
 workspace/
-|-- AionCore/
-`-- AionUi/
+|-- BBCore/
+`-- BBUI/
 ```
 
-The desktop development server resolves the backend from the `PATH` inherited by `bun run start`. Install AionCore first, verify the binary is discoverable in the same terminal, then start AionUi.
+The desktop development server resolves the backend from the `PATH` inherited by `bun run start`. Install BBCore first, verify the binary is discoverable in the same terminal, then start BBUI.
 
 ## Quick Start
 
@@ -38,50 +38,50 @@ git clone https://github.com/iOfficeAI/AionUi.git
 
 Use the `main` branch for both repositories unless a maintainer asks you to test another branch.
 
-### 2. Build and Install AionCore
+### 2. Build and Install BBCore
 
-Run these commands from the `AionCore` repository.
+Run these commands from the `BBCore` repository.
 
 #### macOS / Linux
 
 ```bash
-cd AionCore
+cd BBCore
 cargo clean
-cargo install --path crates/aionui-app --locked
+cargo install --path crates/bb-app --locked
 
 # Make Cargo-installed binaries visible to this shell if needed.
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Verify that AionUi will be able to find the backend.
-which aioncore
-aioncore --help
+# Verify that BBUI will be able to find the backend.
+which bbcore
+bbcore --help
 ```
 
-If `which aioncore` prints nothing, add `export PATH="$HOME/.cargo/bin:$PATH"` to your shell profile (`~/.zshrc`, `~/.bashrc`, or your shell's equivalent), open a new terminal, and verify again.
+If `which bbcore` prints nothing, add `export PATH="$HOME/.cargo/bin:$PATH"` to your shell profile (`~/.zshrc`, `~/.bashrc`, or your shell's equivalent), open a new terminal, and verify again.
 
 #### Windows PowerShell
 
 ```powershell
-cd AionCore
+cd BBCore
 cargo clean
-cargo install --path crates/aionui-app --locked
+cargo install --path crates/bb-app --locked
 
 # Make Cargo-installed binaries visible to this PowerShell session if needed.
 $env:Path = "$env:USERPROFILE\.cargo\bin;$env:Path"
 
-# Verify that AionUi will be able to find the backend.
-where.exe aioncore
-aioncore --help
+# Verify that BBUI will be able to find the backend.
+where.exe bbcore
+bbcore --help
 ```
 
-If `where.exe aioncore` prints nothing, make sure `%USERPROFILE%\.cargo\bin` is in your user `Path`, open a new PowerShell window, and verify again.
+If `where.exe bbcore` prints nothing, make sure `%USERPROFILE%\.cargo\bin` is in your user `Path`, open a new PowerShell window, and verify again.
 
-### 3. Start AionUi
+### 3. Start BBUI
 
-Run these commands from the `AionUi` repository in a terminal where `aioncore` is discoverable.
+Run these commands from the `BBUI` repository in a terminal where `bbcore` is discoverable.
 
 ```bash
-cd AionUi
+cd BBUI
 
 # Install dependencies
 bun install
@@ -90,51 +90,51 @@ bun install
 bun run start
 ```
 
-During startup, AionUi launches `aioncore` automatically and passes the backend port to the renderer. You do not need to start AionCore in a separate terminal.
+During startup, BBUI launches `bbcore` automatically and passes the backend port to the renderer. You do not need to start BBCore in a separate terminal.
 
 ## Updating the Local Backend
 
-When you pull or change AionCore, reinstall the backend binary and restart AionUi:
+When you pull or change BBCore, reinstall the backend binary and restart BBUI:
 
 ```bash
-cd ../AionCore
-cargo install --path crates/aionui-app --locked --force
+cd ../BBCore
+cargo install --path crates/bb-app --locked --force
 
-cd ../AionUi
+cd ../BBUI
 bun run start
 ```
 
-Use `--force` when rebuilding local changes with the same AionCore package version; otherwise Cargo may keep the already installed binary.
+Use `--force` when rebuilding local changes with the same BBCore package version; otherwise Cargo may keep the already installed binary.
 
 ## Backend Startup Troubleshooting
 
-### `Cannot find "aioncore" binary`
+### `Cannot find "bbcore" binary`
 
-AionUi cannot find the backend from the `PATH` inherited by `bun run start`.
+BBUI cannot find the backend from the `PATH` inherited by `bun run start`.
 
-Check from the same terminal where you start AionUi:
+Check from the same terminal where you start BBUI:
 
 ```bash
 # macOS / Linux
-which aioncore
+which bbcore
 
 # Windows PowerShell
-where.exe aioncore
+where.exe bbcore
 ```
 
-If the command fails, add Cargo's binary directory to `PATH` and start AionUi from a new terminal.
+If the command fails, add Cargo's binary directory to `PATH` and start BBUI from a new terminal.
 
-### `aioncore` Works in a Terminal but AionUi Still Cannot Find It
+### `bbcore` Works in a Terminal but BBUI Still Cannot Find It
 
-Make sure you start `bun run start` from the same terminal environment that can run `aioncore --help`. IDE terminals and GUI-launched shells can inherit a different `PATH`; restart the IDE or launch it from a terminal after updating `PATH`.
+Make sure you start `bun run start` from the same terminal environment that can run `bbcore --help`. IDE terminals and GUI-launched shells can inherit a different `PATH`; restart the IDE or launch it from a terminal after updating `PATH`.
 
 ### Backend Changes Do Not Show Up
 
-Quit AionUi, reinstall AionCore with `cargo install --path crates/aionui-app --locked --force`, then start AionUi again. The Electron app owns the backend subprocess during development, so a running AionUi instance will not pick up a newly installed binary until it restarts.
+Quit BBUI, reinstall BBCore with `cargo install --path crates/bb-app --locked --force`, then start BBUI again. The Electron app owns the backend subprocess during development, so a running BBUI instance will not pick up a newly installed binary until it restarts.
 
 ### Windows Rust Build Errors
 
-Use the Rust MSVC toolchain and install Microsoft C++ Build Tools. After installing or changing toolchains, open a new PowerShell window and rerun the AionCore install command.
+Use the Rust MSVC toolchain and install Microsoft C++ Build Tools. After installing or changing toolchains, open a new PowerShell window and rerun the BBCore install command.
 
 ## Scripts Reference
 
@@ -220,17 +220,17 @@ Use the Rust MSVC toolchain and install Microsoft C++ Build Tools. After install
 
 ## Multi-Instance Development
 
-When you have two clones of the repository (e.g. `AionUi` and `AionUi-refactor`) and need to run both simultaneously, the second instance can be started with:
+When you have two clones of the repository (e.g. `BBUI` and `BBUI-refactor`) and need to run both simultaneously, the second instance can be started with:
 
 ```bash
 bun run start:multi
 ```
 
-This sets `AIONUI_MULTI_INSTANCE=1`, which:
+This sets `BB_MULTI_INSTANCE=1`, which:
 
 - Skips the Electron single-instance lock
-- Uses a separate userData directory (`AionUi-Dev-2`) to avoid database and config conflicts
-- Isolates data/config symlink paths (`~/.aionui-dev-2`, `~/.aionui-config-dev-2`)
+- Uses a separate userData directory (`BBUI-Dev-2`) to avoid database and config conflicts
+- Isolates data/config symlink paths (`~/.bb-dev-2`, `~/.bb-config-dev-2`)
 - Vite renderer, CDP, and WebUI proxy ports auto-increment to avoid collisions
 
 > **Note:** The multi-instance WebUI defaults to port 25810 (instead of 25809). When accessing WebUI in a browser, use an **incognito/private window** for the second instance — both instances share the `localhost` cookie jar, and their JWT secrets differ, causing authentication failures if the same browser session is reused.
@@ -255,7 +255,7 @@ prek run --from-ref origin/main --to-ref HEAD
 
 ## Build System
 
-AionUi uses **electron-vite** for fast bundling:
+BBUI uses **electron-vite** for fast bundling:
 
 - **Main process**: bundled with Vite (ESM)
 - **Renderer process**: bundled with Vite (React + TypeScript)

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  *
  * AionrsChat must inject the conversation detail's `fork_capability` into

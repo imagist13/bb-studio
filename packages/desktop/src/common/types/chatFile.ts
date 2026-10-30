@@ -1,11 +1,11 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
 /**
- * A file reference sent with a chat message. Mirrors the aioncore `ChatFileRef`
+ * A file reference sent with a chat message. Mirrors the bbcore `ChatFileRef`
  * serde shape (internally-tagged on `kind`) — the backend is the source of
  * truth; this must stay aligned with it.
  *
@@ -27,7 +27,7 @@ export type ChatFileRef =
   | { kind: 'local'; path: string };
 
 /**
- * How `POST /api/fs/content` encodes returned file content. Mirrors the aioncore
+ * How `POST /api/fs/content` encodes returned file content. Mirrors the bbcore
  * `ContentEncoding` (serde lowercase): `utf8` for text, `dataurl` for images
  * (backend prepends `data:<mime>;base64,`), `base64` for raw bytes.
  */

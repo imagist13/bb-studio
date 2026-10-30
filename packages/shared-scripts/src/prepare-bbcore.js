@@ -1,52 +1,52 @@
 /**
- * Prepare aioncore binary for packaging.
+ * Prepare bbcore binary for packaging.
  *
  * Resolution order:
- *  1. GitHub Actions artifact download when AIONUI_BACKEND_RUN_ID is set
+ *  1. GitHub Actions artifact download when BB_BACKEND_RUN_ID is set
  *  2. GitHub release download (requires version or defaults to "latest")
- *  3. Complete local bundle from AIONUI_BACKEND_LOCAL_BUNDLE_DIR
- *  4. Local binary fallback from AIONUI_BACKEND_LOCAL_BINARY
+ *  3. Complete local bundle from BB_BACKEND_LOCAL_BUNDLE_DIR
+ *  4. Local binary fallback from BB_BACKEND_LOCAL_BINARY
  *
- * Output: {projectRoot}/resources/bundled-aioncore/{platform}-{arch}/
- *   - aioncore[.exe]
+ * Output: {projectRoot}/resources/bundled-bbcore/{platform}-{arch}/
+ *   - bbcore[.exe]
  *   - manifest.json
  *   - managed-resources/...
  *
- * @module prepare-aioncore
+ * @module prepare-bbcore
  */
 
 const { execSync, execFileSync } = require('child_process');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { verifyBundledAioncoreResources } = require('./verify-bundled-aioncore-resources');
+const { verifyBundledBbcoreResources } = require('./verify-bundled-bbcore-resources');
 
 const GITHUB_OWNER = 'iOfficeAI';
-const GITHUB_REPO = 'AionCore';
+const GITHUB_REPO = 'BBCore';
 
 const ACTIONS_ARTIFACT_TARGETS = {
   'darwin-arm64': {
-    artifactName: 'aioncore-manual-macos-arm64',
+    artifactName: 'bbcore-manual-macos-arm64',
     manualPlatform: 'macos-arm64',
   },
   'darwin-x64': {
-    artifactName: 'aioncore-manual-macos-x64',
+    artifactName: 'bbcore-manual-macos-x64',
     manualPlatform: 'macos-x64',
   },
   'linux-arm64': {
-    artifactName: 'aioncore-manual-linux-arm64',
+    artifactName: 'bbcore-manual-linux-arm64',
     manualPlatform: 'linux-arm64',
   },
   'linux-x64': {
-    artifactName: 'aioncore-manual-linux-x64',
+    artifactName: 'bbcore-manual-linux-x64',
     manualPlatform: 'linux-x64',
   },
   'win32-arm64': {
-    artifactName: 'aioncore-manual-windows-arm64',
+    artifactName: 'bbcore-manual-windows-arm64',
     manualPlatform: 'windows-arm64',
   },
   'win32-x64': {
-    artifactName: 'aioncore-manual-windows-x64',
+    artifactName: 'bbcore-manual-windows-x64',
     manualPlatform: 'windows-x64',
   },
 };
@@ -87,7 +87,7 @@ function writeJson(filePath, payload) {
 }
 
 function getBinaryName(platform) {
-  return platform === 'win32' ? 'aioncore.exe' : 'aioncore';
+  return platform === 'win32' ? 'bbcore.exe' : 'bbcore';
 }
 
 function getActionsTarget(platform, arch) {
@@ -108,9 +108,9 @@ function getActionsArtifactMissingMessage({ runId, platform, arch, expectedArtif
       ? availableArtifactNames.join(', ')
       : '(none)';
   return [
-    `AionCore run ${runId} does not contain artifact [ ${expectedArtifactName} ] required for [ ${platform}-${arch} ].`,
+    `BBCore run ${runId} does not contain artifact [ ${expectedArtifactName} ] required for [ ${platform}-${arch} ].`,
     `Available artifacts: ${available}.`,
-    `Re-run AionCore Manual Build with platform [ ${getActionsManualPlatform(platform, arch)} ] or all.`,
+    `Re-run BBCore Manual Build with platform [ ${getActionsManualPlatform(platform, arch)} ] or all.`,
   ].join(' ');
 }
 
@@ -128,7 +128,7 @@ function prepareManagedResources(binaryPath, targetDir) {
     stdio: 'inherit',
     env: {
       ...process.env,
-      AIONUI_BUNDLED_MANAGED_RESOURCES: '',
+      BB_BUNDLED_MANAGED_RESOURCES: '',
     },
   });
 
@@ -136,15 +136,15 @@ function prepareManagedResources(binaryPath, targetDir) {
   return bundleOut;
 }
 
-function verifyPreparedAioncoreBundle(projectRoot, platform, arch) {
-  const result = verifyBundledAioncoreResources({
+function verifyPreparedBbcoreBundle(projectRoot, platform, arch) {
+  const result = verifyBundledBbcoreResources({
     resourcesDir: path.join(projectRoot, 'resources'),
     electronPlatformName: platform,
     targetArch: arch,
   });
   if (result.missing.length > 0 || result.failures.length > 0) {
     const summary = result.missing.length > 0 ? result.missing.join(', ') : JSON.stringify(result.failures);
-    throw new Error(`Prepared aioncore bundle is missing required bundled resource(s): ${summary}`);
+    throw new Error(`Prepared bbcore bundle is missing required bundled resource(s): ${summary}`);
   }
   return result;
 }
@@ -190,7 +190,7 @@ function resolveLatestTag() {
  * Build the release asset filename for the given platform/arch/tag.
  *
  * Expected asset naming convention:
- *   aioncore-v0.1.0-aarch64-apple-darwin.tar.gz
+ *   bbcore-v0.1.0-aarch64-apple-darwin.tar.gz
  */
 function getAssetName(platform, arch, tag) {
   const archMap = { x64: 'x86_64', arm64: 'aarch64' };
@@ -203,7 +203,7 @@ function getAssetName(platform, arch, tag) {
   const normalizedPlatform = platformMap[platform];
   if (!normalizedArch || !normalizedPlatform) return null;
   const ext = platform === 'win32' ? '.zip' : '.tar.gz';
-  return `aioncore-${tag}-${normalizedArch}-${normalizedPlatform}${ext}`;
+  return `bbcore-${tag}-${normalizedArch}-${normalizedPlatform}${ext}`;
 }
 
 function getDownloadUrl(assetName, tag) {
@@ -211,7 +211,7 @@ function getDownloadUrl(assetName, tag) {
 }
 
 function downloadFile(url, outputPath) {
-  console.log(`  Downloading aioncore from ${url}`);
+  console.log(`  Downloading bbcore from ${url}`);
   if (process.platform === 'win32') {
     const ps = `$ProgressPreference='SilentlyContinue'; Invoke-WebRequest -Uri '${url}' -OutFile '${outputPath.replace(/'/g, "''")}'`;
     execFileSync('powershell', ['-NoProfile', '-NonInteractive', '-Command', ps], {
@@ -253,19 +253,19 @@ function findBinaryInDir(dir, binaryName) {
   return null;
 }
 
-function findAioncoreArchiveInDir(dir) {
+function findBbcoreArchiveInDir(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (
       entry.isFile() &&
-      entry.name.startsWith('aioncore-') &&
+      entry.name.startsWith('bbcore-') &&
       (entry.name.endsWith('.zip') || entry.name.endsWith('.tar.gz'))
     ) {
       return fullPath;
     }
     if (entry.isDirectory()) {
-      const found = findAioncoreArchiveInDir(fullPath);
+      const found = findBbcoreArchiveInDir(fullPath);
       if (found) return found;
     }
   }
@@ -342,7 +342,7 @@ function listActionsArtifacts(runId) {
 function downloadAndExtractActionsArtifact(platform, arch, runId) {
   const expectedArtifactName = getActionsArtifactName(platform, arch);
   if (!expectedArtifactName) {
-    throw new Error(`Unsupported AionCore Actions artifact target: ${platform}-${arch}`);
+    throw new Error(`Unsupported BBCore Actions artifact target: ${platform}-${arch}`);
   }
 
   const artifacts = listActionsArtifacts(runId);
@@ -363,7 +363,7 @@ function downloadAndExtractActionsArtifact(platform, arch, runId) {
     );
   }
 
-  const tempDir = path.join(os.tmpdir(), 'aioncore-prepare-actions', runId, `${platform}-${arch}`);
+  const tempDir = path.join(os.tmpdir(), 'bbcore-prepare-actions', runId, `${platform}-${arch}`);
   const artifactZipPath = path.join(tempDir, `${expectedArtifactName}.zip`);
   const artifactExtractDir = path.join(tempDir, 'artifact');
   const binaryExtractDir = path.join(tempDir, 'binary');
@@ -374,13 +374,13 @@ function downloadAndExtractActionsArtifact(platform, arch, runId) {
   const downloadUrl =
     artifact.archive_download_url ||
     `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/artifacts/${artifact.id}/zip`;
-  console.log(`  Downloading aioncore from AionCore run ${runId} artifact ${expectedArtifactName}`);
+  console.log(`  Downloading bbcore from BBCore run ${runId} artifact ${expectedArtifactName}`);
   downloadFileWithAuth(downloadUrl, artifactZipPath);
   extractArchive(artifactZipPath, artifactExtractDir, platform);
 
-  const archivePath = findAioncoreArchiveInDir(artifactExtractDir);
+  const archivePath = findBbcoreArchiveInDir(artifactExtractDir);
   if (!archivePath) {
-    throw new Error(`AionCore artifact ${expectedArtifactName} from run ${runId} does not contain an aioncore archive`);
+    throw new Error(`BBCore artifact ${expectedArtifactName} from run ${runId} does not contain an bbcore archive`);
   }
 
   extractArchive(archivePath, binaryExtractDir, platform);
@@ -388,7 +388,7 @@ function downloadAndExtractActionsArtifact(platform, arch, runId) {
   const binaryName = getBinaryName(platform);
   const binaryPath = findBinaryInDir(binaryExtractDir, binaryName);
   if (!binaryPath) {
-    throw new Error(`Binary ${binaryName} not found in AionCore artifact ${expectedArtifactName} from run ${runId}`);
+    throw new Error(`Binary ${binaryName} not found in BBCore artifact ${expectedArtifactName} from run ${runId}`);
   }
 
   return {
@@ -403,11 +403,11 @@ function downloadAndExtractActionsArtifact(platform, arch, runId) {
 function downloadAndExtract(platform, arch, tag) {
   const assetName = getAssetName(platform, arch, tag);
   if (!assetName) {
-    throw new Error(`Unsupported aioncore target: ${platform}-${arch}`);
+    throw new Error(`Unsupported bbcore target: ${platform}-${arch}`);
   }
 
   const url = getDownloadUrl(assetName, tag);
-  const tempDir = path.join(os.tmpdir(), 'aioncore-prepare', tag, `${platform}-${arch}`);
+  const tempDir = path.join(os.tmpdir(), 'bbcore-prepare', tag, `${platform}-${arch}`);
   const archivePath = path.join(tempDir, assetName);
   const extractDir = path.join(tempDir, 'extracted');
 
@@ -431,7 +431,7 @@ function downloadAndExtract(platform, arch, tag) {
 // ---------------------------------------------------------------------------
 
 /**
- * Prepare aioncore binary for packaging.
+ * Prepare bbcore binary for packaging.
  *
  * @param {object} options - Configuration options
  * @param {string} options.projectRoot - Project root directory
@@ -440,10 +440,10 @@ function downloadAndExtract(platform, arch, tag) {
  * @param {string} options.version - Backend version (default: 'latest')
  * @returns {{ prepared: true; dir: string; sourceType: string }}
  */
-function prepareAioncore(options) {
+function prepareBbcore(options) {
   const { projectRoot, platform, arch, version = 'latest' } = options;
   const runtimeKey = `${platform}-${arch}`;
-  const actionsRunId = (process.env.AIONUI_BACKEND_RUN_ID || '').trim();
+  const actionsRunId = (process.env.BB_BACKEND_RUN_ID || '').trim();
 
   let tag = null;
   if (!actionsRunId) {
@@ -451,27 +451,27 @@ function prepareAioncore(options) {
     if (version === 'latest') {
       const resolved = resolveLatestTag();
       if (!resolved) {
-        throw new Error('Failed to resolve latest aioncore release tag from GitHub API');
+        throw new Error('Failed to resolve latest bbcore release tag from GitHub API');
       }
       tag = resolved;
-      console.log(`Resolved aioncore "latest" → ${tag}`);
+      console.log(`Resolved bbcore "latest" → ${tag}`);
     } else {
       tag = version.startsWith('v') ? version : `v${version}`;
     }
   }
 
-  const targetDir = path.join(projectRoot, 'resources', 'bundled-aioncore', runtimeKey);
+  const targetDir = path.join(projectRoot, 'resources', 'bundled-bbcore', runtimeKey);
   const binaryName = getBinaryName(platform);
   const targetBinaryPath = path.join(targetDir, binaryName);
 
   console.log(
-    `Preparing aioncore for ${runtimeKey} (${actionsRunId ? `actions run: ${actionsRunId}` : `version: ${tag}`})`
+    `Preparing bbcore for ${runtimeKey} (${actionsRunId ? `actions run: ${actionsRunId}` : `version: ${tag}`})`
   );
 
   removeDirectorySafe(targetDir);
   ensureDirectory(targetDir);
 
-  const localBundleDir = (process.env.AIONUI_BACKEND_LOCAL_BUNDLE_DIR || '').trim();
+  const localBundleDir = (process.env.BB_BACKEND_LOCAL_BUNDLE_DIR || '').trim();
   if (localBundleDir) {
     const resolvedLocalBundleDir = path.resolve(localBundleDir);
     const localBinaryPath = path.join(resolvedLocalBundleDir, binaryName);
@@ -494,11 +494,11 @@ function prepareAioncore(options) {
         files: [binaryName, 'managed-resources/'],
       };
       writeJson(path.join(targetDir, 'manifest.json'), manifest);
-      verifyPreparedAioncoreBundle(projectRoot, platform, arch);
-      console.log(`  Using local aioncore bundle: ${resolvedLocalBundleDir}`);
+      verifyPreparedBbcoreBundle(projectRoot, platform, arch);
+      console.log(`  Using local bbcore bundle: ${resolvedLocalBundleDir}`);
       return { prepared: true, dir: targetDir, sourceType: 'local-bundle' };
     }
-    console.warn(`  Local aioncore bundle is incomplete or missing: ${resolvedLocalBundleDir}`);
+    console.warn(`  Local bbcore bundle is incomplete or missing: ${resolvedLocalBundleDir}`);
   }
 
   let sourcePath = null;
@@ -536,16 +536,16 @@ function prepareAioncore(options) {
 
   // 3. Use an explicitly supplied local cache when network download is unavailable.
   if (!sourcePath) {
-    const localBinary = (process.env.AIONUI_BACKEND_LOCAL_BINARY || '').trim();
+    const localBinary = (process.env.BB_BACKEND_LOCAL_BINARY || '').trim();
     if (localBinary) {
       const resolvedLocalBinary = path.resolve(localBinary);
       if (fs.existsSync(resolvedLocalBinary) && fs.statSync(resolvedLocalBinary).isFile()) {
         sourcePath = resolvedLocalBinary;
         sourceType = 'local-binary';
         sourceDetail = { path: resolvedLocalBinary };
-        console.log(`  Using local aioncore binary: ${resolvedLocalBinary}`);
+        console.log(`  Using local bbcore binary: ${resolvedLocalBinary}`);
       } else {
-        console.warn(`  Local aioncore binary not found: ${resolvedLocalBinary}`);
+        console.warn(`  Local bbcore binary not found: ${resolvedLocalBinary}`);
       }
     }
   }
@@ -556,7 +556,7 @@ function prepareAioncore(options) {
     ensureExecutableMode(targetBinaryPath);
     const bundledManagedResourcesDir = prepareManagedResources(targetBinaryPath, targetDir);
 
-    // The release tag is the authoritative version — the aioncore
+    // The release tag is the authoritative version — the bbcore
     // binary does not expose a --version flag (it has --app-version which
     // takes a value, not a self-report).
     const manifest = {
@@ -570,9 +570,9 @@ function prepareAioncore(options) {
     };
 
     writeJson(path.join(targetDir, 'manifest.json'), manifest);
-    verifyPreparedAioncoreBundle(projectRoot, platform, arch);
+    verifyPreparedBbcoreBundle(projectRoot, platform, arch);
     console.log(
-      `  Bundled aioncore prepared: resources/bundled-aioncore/${runtimeKey}/${binaryName} [source=${sourceType}]`
+      `  Bundled bbcore prepared: resources/bundled-bbcore/${runtimeKey}/${binaryName} [source=${sourceType}]`
     );
     console.log(`  Bundled managed resources prepared: ${bundledManagedResourcesDir}`);
 
@@ -580,12 +580,12 @@ function prepareAioncore(options) {
     return { prepared: true, dir: targetDir, sourceType };
   }
 
-  throw new Error(`aioncore binary not found for ${runtimeKey} (tag: ${tag})`);
+  throw new Error(`bbcore binary not found for ${runtimeKey} (tag: ${tag})`);
 }
 
 module.exports = {
   getActionsArtifactMissingMessage,
   getActionsArtifactName,
-  prepareAioncore,
-  verifyPreparedAioncoreBundle,
+  prepareBbcore,
+  verifyPreparedBbcoreBundle,
 };

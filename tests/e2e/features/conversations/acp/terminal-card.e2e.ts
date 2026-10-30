@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -13,7 +13,7 @@
  * the card's Stop button must kill just that command while the agent and
  * turn continue.
  *
- * Backend witnesses (grepped from the aioncore log after a run):
+ * Backend witnesses (grepped from the bbcore log after a run):
  *   "client terminal created"  /  "client terminal killed" (source=user)
  */
 

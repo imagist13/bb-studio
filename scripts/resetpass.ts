@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  *
  * Pure Node/Bun CLI — resets the WebUI admin password for the standalone
@@ -12,14 +12,14 @@
  *   1. A `bun run webui` is already running on the default port → reach its
  *      reverse-proxied /api/webui/reset-password directly. Users don't have to
  *      stop the server first; the just-reset password can be used immediately.
- *   2. No webui running → spawn a short-lived aioncore against the same
+ *   2. No webui running → spawn a short-lived bbcore against the same
  *      data-dir, POST /api/webui/reset-password, and stop the backend. This is
  *      the offline / cold-start path.
  *
  * Usage:
  *   bun run resetpass                 # default work dir
  *   bun run resetpass --data-dir /x   # custom work dir
- *   AIONUI_DATA_DIR=/x bun run resetpass
+ *   BB_DATA_DIR=/x bun run resetpass
  *   NODE_ENV=production bun run resetpass
  */
 
@@ -28,9 +28,9 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { startBackend, stopBackend } from '@aionui/web-host';
+import { startBackend, stopBackend } from '@bb-studio/web-host';
 
-const BACKEND_BINARY = process.platform === 'win32' ? 'aioncore.exe' : 'aioncore';
+const BACKEND_BINARY = process.platform === 'win32' ? 'bbcore.exe' : 'bbcore';
 
 const __filename = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(__filename), '..');
@@ -63,26 +63,26 @@ function getFlag(name: string): string | undefined {
 /**
  * Same resolution as scripts/webui.ts:resolveBackendDataDir — keep both in sync
  * so `bun run webui` and `bun run resetpass` always target the same SQLite DB.
- * See the comment there for why the default is `~/.aionui-web*` (not `~/.aionui*`).
+ * See the comment there for why the default is `~/.bb-web*` (not `~/.bb*`).
  */
 function resolveWorkDir(): string {
-  const override = getFlag('--data-dir') ?? process.env.AIONUI_DATA_DIR;
+  const override = getFlag('--data-dir') ?? process.env.BB_DATA_DIR;
   if (override && override.trim().length > 0) {
     const resolved = path.resolve(override);
     fs.mkdirSync(resolved, { recursive: true });
     return resolved;
   }
   const suffix =
-    process.env.NODE_ENV === 'production' ? '' : process.env.AIONUI_MULTI_INSTANCE === '1' ? '-dev-2' : '-dev';
-  const dir = path.join(os.homedir(), `.aionui-web${suffix}`);
+    process.env.NODE_ENV === 'production' ? '' : process.env.BB_MULTI_INSTANCE === '1' ? '-dev-2' : '-dev';
+  const dir = path.join(os.homedir(), `.bb-web${suffix}`);
   fs.mkdirSync(dir, { recursive: true });
   return dir;
 }
 
 function resolveBackendBinary(): string {
-  if (process.env.AIONUI_BACKEND_BIN) return process.env.AIONUI_BACKEND_BIN;
+  if (process.env.BB_BACKEND_BIN) return process.env.BB_BACKEND_BIN;
 
-  const bundledBase = process.env.AIONUI_BACKEND_BUNDLED_DIR ?? path.join(repoRoot, 'resources', 'bundled-aioncore');
+  const bundledBase = process.env.BB_BACKEND_BUNDLED_DIR ?? path.join(repoRoot, 'resources', 'bundled-bbcore');
   const runtimeKey = `${process.platform}-${process.arch}`;
   const bundled = path.join(bundledBase, runtimeKey, BACKEND_BINARY);
   if (fs.existsSync(bundled)) return bundled;
@@ -96,22 +96,22 @@ function resolveBackendBinary(): string {
   }
 
   throw new Error(
-    `Cannot find "${BACKEND_BINARY}". Set AIONUI_BACKEND_BIN, put it on PATH, or place it at ${bundled}.`
+    `Cannot find "${BACKEND_BINARY}". Set BB_BACKEND_BIN, put it on PATH, or place it at ${bundled}.`
   );
 }
 
 /**
  * Same default port as scripts/webui.ts (mirrors WEBUI_DEFAULT_PORT on the
- * desktop side). Callers can override with `--port` / `AIONUI_PORT` to match
+ * desktop side). Callers can override with `--port` / `BB_PORT` to match
  * a non-default webui launch.
  */
 function resolveWebUIProbePort(): number {
   const cli = getFlag('--port');
   if (cli && /^\d+$/.test(cli)) return Number(cli);
-  const env = process.env.AIONUI_PORT ?? process.env.PORT;
+  const env = process.env.BB_PORT ?? process.env.PORT;
   if (env && /^\d+$/.test(env)) return Number(env);
   if (process.env.NODE_ENV === 'production') return 25808;
-  if (process.env.AIONUI_MULTI_INSTANCE === '1') return 25810;
+  if (process.env.BB_MULTI_INSTANCE === '1') return 25810;
   return 25809;
 }
 
@@ -119,7 +119,7 @@ function resolveWebUIProbePort(): number {
  * Probe an in-flight `bun run webui` on the expected port. Returns the port if
  * its /api/auth/status responds 200 within ~1.5s, otherwise undefined.
  * We intentionally do NOT try to auto-discover arbitrary ports — the user can
- * pass --port / AIONUI_PORT if they launched webui on a non-default one.
+ * pass --port / BB_PORT if they launched webui on a non-default one.
  */
 async function detectRunningWebUI(port: number): Promise<boolean> {
   try {
@@ -193,7 +193,7 @@ async function main(): Promise<void> {
 
   // Slow path: no webui running. Spawn a short-lived backend against the same
   // data-dir, reset, stop.
-  const logDir = process.env.AIONUI_LOG_DIR ?? path.join(workDir, 'logs');
+  const logDir = process.env.BB_LOG_DIR ?? path.join(workDir, 'logs');
   fs.mkdirSync(logDir, { recursive: true });
 
   const backendBin = resolveBackendBinary();

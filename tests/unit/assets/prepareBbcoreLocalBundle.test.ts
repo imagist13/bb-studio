@@ -3,21 +3,21 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-const { prepareAioncore } = require('../../../packages/shared-scripts/src/prepare-aioncore');
+const { prepareBbcore } = require('../../../packages/shared-scripts/src/prepare-bbcore');
 
-describe('prepare-aioncore local bundle input', () => {
+describe('prepare-bbcore local bundle input', () => {
   it('hard fails local bundle input that lacks managed-resources manifest', () => {
-    const tmp = mkdtempSync(join(tmpdir(), 'aionui-local-bundle-'));
+    const tmp = mkdtempSync(join(tmpdir(), 'bb-local-bundle-'));
     const projectRoot = join(tmp, 'project');
     const localBundle = join(tmp, 'bundle');
     mkdirSync(join(localBundle, 'managed-resources'), { recursive: true });
-    writeFileSync(join(localBundle, 'aioncore.exe'), '');
+    writeFileSync(join(localBundle, 'bbcore.exe'), '');
 
-    const previous = process.env.AIONUI_BACKEND_LOCAL_BUNDLE_DIR;
-    process.env.AIONUI_BACKEND_LOCAL_BUNDLE_DIR = localBundle;
+    const previous = process.env.BB_BACKEND_LOCAL_BUNDLE_DIR;
+    process.env.BB_BACKEND_LOCAL_BUNDLE_DIR = localBundle;
     try {
       expect(() =>
-        prepareAioncore({
+        prepareBbcore({
           projectRoot,
           platform: 'win32',
           arch: 'x64',
@@ -25,8 +25,8 @@ describe('prepare-aioncore local bundle input', () => {
         })
       ).toThrow(/managed-resources\/manifest\.json/);
     } finally {
-      if (previous === undefined) delete process.env.AIONUI_BACKEND_LOCAL_BUNDLE_DIR;
-      else process.env.AIONUI_BACKEND_LOCAL_BUNDLE_DIR = previous;
+      if (previous === undefined) delete process.env.BB_BACKEND_LOCAL_BUNDLE_DIR;
+      else process.env.BB_BACKEND_LOCAL_BUNDLE_DIR = previous;
       rmSync(tmp, { recursive: true, force: true });
     }
   });

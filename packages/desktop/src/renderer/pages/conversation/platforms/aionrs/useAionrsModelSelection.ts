@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -33,7 +33,7 @@ export const useAionrsModelSelection = ({
 
   const { providers: allProviders, getAvailableModels, formatModelLabel } = useModelProviderList();
 
-  // AionCore does not support Google Auth — filter it out
+  // BBCore does not support Google Auth — filter it out
   const providers = useMemo(
     () => allProviders.filter((p) => !p.platform?.toLowerCase().includes('gemini-with-google-auth')),
     [allProviders]

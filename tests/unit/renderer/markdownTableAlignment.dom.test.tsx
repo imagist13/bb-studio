@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -80,11 +80,11 @@ describe('preview surface (markdown.css) table header alignment', () => {
   it('declares text-align: start on th so the header matches the body rows', () => {
     const rules = parseRules(readFileSync(PREVIEW_CSS_PATH, 'utf8'));
 
-    const th = rules.find((rule) => normalize(selectorOf(rule)) === '.aionui-markdown :where(th)') as
+    const th = rules.find((rule) => normalize(selectorOf(rule)) === '.bb-markdown :where(th)') as
       | CSSStyleRule
       | undefined;
 
-    expect(th, 'markdown.css must still carry a `.aionui-markdown :where(th)` rule').toBeDefined();
+    expect(th, 'markdown.css must still carry a `.bb-markdown :where(th)` rule').toBeDefined();
     expect(th?.style.getPropertyValue('text-align')).toBe('start');
   });
 });

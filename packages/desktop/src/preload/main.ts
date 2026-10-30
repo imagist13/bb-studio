@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -51,7 +51,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   recoverCorruptedDatabase: () => ipcRenderer.invoke('backend:recover-corrupted-database'),
 });
 
-// Synchronously fetch the aioncore port and expose it to the renderer
+// Synchronously fetch the bbcore port and expose it to the renderer
 // via contextBridge (direct window assignment is invisible under contextIsolation).
 const backendPort = ipcRenderer.sendSync('get-backend-port') as number;
 const initialLanguage = ipcRenderer.sendSync('get-initial-language') as string | null;
@@ -59,7 +59,7 @@ const backendStartupFailed = ipcRenderer.sendSync('get-backend-startup-failed') 
 const backendStartupFailure = ipcRenderer.sendSync('get-backend-startup-failure') as unknown;
 contextBridge.exposeInMainWorld('__backendPort', backendPort > 0 ? backendPort : 0);
 contextBridge.exposeInMainWorld('__initialLanguage', initialLanguage ?? null);
-contextBridge.exposeInMainWorld('__aionuiE2ETest', process.env.AIONUI_E2E_TEST === '1');
+contextBridge.exposeInMainWorld('__bbE2ETest', process.env.BB_E2E_TEST === '1');
 contextBridge.exposeInMainWorld('__backendStartupFailed', backendStartupFailed === true);
 contextBridge.exposeInMainWorld('__backendStartupFailure', backendStartupFailure ?? null);
 

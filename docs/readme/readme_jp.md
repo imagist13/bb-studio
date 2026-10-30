@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="../../resources/aionui-banner-1.png" alt="AionUi - Cowork with AI Agents" width="100%">
+  <img src="../../resources/bb-banner-1.png" alt="BBUI - Cowork with AI Agents" width="100%">
 </p>
 
 <p align="center">
@@ -30,31 +30,31 @@
 </p>
 
 <p align="center">
-  <a href="../../readme.md">English</a> | <a href="./readme_ch.md">简体中文</a> | <a href="./readme_tw.md">繁體中文</a> | <strong>日本語</strong> | <a href="./readme_ko.md">한국어</a> | <a href="./readme_es.md">Español</a> | <a href="./readme_pt.md">Português</a> | <a href="./readme_tr.md">Türkçe</a> | <a href="./readme_ru.md">Русский</a> | <a href="./readme_uk.md">Українська</a> | <a href="https://www.aionui.com" target="_blank">公式サイト</a>
+  <a href="../../readme.md">English</a> | <a href="./readme_ch.md">简体中文</a> | <a href="./readme_tw.md">繁體中文</a> | <strong>日本語</strong> | <a href="./readme_ko.md">한국어</a> | <a href="./readme_es.md">Español</a> | <a href="./readme_pt.md">Português</a> | <a href="./readme_tr.md">Türkçe</a> | <a href="./readme_ru.md">Русский</a> | <a href="./readme_uk.md">Українська</a> | <a href="https://www.bbui.dev" target="_blank">公式サイト</a>
 </p>
 
 <p align="center">
-  <strong>💬 コミュニティ：</strong> <a href="https://discord.gg/2QAwJn7Egx" target="_blank">Discord (English)</a> | <a href="../../resources/wx-26.png" target="_blank">微信 (中文群)</a> | <a href="https://twitter.com/AionUI" target="_blank">Twitter</a>
+  <strong>💬 コミュニティ：</strong> <a href="https://discord.gg/2QAwJn7Egx" target="_blank">Discord (English)</a> | <a href="../../resources/wx-26.png" target="_blank">微信 (中文群)</a> | <a href="https://twitter.com/BBUI" target="_blank">Twitter</a>
 </p>
 
 ---
 
 <p align="center">
-  <a href="https://x.com/AionUi/status/2079493379914961069">
-    <img src="../../resources/kimi/contributor-bonus-black-blue.jpg" alt="AionUi × Kimi コントリビューターボーナス" width="600">
+  <a href="https://x.com/BBUI/status/2079493379914961069">
+    <img src="../../resources/kimi/contributor-bonus-black-blue.jpg" alt="BBUI × Kimi コントリビューターボーナス" width="600">
   </a>
 </p>
 
 <p align="center">
-  🎁 <strong>AionUi × Kimi 戦略提携</strong>：コントリビューター向けに <strong>Kimi「Allegretto」プラン（$39/月・¥199/月相当）を無料進呈</strong>！
+  🎁 <strong>BBUI × Kimi 戦略提携</strong>：コントリビューター向けに <strong>Kimi「Allegretto」プラン（$39/月・¥199/月相当）を無料進呈</strong>！
 </p>
 
 <h3 align="center">
-  <a href="https://x.com/AionUi/status/2079493379914961069">キャンペーン詳細と申請方法を見る →</a>
+  <a href="https://x.com/BBUI/status/2079493379914961069">キャンペーン詳細と申請方法を見る →</a>
 </h3>
 
 <p align="center">
-  <sub><strong>Kimi K3</strong> が登場、AionUi ですぐに使えます——<a href="https://www.kimi.com/code?aff=aionui" target="_blank">Kimi For Coding プランを入手</a>、または API キー（<a href="https://platform.kimi.ai?track_id=track-32e04532b08d460fac729191744fa75c&aff=aionui" target="_blank">グローバル</a> / <a href="https://platform.kimi.com?track_id=track-98f92981df1c4c61b2c68930ba3ab658&aff=aionui" target="_blank">中国</a>）</sub>
+  <sub><strong>Kimi K3</strong> が登場、BBUI ですぐに使えます——<a href="https://www.kimi.com/code?aff=bb" target="_blank">Kimi For Coding プランを入手</a>、または API キー（<a href="https://platform.kimi.ai?track_id=track-32e04532b08d460fac729191744fa75c&aff=bb" target="_blank">グローバル</a> / <a href="https://platform.kimi.com?track_id=track-98f92981df1c4c61b2c68930ba3ab658&aff=bb" target="_blank">中国</a>）</sub>
 </p>
 
 ---
@@ -64,7 +64,7 @@
 <p align="center">
 
 [✨ Cowork の実演](#-cowork-の実演) ·
-[🤔 なぜ AionUi を選ぶのか？](#-なぜ-aionui-を-claude-cowork-より選ぶのか) ·
+[🤔 なぜ BBUI を選ぶのか？](#-なぜ-bb-を-claude-cowork-より選ぶのか) ·
 [🚀 クイックスタート](#-クイックスタート) ·
 [💬 コミュニティ](#-コミュニティとサポート)
 
@@ -74,9 +74,9 @@
 
 ## Cowork — AI Agents があなたと共に働く
 
-**AionUi は単なるチャットクライアントではありません。** これは Cowork プラットフォームであり、AI Agent があなたのコンピューター上であなたと共に働きます——ファイルを読み、コードを書き、ウェブを閲覧し、タスクを自動化します。Agent のすべての動作を見ることができ、常にあなたがコントロールしています。
+**BBUI は単なるチャットクライアントではありません。** これは Cowork プラットフォームであり、AI Agent があなたのコンピューター上であなたと共に働きます——ファイルを読み、コードを書き、ウェブを閲覧し、タスクを自動化します。Agent のすべての動作を見ることができ、常にあなたがコントロールしています。
 
-|                                       | 従来の AI チャットクライアント | **AionUi (Cowork)**                                                                                                                         |
+|                                       | 従来の AI チャットクライアント | **BBUI (Cowork)**                                                                                                                         |
 | :------------------------------------ | :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
 | AI がファイルを操作できる             | 限定的または不可               | **はい — 内蔵 Agent、完全なファイルアクセス**                                                                                               |
 | AI がマルチステップタスクを実行できる | 限定的                         | **はい — 自律実行、あなたの承認が必要**                                                                                                     |
@@ -86,14 +86,14 @@
 | 価格                                  | 無料 / 有料                    | **無料かつオープンソース**                                                                                                                  |
 
 <p align="center">
-  <img src="../../resources/offica-ai BANNER-function.png" alt="AionUi Cowork Platform" width="800">
+  <img src="../../resources/offica-ai BANNER-function.png" alt="BBUI Cowork Platform" width="800">
 </p>
 
 ---
 
 ## 内蔵 Agent — インストールしてすぐ使える、ゼロ設定
 
-AionUi には完全な AI Agent エンジンが内蔵されています。CLI Agent を個別にインストールする必要があるツールとは異なり、**AionUi はインストールした瞬間から動作します**。
+BBUI には完全な AI Agent エンジンが内蔵されています。CLI Agent を個別にインストールする必要があるツールとは異なり、**BBUI はインストールした瞬間から動作します**。
 
 - **CLI ツールのインストール不要** — Agent エンジンが内蔵されています
 - **複雑な設定不要** — 任意の API キーを貼り付けるだけ
@@ -159,7 +159,7 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 
 ## マルチ Agent モード — すでに CLI Agent をお持ちですか？一緒に使えます
 
-すでに Claude Code、Codex、Hermes Agent、または OpenClaw を使用している場合、AionUi は自動的に検出し、それらすべてと Cowork できます——内蔵 Agent と一緒に。
+すでに Claude Code、Codex、Hermes Agent、または OpenClaw を使用している場合、BBUI は自動的に検出し、それらすべてと Cowork できます——内蔵 Agent と一緒に。
 
 **サポートされている Agent：** 内蔵 Agent（組み込みの [aionrs](https://github.com/iOfficeAI/aionrs) Agent エンジンで動作） • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity など
 
@@ -178,10 +178,10 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 複数の AI Agent をチームとして実行：**Leader** Agent がユーザーの指示を受け取り、サブタスクに分解し、内蔵の Team MCP Server を通じて **Teammate** Agent に委任。Teammate は並行して実行し、非同期メールボックスで結果を共有し、共有タスクボードに書き込みます。
 
 <p align="center">
-  <img src="../../resources/AionUi_team.gif" alt="Team Mode overview" width="800">
+  <img src="../../resources/BBUI_team.gif" alt="Team Mode overview" width="800">
 </p>
 
-- **並列マルチエージェント実行** — Leader がタスクを分割して Teammate に並列委任；外部 Agent は ACP（Agent Client Protocol）で接続し、チームの調整は AionUi が担当
+- **並列マルチエージェント実行** — Leader がタスクを分割して Teammate に並列委任；外部 Agent は ACP（Agent Client Protocol）で接続し、チームの調整は BBUI が担当
 - **Leader によるオーケストレーション** — Leader が割り当て、追跡、集約；対応バックエンドは Claude Code、Codex、Hermes Agent、Gemini、Snow CLI、Aion CLI
 - **チーム隔離ワークスペース** — すべての Agent が同じフォルダを共有；各エージェントに独自の権限確認ダイアログがあり、サイドバーバッジで承認待ちを表示
 
@@ -202,7 +202,7 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 
 ## 任意の API キーで、完全な Cowork Agent パワー
 
-他の AI アプリは API キー付きのチャットボックスを提供します。**AionUi は完全な Cowork Agent を提供します。**
+他の AI アプリは API キー付きのチャットボックスを提供します。**BBUI は完全な Cowork Agent を提供します。**
 
 | あなたの API キー              | 得られる機能                |
 | :----------------------------- | :-------------------------- |
@@ -212,7 +212,7 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 | Ollama / LM Studio（ローカル） | ローカルモデル Cowork Agent |
 | NewAPI ゲートウェイ            | 20+ モデルへの統一アクセス  |
 
-どのモデルで動かしても、Agent の機能は同じ——ファイル読み書き、ウェブ検索、画像生成、ツール使用。AionUi はクラウドサービスとローカルデプロイメントを含む **30+ の AI プラットフォーム**をサポートしています。
+どのモデルで動かしても、Agent の機能は同じ——ファイル読み書き、ウェブ検索、画像生成、ツール使用。BBUI はクラウドサービスとローカルデプロイメントを含む **30+ の AI プラットフォーム**をサポートしています。
 
 <p align="center">
   <img src="../../resources/llm_newapi.png" alt="Multi-Model Support" width="800">
@@ -231,7 +231,7 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 - **国際プラットフォーム** — DeepSeek、MiniMax、Novita、OpenRouter、SiliconFlow、xAI、Ark (Volcengine)、Poe
 - **ローカルモデル** — Ollama、LM Studio（ローカル API エンドポイントを使用したカスタムプラットフォーム経由）
 
-AionUi は [NewAPI](https://github.com/QuantumNous/new-api) ゲートウェイサービスもサポートしています——様々な LLM を集約・配布する統一 AI モデルハブです。同じインターフェースで異なるモデルを柔軟に切り替えて、様々なタスク要件に対応できます。
+BBUI は [NewAPI](https://github.com/QuantumNous/new-api) ゲートウェイサービスもサポートしています——様々な LLM を集約・配布する統一 AI モデルハブです。同じインターフェースで異なるモデルを柔軟に切り替えて、様々なタスク要件に対応できます。
 
 </details>
 
@@ -242,7 +242,7 @@ AionUi は [NewAPI](https://github.com/QuantumNous/new-api) ゲートウェイ�
 _21 個の内蔵プロフェッショナルアシスタントと三層スキルシステムを備えた拡張可能なアシスタントシステム。独自のアシスタントとスキルを作成・管理できます。_
 
 - **カスタムアシスタントの作成** — カスタムルールと機能を持つ独自のアシスタントを定義
-- **三層スキル** — 内蔵スキル（AionUi に同梱）、カスタムスキル（ユーザー定義）、Extension スキル（サードパーティ Extension から提供）；スキルインジケーターで会話ごとに有効化/無効化
+- **三層スキル** — 内蔵スキル（BBUI に同梱）、カスタムスキル（ユーザー定義）、Extension スキル（サードパーティ Extension から提供）；スキルインジケーターで会話ごとに有効化/無効化
 - **会話レベルの制御** — チャットヘッダーのスキルインジケーターが現在の会話のアクティブスキルを表示；スキルの検索と除外が可能
 
 <p align="center">
@@ -254,7 +254,7 @@ _21 個の内蔵プロフェッショナルアシスタントと三層スキル�
 
 <br>
 
-AionUi には、事前定義された機能を持つ **21 個のプロフェッショナルアシスタント**が含まれており、カスタムスキルで拡張可能です：
+BBUI には、事前定義された機能を持つ **21 個のプロフェッショナルアシスタント**が含まれており、カスタムスキルで拡張可能です：
 
 - **🤝 Cowork** — 自律タスク実行（ファイル操作、ドキュメント処理、ワークフロー計画）
 - **📊 PPT Creator / Morph PPT / Morph PPT 3D** — Morph トランジションで PPTX プレゼンテーションを生成・アニメーション
@@ -275,11 +275,11 @@ AionUi には、事前定義された機能を持つ **21 個のプロフェッ�
 - **🔧 OpenClaw セットアップ** — OpenClaw 統合のセットアップと設定アシスタント
 - **📖 ストーリーロールプレイ** — キャラクターカードと世界情報を備えた没入型ストーリーロールプレイ（SillyTavern 互換）
 
-- **🧭 AionUi Butler** — AionUi 内で製品ガイド、セットアップ支援、トラブルシューティングを提供
+- **🧭 BBUI Butler** — BBUI 内で製品ガイド、セットアップ支援、トラブルシューティングを提供
 
 **カスタムスキル**：**設定 → Skills** からスキルをインポートまたは作成し、必要なアシスタントに割り当てます。スキルは内蔵、カスタム、Extension の三つのソースから提供されます。内蔵スキルには `pptx`、`docx`、`pdf`、`xlsx`、`mermaid` などが含まれます。
 
-> 💡 内蔵定義の正規情報は AionCore の[アシスタントカタログ](https://github.com/iOfficeAI/AionCore/blob/main/crates/aionui-app/assets/builtin-assistants/assistants.json)にあります。ルールは引き続き Markdown で、AionUi 内からカスタマイズできます。
+> 💡 内蔵定義の正規情報は BBCore の[アシスタントカタログ](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json)にあります。ルールは引き続き Markdown で、BBUI 内からカスタマイズできます。
 
 </details>
 
@@ -287,7 +287,7 @@ AionUi には、事前定義された機能を持つ **21 個のプロフェッ�
 
 ## どこからでも Cowork
 
-_あなたの 24/7 AI アシスタント — あらゆるデバイス、どこからでも AionUi にアクセス。_
+_あなたの 24/7 AI アシスタント — あらゆるデバイス、どこからでも BBUI にアクセス。_
 
 - **WebUI モード** — スマホ、タブレット、または任意のコンピューターからブラウザ経由でアクセス。LAN、クロスネットワーク、サーバーデプロイメントをサポート。QR コードまたはパスワードログイン。
 
@@ -298,7 +298,7 @@ _あなたの 24/7 AI アシスタント — あらゆるデバイス、どこ�
   - **WeChat** — WeChat 個人アカウント連携
   - **WeCom（企業微信）**、**Slack**、**Discord** など、さらに多くのプラットフォームが近日公開
 
-> **設定：** AionUi 設定 → WebUI 設定 → Channel、Bot Token を設定します。
+> **設定：** BBUI 設定 → WebUI 設定 → Channel、Bot Token を設定します。
 
 <p align="center">
   <img src="../../resources/webui-remote.gif" alt="WebUI remote access demo" width="800">
@@ -344,7 +344,7 @@ _一度設定すれば、AI Agent がスケジュールに従って自動実行�
 - **会話にバインド** — 各スケジュールタスクは会話にバインドされ、コンテキストと履歴を維持
 - **自動実行** — タスクはスケジュールされた時刻に自動実行され、会話にメッセージを送信
 - **簡単な管理** — いつでもスケジュールタスクを作成、変更、有効化/無効化、削除、表示
-- **スリープ防止** — タスク実行中に AionUi がシステムのスリープを自動防止し、復帰後のトリガー漏れを検出
+- **スリープ防止** — タスク実行中に BBUI がシステムのスリープを自動防止し、復帰後のトリガー漏れを検出
 - **高度な設定** — 各タスクに独自のモデル、ワークスペースディレクトリ、推論努力設定が可能
 
 **実世界の例：**
@@ -393,7 +393,7 @@ _10+ フォーマット：PDF、Word、Excel、PPT、コード、Markdown、画�
 _バッチリネーム、自動整理、スマート分類、ファイルマージ——Cowork Agent があなたのために処理します。_
 
 <p align="center">
-  <img src="../../resources/aionui sort file 2.gif" alt="Smart File Management" width="800">
+  <img src="../../resources/bb sort file 2.gif" alt="Smart File Management" width="800">
 </p>
 
 <details>
@@ -465,7 +465,7 @@ _Gemini 駆動のインテリジェントな画像生成、編集、認識_
 
 </details>
 
-> [画像生成モデル設定ガイド](https://github.com/iOfficeAI/AionUi/wiki/AionUi-Image-Generation-Tool-Model-Configuration-Guide)
+> [画像生成モデル設定ガイド](https://github.com/iOfficeAI/AionUi/wiki/BBUI-Image-Generation-Tool-Model-Configuration-Guide)
 
 ---
 
@@ -522,16 +522,16 @@ _複数の会話を開き、タスクが混ざらない、独立したメモリ�
 
 ---
 
-## 🤔 なぜ AionUi を Claude Cowork より選ぶのか？
+## 🤔 なぜ BBUI を Claude Cowork より選ぶのか？
 
 <details>
 <summary><strong>詳細な比較を見るにはクリック</strong></summary>
 
 <br>
 
-AionUi は**無料でオープンソースの Multi-AI Agent デスクトップ**です。macOS でのみ動作し Claude にロックされている Claude Cowork と比較して、AionUi は全モデル、クロスプラットフォームの強化版です。
+BBUI は**無料でオープンソースの Multi-AI Agent デスクトップ**です。macOS でのみ動作し Claude にロックされている Claude Cowork と比較して、BBUI は全モデル、クロスプラットフォームの強化版です。
 
-| 次元             | Claude Cowork    | AionUi                                                |
+| 次元             | Claude Cowork    | BBUI                                                |
 | :--------------- | :--------------- | :---------------------------------------------------- |
 | OS               | macOS のみ       | macOS / Windows / Linux                               |
 | モデルサポート   | Claude のみ      | Gemini、Claude、DeepSeek、OpenAI、Ollama、...         |
@@ -554,17 +554,17 @@ AionUi は**無料でオープンソースの Multi-AI Agent デスクトップ*
 
 <details>
 <summary><strong>Q: 最初に Gemini CLI や Claude Code をインストールする必要がありますか？</strong></summary>
-A: <strong>いいえ。</strong> AionUi にはインストール後すぐに動作する内蔵 AI Agent があります。任意の API キーを入力するだけです。Claude Code や Gemini CLI などの CLI ツールもインストールしている場合、AionUi は自動的に検出して統合し、さらに多くの機能を提供します。
+A: <strong>いいえ。</strong> BBUI にはインストール後すぐに動作する内蔵 AI Agent があります。任意の API キーを入力するだけです。Claude Code や Gemini CLI などの CLI ツールもインストールしている場合、BBUI は自動的に検出して統合し、さらに多くの機能を提供します。
 </details>
 
 <details>
-<summary><strong>Q: AionUi で何ができますか？</strong></summary>
-A: AionUi はあなたの<strong>プライベート Cowork ワークスペース</strong>です。内蔵 Agent はフォルダをバッチ整理し、Excel データを処理し、ドキュメントを生成し、ウェブを検索し、画像を生成できます。マルチ Agent モードでは、同じインターフェースを通じて Claude Code、Codex、その他の強力な CLI Agent も活用できます。
+<summary><strong>Q: BBUI で何ができますか？</strong></summary>
+A: BBUI はあなたの<strong>プライベート Cowork ワークスペース</strong>です。内蔵 Agent はフォルダをバッチ整理し、Excel データを処理し、ドキュメントを生成し、ウェブを検索し、画像を生成できます。マルチ Agent モードでは、同じインターフェースを通じて Claude Code、Codex、その他の強力な CLI Agent も活用できます。
 </details>
 
 <details>
 <summary><strong>Q: 無料ですか？</strong></summary>
-A: AionUi は完全に無料でオープンソースです。利用するプロバイダーの API 使用料のみがかかり、お好みのプロバイダーの API キーを使用できます。
+A: BBUI は完全に無料でオープンソースです。利用するプロバイダーの API 使用料のみがかかり、お好みのプロバイダーの API キーを使用できます。
 </details>
 
 <details>
@@ -574,7 +574,7 @@ A: すべてのデータはローカルの SQLite データベースに保存さ
 
 ---
 
-## AionUi の使用例を見る
+## BBUI の使用例を見る
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=vWxE6VO9TKo" target="_blank">
@@ -608,7 +608,7 @@ A: すべてのデータはローカルの SQLite データベースに保存さ
 - [普通の人々が APP のように Claude Code を使用できるようにする](https://mp.weixin.qq.com/s/TsMojSbkUUFvsd-HQCazZg) — 怠惰な猫は魚を愛する
 - [5500 Stars：オープンソースが Anthropic の AI ツールの堀をどのように破るか](https://mp.weixin.qq.com/s/saEk49cYV6MqBgw19Lw6Gw) — AI シリコンモーメント
 
-> **AionUi について動画を作成しましたか？** [X でお知らせください](https://x.com/AionUi)、ここで紹介します！
+> **BBUI について動画を作成しましたか？** [X でお知らせください](https://x.com/BBUI)、ここで紹介します！
 
 ---
 
@@ -634,12 +634,12 @@ A: すべてのデータはローカルの SQLite データベースに保存さ
 
 ```bash
 # Alternatively, macOS via Homebrew
-brew install aionui
+brew install bb
 ```
 
 ### 3 ステップで始める
 
-1. **インストール** AionUi
+1. **インストール** BBUI
 2. **入力** 任意の API キーを入力するだけ
 3. **Cowork を開始** — 内蔵 AI Agent が準備完了
 
@@ -662,7 +662,7 @@ brew install aionui
 
 - [📁 ファイル管理](https://github.com/iOfficeAI/AionUi/wiki/file-management) — スマートファイル整理
 - [📊 Excel 処理](https://github.com/iOfficeAI/AionUi/wiki/excel-processing) — AI 駆動のデータ処理
-- [🎨 画像生成](https://github.com/iOfficeAI/AionUi/wiki/AionUi-Image-Generation-Tool-Model-Configuration-Guide) — AI 画像作成
+- [🎨 画像生成](https://github.com/iOfficeAI/AionUi/wiki/BBUI-Image-Generation-Tool-Model-Configuration-Guide) — AI 画像作成
 - [📚 その他の使用例](https://github.com/iOfficeAI/AionUi/wiki/Use-Cases-Overview)
 
 **❓ サポートとヘルプ**
@@ -679,7 +679,7 @@ brew install aionui
 **あなたのアイデアが重要です！** すべての提案とフィードバックを大切にしています。
 
 <p align="center">
-  <a href="https://x.com/AionUi" target="_blank">
+  <a href="https://x.com/BBUI" target="_blank">
     <img src="../../resources/contactus-x.png" alt="Contact Us on X" width="600">
   </a>
 </p>
@@ -702,7 +702,7 @@ PR を開く前に [CONTRIBUTING.md](../../CONTRIBUTING.md) をお読みくだ�
 
 ### 開発環境セットアップ
 
-AionUi のローカル開発では、Electron フロントエンド用の AionUi とローカルバックエンド用の AionCore の 2 つのリポジトリを使います。macOS、Linux、Windows の完全なセットアップ手順は [Development Guide](../contributing/development.md) を参照してください。
+BBUI のローカル開発では、Electron フロントエンド用の BBUI とローカルバックエンド用の BBCore の 2 つのリポジトリを使います。macOS、Linux、Windows の完全なセットアップ手順は [Development Guide](../contributing/development.md) を参照してください。
 
 ---
 

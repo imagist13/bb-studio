@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -58,10 +58,10 @@ export interface AionStepsProps extends StepsProps {
  * </AionSteps>
  * ```
  *
- * @see arco-override.css for custom styles (.aionui-steps)
+ * @see arco-override.css for custom styles (.bb-steps)
  */
 const AionSteps: React.FC<AionStepsProps> & { Step: typeof Steps.Step } = ({ className, ...props }) => {
-  return <Steps {...props} className={classNames('aionui-steps', className)} />;
+  return <Steps {...props} className={classNames('bb-steps', className)} />;
 };
 
 AionSteps.displayName = 'AionSteps';

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2026 AionUi (aionui.com)
+ * Copyright 2026 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -116,9 +116,9 @@ describe('UpdateNotificationCard', () => {
           draft: false,
           assets: [],
           recommendedAsset: {
-            name: 'AionUi-2.1.14-mac-arm64.dmg',
-            url: 'https://static.aionui.com/releases/2.1.14/AionUi-2.1.14-mac-arm64.dmg',
-            fallbackUrl: 'https://github.com/iOfficeAI/AionUi/releases/download/v2.1.14/AionUi-2.1.14-mac-arm64.dmg',
+            name: 'BBUI-2.1.14-mac-arm64.dmg',
+            url: 'https://static.bbui.dev/releases/2.1.14/BBUI-2.1.14-mac-arm64.dmg',
+            fallbackUrl: 'https://github.com/iOfficeAI/AionUi/releases/download/v2.1.14/BBUI-2.1.14-mac-arm64.dmg',
             size: 123,
           },
         },
@@ -128,7 +128,7 @@ describe('UpdateNotificationCard', () => {
       success: true,
       data: {
         downloadId: request.downloadId ?? 'manual-download',
-        file_path: '/tmp/AionUi-2.1.14-mac-arm64.dmg',
+        file_path: '/tmp/BBUI-2.1.14-mac-arm64.dmg',
       },
     }));
   });
@@ -178,7 +178,7 @@ describe('UpdateNotificationCard', () => {
       data: {
         ready: true,
         version: '2.1.14',
-        filePath: '/cache/pending/AionUi-2.1.14-mac.zip',
+        filePath: '/cache/pending/BBUI-2.1.14-mac.zip',
       },
     });
 
@@ -609,8 +609,8 @@ describe('UpdateNotificationCard', () => {
       silent: true,
       updated: true,
       retryCount: 3,
-      instDir: 'D:\\AionUi',
-      logPath: 'C:\\Users\\me\\AppData\\Local\\Temp\\aionui-installer-2.1.27-20260702-151830-ab12cd34ef56.log',
+      instDir: 'D:\\BBUI',
+      logPath: 'C:\\Users\\me\\AppData\\Local\\Temp\\bb-installer-2.1.27-20260702-151830-ab12cd34ef56.log',
       at: '2026-07-01T00:00:00.000Z',
     };
     mocks.consumeInstallerLastFailureMock.mockResolvedValue({ success: true, data: marker });

@@ -203,7 +203,7 @@ worktrees/
 .superpowers/
 docs/superpowers/
 resources/bundled-bun
-resources/bundled-aioncore
+resources/bundled-bbcore
 resources/hub
 /resources/windows/support/_sentry-dsn.generated.nsh
 
@@ -214,11 +214,11 @@ dist-server/
 .claude/teams/
 
 # Locally auto-injected agent skills: these are SYMLINKS into a developer's own
-# machine (e.g. ~/.aionui-dev/builtin-skills/...), so committing them gives
+# machine (e.g. ~/.bb-dev/builtin-skills/...), so committing them gives
 # everyone else broken links. The repo's own skills live in real directories
 # next to them (.claude/skills/architecture/, /testing/, ...) and stay tracked.
 .aionrs/skills/
-.claude/skills/aionui-config
+.claude/skills/bb-config
 .claude/skills/antigravity-cli-issue-triage
 .claude/skills/cron
 .claude/skills/officecli

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,11 +8,11 @@ import type { ImageGenerationModelSetting } from './clientSettings';
 import type { IProvider } from './storage';
 
 export const IMAGE_GEN_ENV_KEYS = {
-  providerId: 'AIONUI_IMG_PROVIDER_ID',
-  platform: 'AIONUI_IMG_PLATFORM',
-  baseUrl: 'AIONUI_IMG_BASE_URL',
-  apiKey: 'AIONUI_IMG_API_KEY',
-  model: 'AIONUI_IMG_MODEL',
+  providerId: 'BB_IMG_PROVIDER_ID',
+  platform: 'BB_IMG_PLATFORM',
+  baseUrl: 'BB_IMG_BASE_URL',
+  apiKey: 'BB_IMG_API_KEY',
+  model: 'BB_IMG_MODEL',
 } as const;
 
 type ImageGenerationSelection = Partial<ImageGenerationModelSetting>;

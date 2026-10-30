@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -76,8 +76,8 @@ export class ClientFactory {
           baseURL: base_url,
           timeout: options.timeout,
           defaultHeaders: {
-            'HTTP-Referer': 'https://aionui.com',
-            'X-Title': 'AionUi',
+            'HTTP-Referer': 'https://bbui.dev',
+            'X-Title': 'BBUI',
           },
           ...(options.baseConfig as OpenAIClientConfig),
         };
@@ -127,8 +127,8 @@ export class ClientFactory {
           baseURL: base_url,
           timeout: options.timeout,
           defaultHeaders: {
-            'HTTP-Referer': 'https://aionui.com',
-            'X-Title': 'AionUi',
+            'HTTP-Referer': 'https://bbui.dev',
+            'X-Title': 'BBUI',
           },
           ...(options.baseConfig as OpenAIClientConfig),
         };

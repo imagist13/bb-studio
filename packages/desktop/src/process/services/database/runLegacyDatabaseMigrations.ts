@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -31,7 +31,7 @@ export type LegacyDatabaseMigrationResult = {
 };
 
 export function resolveLegacyDatabasePath(dataDir = getDataPath()): string {
-  return path.join(dataDir, 'aionui.db');
+  return path.join(dataDir, 'bb.db');
 }
 
 function ensureSystemUser(db: ISqliteDriver): void {

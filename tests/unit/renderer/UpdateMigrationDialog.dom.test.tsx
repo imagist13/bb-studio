@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2026 AionUi (aionui.com)
+ * Copyright 2026 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -33,7 +33,7 @@ const openDialog = () => {
   fireEvent(window, new CustomEvent(OPEN_MIGRATION_DIALOG_EVENT));
 };
 
-const INVITE_SHOWN_KEY = 'aionui.migration-invite-shown';
+const INVITE_SHOWN_KEY = 'bb.migration-invite-shown';
 
 describe('UpdateMigrationDialog', () => {
   beforeEach(() => {
@@ -77,6 +77,6 @@ describe('UpdateMigrationDialog', () => {
     openDialog();
     await waitFor(() => expect(screen.getByText('update.migration.letter.downloadNew')).toBeTruthy());
     fireEvent.click(screen.getByText('update.migration.letter.downloadNew'));
-    expect(mocks.openExternalUrl).toHaveBeenCalledWith('https://www.aionui.com/');
+    expect(mocks.openExternalUrl).toHaveBeenCalledWith('https://www.bbui.dev/');
   });
 });

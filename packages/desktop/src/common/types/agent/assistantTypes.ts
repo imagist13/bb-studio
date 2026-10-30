@@ -1,10 +1,10 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// Mirror of aionui-api-types/src/assistant.rs.
+// Mirror of bb-api-types/src/assistant.rs.
 // Any shape change on either side requires a same-PR update on the other.
 
 export type AssistantSource = 'builtin' | 'generated' | 'user';
@@ -23,6 +23,14 @@ export function assistantRuntimeKey(assistant?: Pick<Assistant, 'agent'> | null)
 
 export function isAionrsAssistant(assistant?: Pick<Assistant, 'agent'> | null): boolean {
   return assistant?.agent?.type === 'aionrs';
+}
+
+/** Assistant preselected on first launch: the Buckyball vertical agent. */
+export const PRODUCT_DEFAULT_ASSISTANT_ID = 'buckyball';
+
+/** Match the product default, tolerating the legacy `builtin-` id prefix. */
+export function isProductDefaultAssistant(assistant?: Pick<Assistant, 'id'> | null): boolean {
+  return assistant?.id === PRODUCT_DEFAULT_ASSISTANT_ID || assistant?.id === `builtin-${PRODUCT_DEFAULT_ASSISTANT_ID}`;
 }
 
 export interface Assistant {

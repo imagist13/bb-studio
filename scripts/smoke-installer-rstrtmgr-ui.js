@@ -79,70 +79,70 @@ function main() {
 
   const compileOnly = process.argv.includes('--compile-only');
   const makensis = findMakensis();
-  const root = mkdtempSync(path.join(tmpdir(), 'aionui-rm-ui-'));
+  const root = mkdtempSync(path.join(tmpdir(), 'bb-rm-ui-'));
   const installDir = path.join(root, 'install-dir');
   mkdirSync(installDir, { recursive: true });
   const lockedFile = path.join(installDir, 'locked-by-smoke.txt');
-  writeFileSync(lockedFile, 'AionUi Restart Manager UI smoke lock\n', 'utf8');
+  writeFileSync(lockedFile, 'BBUI Restart Manager UI smoke lock\n', 'utf8');
 
   let locker = null;
-  const nsiPath = path.join(root, 'aionui-rstrtmgr-ui-smoke.nsi');
-  const exePath = path.join(root, 'aionui-rstrtmgr-ui-smoke.exe');
+  const nsiPath = path.join(root, 'bb-rstrtmgr-ui-smoke.nsi');
+  const exePath = path.join(root, 'bb-rstrtmgr-ui-smoke.exe');
   const logPath = path.join(
     process.env.TEMP || tmpdir(),
-    `aionui-installer-smoke-${new Date().toISOString().replace(/[-:]/g, '').replace(/\..+$/, '').replace('T', '-')}.log`
+    `bb-installer-smoke-${new Date().toISOString().replace(/[-:]/g, '').replace(/\..+$/, '').replace('T', '-')}.log`
   );
   const processControlPath = path.join(repoRoot, 'resources', 'windows', 'installer-process-control.nsh');
   const messagesPath = path.join(repoRoot, 'resources', 'windows', 'installer-messages.nsh');
 
   const nsi = `
 Unicode true
-Name "AionUi Restart Manager UI Smoke"
+Name "BBUI Restart Manager UI Smoke"
 OutFile "${nsisQuote(exePath)}"
 RequestExecutionLevel user
 SilentInstall normal
-!define AIONUI_FALLBACK_LOG "aionui-installer-smoke-fallback.log"
+!define BB_FALLBACK_LOG "bb-installer-smoke-fallback.log"
 !define VERSION "rstrtmgr-ui-smoke"
-!define AIONUI_TARGET_ARCH "x64"
-!define AIONUI_APP_EXECUTABLE_FILENAME "AionUi.exe"
-!define UNINSTALL_FILENAME "Uninstall AionUi.exe"
+!define BB_TARGET_ARCH "x64"
+!define BB_APP_EXECUTABLE_FILENAME "BBUI.exe"
+!define UNINSTALL_FILENAME "Uninstall BBUI.exe"
 !define PROJECT_DIR "${nsisQuote(repoRoot)}"
 !include LogicLib.nsh
 !include "${nsisQuote(messagesPath)}"
 !include "${nsisQuote(processControlPath)}"
 
-Var AionUiSessionLogPath
-Var AionUiSessionId
-Var AionUiIsUpdated
+Var BBUISessionLogPath
+Var BBUISessionId
+Var BBUIIsUpdated
 
 Section
   StrCpy $INSTDIR "${nsisQuote(installDir)}"
-  StrCpy $AionUiSessionLogPath "${nsisQuote(logPath)}"
-  StrCpy $AionUiSessionId "rstrtmgrui"
-  StrCpy $AionUiIsUpdated "1"
+  StrCpy $BBUISessionLogPath "${nsisQuote(logPath)}"
+  StrCpy $BBUISessionId "rstrtmgrui"
+  StrCpy $BBUIIsUpdated "1"
   InitPluginsDir
   BringToFront
 
-  aionui_query_lockers:
-    !insertmacro AIONUI_QUERY_LOCKERS "${nsisQuote(lockedFile)}" $AionUiLockerResult
-    StrCpy $AionUiLockerList ""
+  bb_query_lockers:
+    !insertmacro BB_QUERY_LOCKERS "${nsisQuote(lockedFile)}" $BBUILockerResult
+    StrCpy $BBUILockerList ""
     ClearErrors
     SetDetailsPrint none
-    FileOpen $AionUiLockerListFile "$PLUGINSDIR\\aionui-rm-lockers.txt" r
+    FileOpen $BBUILockerListFile "$PLUGINSDIR\\bb-rm-lockers.txt" r
     \${IfNot} \${Errors}
-      FileRead $AionUiLockerListFile $AionUiLockerList
-      FileClose $AionUiLockerListFile
+      FileRead $BBUILockerListFile $BBUILockerList
+      FileClose $BBUILockerListFile
     \${EndIf}
     SetDetailsPrint lastused
-    \${If} $AionUiLockerList == ""
-      StrCpy $AionUiLockerList "\${AIONUI_MSG_UNKNOWN_PROCESS_EN}"
-      StrCpy $AionUiLockerListZh "\${AIONUI_MSG_UNKNOWN_PROCESS_ZH}"
-      StrCpy $AionUiLockerListEn "\${AIONUI_MSG_UNKNOWN_PROCESS_EN}"
+    \${If} $BBUILockerList == ""
+      StrCpy $BBUILockerList "\${BB_MSG_UNKNOWN_PROCESS_EN}"
+      StrCpy $BBUILockerListZh "\${BB_MSG_UNKNOWN_PROCESS_ZH}"
+      StrCpy $BBUILockerListEn "\${BB_MSG_UNKNOWN_PROCESS_EN}"
     \${Else}
-      StrCpy $AionUiLockerListZh "$AionUiLockerList"
-      StrCpy $AionUiLockerListEn "$AionUiLockerList"
+      StrCpy $BBUILockerListZh "$BBUILockerList"
+      StrCpy $BBUILockerListEn "$BBUILockerList"
     \${EndIf}
-    MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "\${AIONUI_MSG_FILE_OR_FOLDER_IN_USE_ZH}$\\r$\\n${nsisQuote(lockedFile)}$\\r$\\n$\\r$\\n\${AIONUI_MSG_APPLICATION_USING_IT_ZH}$\\r$\\n$AionUiLockerListZh$\\r$\\n$\\r$\\n\${AIONUI_MSG_CLOSE_LISTED_RETRY_ZH}$\\r$\\n$\\r$\\n\${AIONUI_MSG_INSTALLER_LOG_ZH}:$\\r$\\n$AionUiSessionLogPath$\\r$\\n$\\r$\\n\${AIONUI_MSG_BLOCK_SEPARATOR}$\\r$\\n$\\r$\\n\${AIONUI_MSG_FILE_OR_FOLDER_IN_USE_EN}$\\r$\\n${nsisQuote(lockedFile)}$\\r$\\n$\\r$\\n\${AIONUI_MSG_APPLICATION_USING_IT_EN}$\\r$\\n$AionUiLockerListEn$\\r$\\n$\\r$\\n\${AIONUI_MSG_CLOSE_LISTED_RETRY_EN}$\\r$\\n$\\r$\\n\${AIONUI_MSG_INSTALLER_LOG_EN}:$\\r$\\n$AionUiSessionLogPath" /SD IDCANCEL IDRETRY aionui_query_lockers
+    MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION "\${BB_MSG_FILE_OR_FOLDER_IN_USE_ZH}$\\r$\\n${nsisQuote(lockedFile)}$\\r$\\n$\\r$\\n\${BB_MSG_APPLICATION_USING_IT_ZH}$\\r$\\n$BBUILockerListZh$\\r$\\n$\\r$\\n\${BB_MSG_CLOSE_LISTED_RETRY_ZH}$\\r$\\n$\\r$\\n\${BB_MSG_INSTALLER_LOG_ZH}:$\\r$\\n$BBUISessionLogPath$\\r$\\n$\\r$\\n\${BB_MSG_BLOCK_SEPARATOR}$\\r$\\n$\\r$\\n\${BB_MSG_FILE_OR_FOLDER_IN_USE_EN}$\\r$\\n${nsisQuote(lockedFile)}$\\r$\\n$\\r$\\n\${BB_MSG_APPLICATION_USING_IT_EN}$\\r$\\n$BBUILockerListEn$\\r$\\n$\\r$\\n\${BB_MSG_CLOSE_LISTED_RETRY_EN}$\\r$\\n$\\r$\\n\${BB_MSG_INSTALLER_LOG_EN}:$\\r$\\n$BBUISessionLogPath" /SD IDCANCEL IDRETRY bb_query_lockers
 SectionEnd
 `;
 

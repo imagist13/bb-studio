@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -138,7 +138,7 @@ export type IMessageText = IMessage<
   }
 >;
 
-export type AgentErrorOwnership = 'aionui' | 'user_agent' | 'user_llm_provider' | 'unknown_upstream';
+export type AgentErrorOwnership = 'bb' | 'user_agent' | 'user_llm_provider' | 'unknown_upstream';
 
 export type AgentErrorResolutionKind =
   | 'retry'
@@ -556,7 +556,7 @@ export const normalizeTextMessageContent = (
 };
 
 const AGENT_ERROR_OWNERSHIPS = new Set<AgentErrorOwnership>([
-  'aionui',
+  'bb',
   'user_agent',
   'user_llm_provider',
   'unknown_upstream',

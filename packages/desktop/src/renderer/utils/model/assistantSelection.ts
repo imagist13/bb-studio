@@ -1,10 +1,10 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { Assistant } from '@/common/types/agent/assistantTypes';
+import { isProductDefaultAssistant, type Assistant } from '@/common/types/agent/assistantTypes';
 
 /**
  * Single source of truth for which assistants appear in a *selection* list
@@ -45,13 +45,24 @@ const compareLegacyAssistantOrder = (left: Assistant, right: Assistant): number 
 };
 
 /**
+ * Keep the product's default assistant in the first selectable slot. The legacy
+ * order puts every bare CLI assistant ahead of builtins, which would hide the
+ * default behind the "more" popover on machines with several CLIs installed.
+ */
+const pinProductDefaultFirst = (assistants: Assistant[]): Assistant[] => {
+  const index = assistants.findIndex((assistant) => isProductDefaultAssistant(assistant));
+  if (index <= 0) return assistants;
+  return [assistants[index], ...assistants.filter((_, position) => position !== index)];
+};
+
+/**
  * Return enabled assistants in the user's preferred cross-source order.
  * Stale IDs and duplicates in `preferredOrder` are ignored.
  */
 export const selectableAssistants = (assistants: Assistant[], preferredOrder?: readonly string[]): Assistant[] => {
-  const legacyOrdered = assistants
-    .filter((assistant) => assistant.enabled !== false)
-    .toSorted(compareLegacyAssistantOrder);
+  const legacyOrdered = pinProductDefaultFirst(
+    assistants.filter((assistant) => assistant.enabled !== false).toSorted(compareLegacyAssistantOrder)
+  );
 
   if (!preferredOrder || preferredOrder.length === 0) {
     return legacyOrdered;

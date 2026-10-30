@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2026 AionUi (aionui.com)
+ * Copyright 2026 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -63,16 +63,16 @@ describe('local storage bridge', () => {
     const storage = buildStorage<TestStorage>('test.settings');
     registerMemoryStore(storage);
 
-    await storage.set('name', 'AionUi');
+    await storage.set('name', 'BBUI');
 
-    await expect(storage.get('name')).resolves.toBe('AionUi');
+    await expect(storage.get('name')).resolves.toBe('BBUI');
   });
 
   it('supports remove and clear operations', async () => {
     const { buildStorage } = await loadStorage();
     const storage = buildStorage<TestStorage>('test.settings');
     registerMemoryStore(storage);
-    await storage.set('name', 'AionUi');
+    await storage.set('name', 'BBUI');
     await storage.set('count', 2);
 
     await storage.remove('name');

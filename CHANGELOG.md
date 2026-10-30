@@ -12,7 +12,7 @@
 
 #### Features
 
-- **conversation:** add aioncore conversation create for agent-driven conversation creation (#977)
+- **conversation:** add bbcore conversation create for agent-driven conversation creation (#977)
 
 ---
 
@@ -34,12 +34,12 @@
 
 #### ⚠ BREAKING CHANGES
 
-- **skills:** deliver skills through an AionUi-owned view instead of the workspace (#938)
+- **skills:** deliver skills through an BBUI-owned view instead of the workspace (#938)
 
 #### Features
 
 - **auth:** dual-token refresh with singleflight (#926)
-- **skills:** deliver skills through an AionUi-owned view instead of the workspace (#938)
+- **skills:** deliver skills through an BBUI-owned view instead of the workspace (#938)
 - **conversation:** route @@ mentions to the session-message skill (#949)
 - **scm:** enumerate a repository's linked worktrees during discovery (#959)
 - **session-message:** add session capabilities fallback to @@ blocks (#952)
@@ -122,13 +122,13 @@
 
 #### Bug Fixes
 
-- **app:** fall back to default log dir when custom log dir is unusable (AIONUI-231) (#898)
+- **app:** fall back to default log dir when custom log dir is unusable (BB-231) (#898)
 - **claude:** append the assistant preset instead of replacing the system prompt (#900)
 - **codex:** send the assistant preset as developerInstructions, not baseInstructions (#897)
 - **conversation:** apply agent session titles at the relay level (#896)
-- **extension:** bound the builtin-skills materialize lock acquisition (AIONUI-168) (#903)
-- **project:** keep mounted targets when one fs/subscribe target fails (AIONUI-236) (#902)
-- **runtime:** log npm/npx probe stderr and missing-executable snapshot (AIONUI-62) (#904)
+- **extension:** bound the builtin-skills materialize lock acquisition (BB-168) (#903)
+- **project:** keep mounted targets when one fs/subscribe target fails (BB-236) (#902)
+- **runtime:** log npm/npx probe stderr and missing-executable snapshot (BB-62) (#904)
 
 ---
 
@@ -191,7 +191,7 @@
 
 - **chat:** align compose actions and draft queue draining (#4082)
 - **i18n:** align directory paths to the page direction, not hardcoded end (#4086)
-- **web-host:** stop leaking PREBUILDS_ONLY into aioncore agent subprocesses (#4078)
+- **web-host:** stop leaking PREBUILDS_ONLY into bbcore agent subprocesses (#4078)
 - **i18n:** RTL polish pass — LTR paths/file names, shorthand paddings, mirrored chevrons (#4077)
 - **i18n:** locale-aware cron titles and byte sizes, Traditional Chinese mapping (#4075)
 - **i18n:** adopt i18next plural forms for count-bearing strings (#4074)
@@ -300,12 +300,12 @@
 
 #### Features
 
-- **backend:** honor AIONUI_BACKEND_BIN override in desktop resolver (#3988)
+- **backend:** honor BB_BACKEND_BIN override in desktop resolver (#3988)
 - **channel:** add Discord channel configuration UI (#3956)
 - **conversation:** open selected links in built-in or system browser (#3959)
 - **preview:** add save button to editable file toolbar (#3964)
 - **preview:** enable mermaid pan/zoom controls in markdown viewer (#3958)
-- **startup:** dedicated dialog for database created by newer AionUi (downgrade) (#3998)
+- **startup:** dedicated dialog for database created by newer BBUI (downgrade) (#3998)
 
 #### Bug Fixes
 
@@ -408,7 +408,7 @@
 
 ### Core ([v0.1.61](https://github.com/iOfficeAI/AionCore/releases/tag/v0.1.61))
 
-_Includes AionCore v0.1.59 – v0.1.61._
+_Includes BBCore v0.1.59 – v0.1.61._
 
 #### Features
 
@@ -439,7 +439,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 - **preview:** add agent-controllable in-app browser over a single-target CDP bridge (#3826)
 - **preview:** pdf via stream URL + office ChatFileRef + drop fs/resolve (#3837)
 - **preview:** migrate content I/O to ChatFileRef /content endpoints (#3825)
-- **update:** discontinue AionUi in-app updates and guide migration to the official website (#3730)
+- **update:** discontinue BBUI in-app updates and guide migration to the official website (#3730)
 
 #### Bug Fixes
 
@@ -502,7 +502,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 - **file:** strip verbatim \\?\ prefix from non-browse path outputs (#736)
 - **process:** reap tool subprocesses that left the process group (#753)
 - **runtime:** retry transient bundled-node activation copy and reclassify persistent I/O failures (#760)
-- **server:** emit AIONCORE_READY marker once serving begins (#761)
+- **server:** emit BBCORE_READY marker once serving begins (#761)
 
 ---
 
@@ -558,7 +558,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 
 #### Bug Fixes
 
-- **auth:** make AionUi->AionPro data adoption a one-shot event (#716)
+- **auth:** make BBUI->AionPro data adoption a one-shot event (#716)
 - **db:** pre-migration repair for migration-030 startup-blocking CHECK failures (#724)
 - prevent silent encryption-key rotation on migration upgrade (ELECTRON-3T0) (#722)
 - **project:** add temporary fs/resolve command for preview file paths (#723)
@@ -676,7 +676,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 
 #### Features
 
-- **session-port:** AionUi frontend support for the direct-CLI claude/codex session path (#3572)
+- **session-port:** BBUI frontend support for the direct-CLI claude/codex session path (#3572)
 - **assistants:** support reordering enabled assistants (#3696)
 - **permissions:** redesign request panel (#3676)
 - **team:** dormant teammate UI with lazy warmup and per-member retry-start (#3712)
@@ -695,7 +695,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 
 #### Features
 
-- **project:** add project-bind foundation (db + aionui-project) (#672)
+- **project:** add project-bind foundation (db + bb-project) (#672)
 - **session-port:** route claude/codex through the direct-CLI SessionAgentTask (#609)
 - **team:** leader-only warmup with lazy teammate wakeup and per-member attach (#670)
 
@@ -749,7 +749,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 - **conversation:** rebuild aionrs sessions from persisted runtime permission (#661)
 - **db:** prevent duplicate migration versions
 - **provider:** preserve automatic vision detection
-- **startup:** make concurrent aioncore startup safe over one data directory (#657)
+- **startup:** make concurrent bbcore startup safe over one data directory (#657)
 - **ci:** validate migrations against latest release
 
 ---
@@ -782,7 +782,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 
 #### Bug Fixes
 
-- **ai-agent:** ignore max token limits for aionui requests
+- **ai-agent:** ignore max token limits for bb requests
 - **system:** apply keep-awake client preference (#642)
 - **team:** broadcast Stopped status on idle-cleanup team reclaim (#640)
 
@@ -956,7 +956,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 #### Bug Fixes
 
 - **agent:** preserve ACP error cause detail (#581)
-- **skills:** correct aionui-config butler skill drift (2026-07) (#584)
+- **skills:** correct bb-config butler skill drift (2026-07) (#584)
 - use provider and model protocol to determine llm request
 
 ---
@@ -1087,7 +1087,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 - **runtime:** harden managed Node command resolution (#565)
 - **runtime:** protect active ACP tasks from idle cleanup (#561)
 - **skill:** raise import size limits (#564)
-- **skills:** correct AionUi Butler skill drift against current backend (#557)
+- **skills:** correct BBUI Butler skill drift against current backend (#557)
 
 ---
 
@@ -1190,7 +1190,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 - **agent:** expose runtime catalogs from metadata (#523)
 - **assistant:** expose auto-inject skills and preserve assistant rules (#525)
 - repair invalid UTF-8 agent metadata cache fields (#526)
-- **skills:** sync AionUi Butler skills + rule with current backend (#520)
+- **skills:** sync BBUI Butler skills + rule with current backend (#520)
 
 ---
 
@@ -1255,7 +1255,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 
 #### Features
 
-- **acp:** preserve redacted raw error in AIONUI_INTERNAL_ERROR fallback (#3393)
+- **acp:** preserve redacted raw error in BB_INTERNAL_ERROR fallback (#3393)
 
 #### Bug Fixes
 
@@ -1327,8 +1327,8 @@ _Includes AionCore v0.1.59 – v0.1.61._
 
 #### Features
 
-- **assistant:** add built-in AionUi self-management assistant ([#474](https://github.com/iOfficeAI/AionCore/issues/474))
-- **assistant:** expand AionUi assistant into a butler with remote-access ([#481](https://github.com/iOfficeAI/AionCore/issues/481))
+- **assistant:** add built-in BBUI self-management assistant ([#474](https://github.com/iOfficeAI/AionCore/issues/474))
+- **assistant:** expand BBUI assistant into a butler with remote-access ([#481](https://github.com/iOfficeAI/AionCore/issues/481))
 - enforce TeamRun ownership for agent turns ([#483](https://github.com/iOfficeAI/AionCore/issues/483))
 - **team:** support queued team_send_message semantics ([#479](https://github.com/iOfficeAI/AionCore/issues/479))
 
@@ -1458,7 +1458,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 
 - **auth:** allow same-origin framing on office preview proxy routes ([#454](https://github.com/iOfficeAI/AionCore/issues/454))
 - **file:** strip Windows verbatim prefix from /api/fs/browse paths ([#453](https://github.com/iOfficeAI/AionCore/issues/453))
-- **stt:** STT compatibility fixes for Groq Whisper and AionUI web frontend ([#400](https://github.com/iOfficeAI/AionCore/issues/400))
+- **stt:** STT compatibility fixes for Groq Whisper and BBUI web frontend ([#400](https://github.com/iOfficeAI/AionCore/issues/400))
 - **stt:** treat blank base_url as unset and log malformed config ([#448](https://github.com/iOfficeAI/AionCore/issues/448))
 
 ---
@@ -1625,7 +1625,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 
 #### Bug Fixes
 
-- **web-host:** use aioncore reported backend port (#3193)
+- **web-host:** use bbcore reported backend port (#3193)
 - **settings:** apply UI scale only on slider release (#3190)
 
 ### Core ([v0.1.20](https://github.com/iOfficeAI/AionCore/releases/tag/v0.1.20))
@@ -1662,7 +1662,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 
 #### Bug Fixes
 
-- **aionui-ai-agent:** classify aionrs API connection errors ([#389](https://github.com/iOfficeAI/AionCore/issues/389))
+- **bb-ai-agent:** classify aionrs API connection errors ([#389](https://github.com/iOfficeAI/AionCore/issues/389))
 - classify missing MCP launcher runtimes ([#387](https://github.com/iOfficeAI/AionCore/issues/387))
 - enforce workspace path whitespace errors across create and runtime ([#381](https://github.com/iOfficeAI/AionCore/issues/381))
 - **startup:** add startup phase diagnostics ([#388](https://github.com/iOfficeAI/AionCore/issues/388))
@@ -1691,7 +1691,7 @@ _Includes AionCore v0.1.59 – v0.1.61._
 - **agent:** classify Bedrock 'model identifier is invalid' as model-not-found (AIO-12) ([#377](https://github.com/iOfficeAI/AionCore/issues/377))
 - **agent:** preserve process-group cleanup after leader exit ([#369](https://github.com/iOfficeAI/AionCore/issues/369))
 - **agent:** tighten send_error classifier (AIO-87, AIO-89, AIO-90) ([#375](https://github.com/iOfficeAI/AionCore/issues/375))
-- **aionui-ai-agent:** strip HTML body from sanitized error detail (AIO-13) ([#380](https://github.com/iOfficeAI/AionCore/issues/380))
+- **bb-ai-agent:** strip HTML body from sanitized error detail (AIO-13) ([#380](https://github.com/iOfficeAI/AionCore/issues/380))
 - recover deleted conversation workspaces ([#379](https://github.com/iOfficeAI/AionCore/issues/379))
 
 ---
@@ -1755,10 +1755,10 @@ _Includes AionCore v0.1.59 – v0.1.61._
 #### Bug Fixes
 
 - **model-selector:** trust backend current model and persist preferences (#3084)
-- **build:** align bundled aioncore target arch (#3092)
+- **build:** align bundled bbcore target arch (#3092)
 - **settings:** use provider health check probe (#3090)
 - **settings:** use health check error message (#3080)
-- **backend:** handle incomplete bundled aioncore installs (#3078)
+- **backend:** handle incomplete bundled bbcore installs (#3078)
 
 #### Performance
 

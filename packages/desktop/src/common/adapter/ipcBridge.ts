@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,7 +8,7 @@
  * IPC Bridge → HTTP/WS adapter.
  *
  * This file replaces the original IPC bridge calls with HTTP REST and WebSocket
- * calls routed to aioncore. Electron-native operations (window controls,
+ * calls routed to bbcore. Electron-native operations (window controls,
  * native dialogs, auto-update, devtools, zoom, CDP, deep links) remain as IPC.
  */
 
@@ -681,7 +681,7 @@ export const application = {
   ),
   getPath: bridge.buildProvider<string, { name: 'desktop' | 'home' | 'downloads' }>('app.get-path'),
   // Electron-local: copies cache dir + persists to ProcessEnv, paired with restart.
-  // The backend reads AIONUI_*_DIR env vars on boot, so it does not own this config.
+  // The backend reads BB_*_DIR env vars on boot, so it does not own this config.
   updateSystemInfo: bridge.buildProvider<void, { cacheDir: string; workDir: string; logDir?: string }>(
     'update-system-info'
   ),

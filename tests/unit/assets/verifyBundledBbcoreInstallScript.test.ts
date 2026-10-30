@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-const scriptPath = 'resources/windows/support/verify-bundled-aioncore-install.ps1';
+const scriptPath = 'resources/windows/support/verify-bundled-bbcore-install.ps1';
 const script = readFileSync(scriptPath, 'utf8');
 
 function writeFile(filePath: string, contents = '') {
@@ -16,7 +16,7 @@ function writeJson(filePath: string, value: unknown) {
   writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`);
 }
 
-describe('Windows bundled aioncore install verifier', () => {
+describe('Windows bundled bbcore install verifier', () => {
   it('reads managed resources manifest instead of deriving Codex platform paths', () => {
     expect(script).toContain("Join-Path $managedRoot 'manifest.json'");
     expect(script).toContain('schemaVersion');
@@ -40,15 +40,15 @@ describe('Windows bundled aioncore install verifier', () => {
   const runOnWindows = process.platform === 'win32' ? it : it.skip;
 
   runOnWindows('fails an old-version-only Codex CLI install directory', () => {
-    const tmp = mkdtempSync(join(tmpdir(), 'aionui-install-verify-'));
+    const tmp = mkdtempSync(join(tmpdir(), 'bb-install-verify-'));
     const installDir = join(tmp, 'install');
-    const managedRoot = join(installDir, 'resources', 'bundled-aioncore', 'win32-x64', 'managed-resources');
+    const managedRoot = join(installDir, 'resources', 'bundled-bbcore', 'win32-x64', 'managed-resources');
     const logPath = join(tmp, 'verify.log');
     const codexTriple = 'x86_64-pc-windows-msvc';
 
     try {
-      writeFile(join(installDir, 'resources', 'bundled-aioncore', 'win32-x64', 'aioncore.exe'), 'x');
-      writeJson(join(installDir, 'resources', 'bundled-aioncore', 'win32-x64', 'manifest.json'), {
+      writeFile(join(installDir, 'resources', 'bundled-bbcore', 'win32-x64', 'bbcore.exe'), 'x');
+      writeJson(join(installDir, 'resources', 'bundled-bbcore', 'win32-x64', 'manifest.json'), {
         platform: 'win32',
         arch: 'x64',
       });

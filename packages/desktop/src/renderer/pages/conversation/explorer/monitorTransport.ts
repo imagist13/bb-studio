@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,7 +8,7 @@
  * Binds the MonitorClient + explorer store to the shared WS singleton
  * (`httpBridge`). This is the thin production wiring — the pairing/store logic
  * it connects is covered by unit tests; the live socket path is exercised by
- * end-to-end integration against a running aioncore backend.
+ * end-to-end integration against a running bbcore backend.
  */
 
 import { wsEmitter, wsSend } from '@/common/adapter/httpBridge';
@@ -85,7 +85,7 @@ export const dispatchMonitorNotification = (method: string, params: unknown): vo
   // modification times, so there is no way to narrow it to the files that changed.
   //
   // The marker is treated as confirmation rather than as the test. A snapshot can only
-  // reach this fan-out from an overflow rescan (verified in aioncore: the subscribe
+  // reach this fan-out from an overflow rescan (verified in bbcore: the subscribe
   // reply is returned to its caller and never dispatched as a notification), so
   // requiring `reason` would make a backend that predates the marker fail silently —
   // exactly the failure this change exists to remove.

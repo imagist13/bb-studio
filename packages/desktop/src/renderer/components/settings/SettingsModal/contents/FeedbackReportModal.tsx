@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 AionUi (aionui.com)
+ * Copyright 2025 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -33,7 +33,7 @@ const DESCRIPTION_MAX_LENGTH = 2000;
 const MAX_SCREENSHOTS = 3;
 const ACCEPTED_IMAGE_TYPES = '.png,.jpg,.jpeg,.gif';
 
-// aionui's AuthUser is { id, username } and carries no email; aionpro's AuthUser
+// bb's AuthUser is { id, username } and carries no email; aionpro's AuthUser
 // does. Read it structurally (no AuthUser type import, no `any`) so this file
 // stays byte-identical across both repos and simply yields undefined whenever
 // the signed-in user has no email (the open-source desktop build is usually
@@ -220,7 +220,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({
     feedbackDiagnosticsContext,
   ]);
 
-  // "Solve via chat": hand the report to the AionUi Butler for on-the-spot
+  // "Solve via chat": hand the report to the BBUI Butler for on-the-spot
   // diagnosis instead of submitting to the team. The typed description + module
   // become a structured prompt; screenshots are uploaded to disk so they ride
   // along in the chat input (reusing the same upload path as pasted images).
@@ -246,7 +246,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({
       const moduleLabel = t(selectedModule?.i18nKey ?? 'settings.bugReportModuleOther');
       const prompt = t('settings.talkToButler.prompt.diagnose', {
         defaultValue:
-          'I ran into a problem with AionUi, please help me diagnose it.\n\n[Module] {{module}}\n[Description] {{description}}\n[Attachments] see the screenshots in the input.\n\nPlease diagnose the cause and tell me how to fix it.',
+          'I ran into a problem with BBUI, please help me diagnose it.\n\n[Module] {{module}}\n[Description] {{description}}\n[Attachments] see the screenshots in the input.\n\nPlease diagnose the cause and tell me how to fix it.',
         module: moduleLabel,
         description: description.trim(),
       });

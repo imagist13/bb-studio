@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Simplified build script for AionUi
+ * Simplified build script for BBUI
  * Coordinates electron-vite (bundling) and electron-builder (packaging)
  *
  * Features:
@@ -26,7 +26,7 @@ const DMG_RETRY_DELAY_SEC = 30;
 
 // Incremental build: hash of source files to detect changes
 const INCREMENTAL_CACHE_FILE = 'out/.build-hash';
-const DEBUG_AUTO_UPDATE_CURRENT_VERSION_ENV = 'AIONUI_DEBUG_AUTO_UPDATE_CURRENT_VERSION';
+const DEBUG_AUTO_UPDATE_CURRENT_VERSION_ENV = 'BB_DEBUG_AUTO_UPDATE_CURRENT_VERSION';
 
 function patchElectronBuilderNsisInstaller() {
   const rootDir = path.resolve(__dirname, '..');
@@ -95,16 +95,16 @@ function patchElectronBuilderNsisInstaller() {
   }
 
   const copiedUninstallerExec = `ExecWait '"$uninstallerFileNameTemp" /S /KEEP_APP_DATA $0 _?=$installationDir' $R0`;
-  const copiedUninstallerExecWithLog = `ExecWait '"$uninstallerFileNameTemp" /S /KEEP_APP_DATA $0 --installer-log="$AionUiSessionLogPath" --installer-session="$AionUiSessionId" _?=$installationDir' $R0`;
+  const copiedUninstallerExecWithLog = `ExecWait '"$uninstallerFileNameTemp" /S /KEEP_APP_DATA $0 --installer-log="$BBUISessionLogPath" --installer-session="$BBUISessionId" _?=$installationDir' $R0`;
   if (patched.includes(copiedUninstallerExec)) {
     patched = patched.replace(copiedUninstallerExec, copiedUninstallerExecWithLog);
   } else if (
     patched.includes(
-      `ExecWait '"$uninstallerFileNameTemp" /S /KEEP_APP_DATA $0 --installer-log="$AionUiSessionLogPath" _?=$installationDir' $R0`
+      `ExecWait '"$uninstallerFileNameTemp" /S /KEEP_APP_DATA $0 --installer-log="$BBUISessionLogPath" _?=$installationDir' $R0`
     )
   ) {
     patched = patched.replace(
-      `ExecWait '"$uninstallerFileNameTemp" /S /KEEP_APP_DATA $0 --installer-log="$AionUiSessionLogPath" _?=$installationDir' $R0`,
+      `ExecWait '"$uninstallerFileNameTemp" /S /KEEP_APP_DATA $0 --installer-log="$BBUISessionLogPath" _?=$installationDir' $R0`,
       copiedUninstallerExecWithLog
     );
   } else if (!patched.includes(copiedUninstallerExecWithLog)) {
@@ -118,9 +118,9 @@ function patchElectronBuilderNsisInstaller() {
     '  !insertmacro copyFile "$uninstallerFileName" "$uninstallerFileNameTemp"',
   ].join('\n');
   const bundledUninstallerOverride = [
-    '  ${if} ${FileExists} "$PLUGINSDIR\\AionUi-fixed-uninstaller.exe"',
-    '    DetailPrint `AionUi-bundled-uninstaller override source.`',
-    '    StrCpy $uninstallerFileName "$PLUGINSDIR\\AionUi-fixed-uninstaller.exe"',
+    '  ${if} ${FileExists} "$PLUGINSDIR\\BBUI-fixed-uninstaller.exe"',
+    '    DetailPrint `BBUI-bundled-uninstaller override source.`',
+    '    StrCpy $uninstallerFileName "$PLUGINSDIR\\BBUI-fixed-uninstaller.exe"',
     '  ${endIf}',
   ].join('\n');
   const bundledUninstallerCopySource = [
@@ -148,16 +148,16 @@ function patchElectronBuilderNsisInstaller() {
   }
 
   const inPlaceUninstallerExec = `ExecWait '"$uninstallerFileName" /S /KEEP_APP_DATA $0 _?=$installationDir' $R0`;
-  const inPlaceUninstallerExecWithLog = `ExecWait '"$uninstallerFileName" /S /KEEP_APP_DATA $0 --installer-log="$AionUiSessionLogPath" --installer-session="$AionUiSessionId" _?=$installationDir' $R0`;
+  const inPlaceUninstallerExecWithLog = `ExecWait '"$uninstallerFileName" /S /KEEP_APP_DATA $0 --installer-log="$BBUISessionLogPath" --installer-session="$BBUISessionId" _?=$installationDir' $R0`;
   if (patched.includes(inPlaceUninstallerExec)) {
     patched = patched.replace(inPlaceUninstallerExec, inPlaceUninstallerExecWithLog);
   } else if (
     patched.includes(
-      `ExecWait '"$uninstallerFileName" /S /KEEP_APP_DATA $0 --installer-log="$AionUiSessionLogPath" _?=$installationDir' $R0`
+      `ExecWait '"$uninstallerFileName" /S /KEEP_APP_DATA $0 --installer-log="$BBUISessionLogPath" _?=$installationDir' $R0`
     )
   ) {
     patched = patched.replace(
-      `ExecWait '"$uninstallerFileName" /S /KEEP_APP_DATA $0 --installer-log="$AionUiSessionLogPath" _?=$installationDir' $R0`,
+      `ExecWait '"$uninstallerFileName" /S /KEEP_APP_DATA $0 --installer-log="$BBUISessionLogPath" _?=$installationDir' $R0`,
       inPlaceUninstallerExecWithLog
     );
   } else if (!patched.includes(inPlaceUninstallerExecWithLog)) {
@@ -482,7 +482,7 @@ function writeGeneratedSentryDsnInclude(projectRoot) {
   fs.mkdirSync(path.dirname(generatedInclude), { recursive: true });
   fs.writeFileSync(
     generatedInclude,
-    `!define AIONUI_SENTRY_DSN "${escapeNsisDefineValue(process.env.SENTRY_DSN || '')}"\n`
+    `!define BB_SENTRY_DSN "${escapeNsisDefineValue(process.env.SENTRY_DSN || '')}"\n`
   );
 }
 
@@ -763,16 +763,16 @@ try {
     return;
   }
 
-  // 5. Prepare aioncore binary (for packaged runtime usage)
-  const { prepareAioncore } = require('../packages/shared-scripts/src/prepare-aioncore.js');
-  const { resolveAioncoreVersion } = require('./resolveAioncoreVersion.js');
+  // 5. Prepare bbcore binary (for packaged runtime usage)
+  const { prepareBbcore } = require('../packages/shared-scripts/src/prepare-bbcore.js');
+  const { resolveBbcoreVersion } = require('./resolveBbcoreVersion.js');
   const projectRoot = path.resolve(__dirname, '..');
   writeGeneratedSentryDsnInclude(projectRoot);
-  prepareAioncore({
+  prepareBbcore({
     projectRoot,
     platform: process.platform,
     arch: targetArch,
-    version: resolveAioncoreVersion(projectRoot),
+    version: resolveBbcoreVersion(projectRoot),
   });
 
   // 6. Prepare hub resources (index.json + extension zips for offline fallback)
@@ -844,14 +844,14 @@ try {
     const winUnpackedDir = path.join(outDir, 'win-unpacked');
     let cleaned = tryRemoveDir(winUnpackedDir);
     if (!cleaned) {
-      const aionRunning = isProcessRunningWindows('AionUi.exe');
+      const aionRunning = isProcessRunningWindows('BBUI.exe');
       const electronRunning = isProcessRunningWindows('electron.exe');
       if (aionRunning || electronRunning) {
-        console.log('⚠️  Detected running AionUi/Electron process. Attempting to close...');
-        killWindowsProcesses(['AionUi.exe', 'electron.exe']);
+        console.log('⚠️  Detected running BBUI/Electron process. Attempting to close...');
+        killWindowsProcesses(['BBUI.exe', 'electron.exe']);
         cleaned = tryRemoveDir(winUnpackedDir);
         if (!cleaned) {
-          console.log('⚠️  Directory still locked. Please close any running AionUi/Electron processes and retry.');
+          console.log('⚠️  Directory still locked. Please close any running BBUI/Electron processes and retry.');
         }
       }
     }
@@ -867,7 +867,7 @@ try {
   try {
     buildWithDmgRetry(builderCommand, targetArch);
   } catch (error) {
-    const winExePath = path.join(outDir, 'win-unpacked', 'AionUi.exe');
+    const winExePath = path.join(outDir, 'win-unpacked', 'BBUI.exe');
     const firstError = formatExecError(error);
     const canRetryWithoutExecutableEdit =
       process.platform === 'win32' && isWindowsBuild && process.env.CI !== 'true' && fs.existsSync(winExePath);
@@ -876,7 +876,7 @@ try {
       throw error;
     }
 
-    console.log('⚠️  Windows local build failed after AionUi.exe was produced.');
+    console.log('⚠️  Windows local build failed after BBUI.exe was produced.');
     if (firstError) {
       console.log('   First failure summary:');
       console.log(
@@ -889,7 +889,7 @@ try {
     }
     console.log('   Retrying local build with win.signAndEditExecutable=false...');
     console.log('   This fallback is intended for transient rcedit / file-lock failures on developer machines.');
-    killWindowsProcesses(['AionUi.exe', 'electron.exe']);
+    killWindowsProcesses(['BBUI.exe', 'electron.exe']);
     cleanupWindowsPackOutput();
 
     try {

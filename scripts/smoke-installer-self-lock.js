@@ -68,59 +68,59 @@ function main() {
   }
 
   const makensis = findMakensis();
-  const root = mkdtempSync(path.join(tmpdir(), 'aionui-self-lock-'));
+  const root = mkdtempSync(path.join(tmpdir(), 'bb-self-lock-'));
   const installDir = path.join(root, 'install-dir');
   mkdirSync(installDir, { recursive: true });
   writeFileSync(path.join(installDir, 'existing-file.txt'), 'self-lock smoke\n', 'utf8');
 
-  const nsiPath = path.join(root, 'aionui-self-lock-smoke.nsi');
-  const exePath = path.join(root, 'aionui-self-lock-smoke.exe');
+  const nsiPath = path.join(root, 'bb-self-lock-smoke.nsi');
+  const exePath = path.join(root, 'bb-self-lock-smoke.exe');
   const logPath = path.join(
     process.env.TEMP || tmpdir(),
-    `aionui-installer-self-lock-${new Date()
+    `bb-installer-self-lock-${new Date()
       .toISOString()
       .replace(/[-:]/g, '')
       .replace(/\..+$/, '')
       .replace('T', '-')}-log.jsonl`
   );
-  const resultPath = path.join(process.env.TEMP || tmpdir(), `aionui-installer-self-lock-${process.pid}-result.txt`);
+  const resultPath = path.join(process.env.TEMP || tmpdir(), `bb-installer-self-lock-${process.pid}-result.txt`);
   const processControlPath = path.join(repoRoot, 'resources', 'windows', 'installer-process-control.nsh');
 
   const nsi = `
 Unicode true
-Name "AionUi Installer Self Lock Smoke"
+Name "BBUI Installer Self Lock Smoke"
 OutFile "${nsisQuote(exePath)}"
 RequestExecutionLevel user
 SilentInstall silent
 !define VERSION "self-lock-smoke"
-!define AIONUI_TARGET_ARCH "x64"
-!define AIONUI_FALLBACK_LOG "aionui-installer-self-lock-fallback.log"
-!define AIONUI_APP_EXECUTABLE_FILENAME "AionUi.exe"
-!define UNINSTALL_FILENAME "Uninstall AionUi.exe"
+!define BB_TARGET_ARCH "x64"
+!define BB_FALLBACK_LOG "bb-installer-self-lock-fallback.log"
+!define BB_APP_EXECUTABLE_FILENAME "BBUI.exe"
+!define UNINSTALL_FILENAME "Uninstall BBUI.exe"
 !define PROJECT_DIR "${nsisQuote(repoRoot)}"
 !include LogicLib.nsh
 !include "${nsisQuote(processControlPath)}"
 
-Var AionUiSessionId
-Var AionUiIsUpdated
-Var AionUiSessionLogPath
+Var BBUISessionId
+Var BBUIIsUpdated
+Var BBUISessionLogPath
 Var ResultFile
 
 Section
   StrCpy $INSTDIR "${nsisQuote(installDir)}"
-  StrCpy $AionUiSessionId "selflock"
-  StrCpy $AionUiIsUpdated "1"
-  StrCpy $AionUiSessionLogPath "${nsisQuote(logPath)}"
+  StrCpy $BBUISessionId "selflock"
+  StrCpy $BBUIIsUpdated "1"
+  StrCpy $BBUISessionLogPath "${nsisQuote(logPath)}"
   StrCpy $ResultFile "${nsisQuote(resultPath)}"
   InitPluginsDir
   SetOutPath $INSTDIR
-  StrCpy $AionUiCurrentOutDir "$INSTDIR"
-  !insertmacro AIONUI_QUERY_LOCKERS "$INSTDIR" $AionUiLockerResult
+  StrCpy $BBUICurrentOutDir "$INSTDIR"
+  !insertmacro BB_QUERY_LOCKERS "$INSTDIR" $BBUILockerResult
   FileOpen $0 "$ResultFile" w
-  FileWrite $0 "$AionUiLockerResult"
-  FileWrite $0 "|$AionUiCurrentOutDir|$AionUiSessionLogPath"
+  FileWrite $0 "$BBUILockerResult"
+  FileWrite $0 "|$BBUICurrentOutDir|$BBUISessionLogPath"
   FileClose $0
-  \${If} $AionUiLockerResult != 0
+  \${If} $BBUILockerResult != 0
     SetErrorLevel 10
     Quit
   \${EndIf}
@@ -159,8 +159,8 @@ SectionEnd
       throw new Error(`expected currentOutDir ${installDir}, got ${lockers.currentOutDir}`);
     }
     const blocking = lockers.blockingProcesses || [];
-    if (!blocking.some((process) => process.name === 'AionUi installer' && Number(process.pid) > 0)) {
-      throw new Error(`expected AionUi installer blocker, got ${JSON.stringify(blocking)}`);
+    if (!blocking.some((process) => process.name === 'BBUI installer' && Number(process.pid) > 0)) {
+      throw new Error(`expected BBUI installer blocker, got ${JSON.stringify(blocking)}`);
     }
 
     console.log(`[self-lock] ok: ${logPath}`);

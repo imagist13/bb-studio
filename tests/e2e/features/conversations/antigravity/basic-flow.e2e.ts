@@ -21,7 +21,7 @@
  *
  * Prerequisites:
  * - `agy` on PATH and signed in (otherwise the assistant is not `online`)
- * - `aioncore` on PATH with Antigravity support
+ * - `bbcore` on PATH with Antigravity support
  */
 
 import { test, expect } from '../../../fixtures';
@@ -49,7 +49,7 @@ test.describe('Antigravity Chat - Basic Flow', () => {
       (a) => (a.agent?.acp_backend || a.agent?.type) === 'antigravity' && a.enabled !== false
     );
     if (!agy) {
-      test.skip(true, 'No Antigravity assistant in the catalog — is this aioncore built with Antigravity support?');
+      test.skip(true, 'No Antigravity assistant in the catalog — is this bbcore built with Antigravity support?');
       return;
     }
 

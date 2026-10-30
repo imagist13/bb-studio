@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2026 AionUi (aionui.com)
+ * Copyright 2026 BBUI (bbui.dev)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -89,11 +89,11 @@ afterAll(() => {
 
 const CDN_YML = `version: 2.1.45
 files:
-  - url: AionUi-2.1.45-mac-arm64.zip
+  - url: BBUI-2.1.45-mac-arm64.zip
     size: 100
-  - url: AionUi-2.1.45-mac-arm64.dmg
+  - url: BBUI-2.1.45-mac-arm64.dmg
     size: 200
-path: AionUi-2.1.45-mac-arm64.zip
+path: BBUI-2.1.45-mac-arm64.zip
 releaseDate: '2026-07-31T14:45:19.381Z'
 `;
 
@@ -128,7 +128,7 @@ type FetchScenario = {
 const stubFetch = (scenario: FetchScenario) => {
   const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
     const url = String(input);
-    if (url.startsWith('https://static.aionui.com/releases/latest')) {
+    if (url.startsWith('https://static.bbui.dev/releases/latest')) {
       if (!scenario.cdn) throw new Error('unexpected CDN request');
       return scenario.cdn();
     }
@@ -164,7 +164,7 @@ describe('update.check CDN-first', () => {
     expect(res.data?.latest?.body).toBe('changelog body');
     expect(res.data?.latest?.htmlUrl).toBe('https://github.com/iOfficeAI/AionUi/releases/tag/v2.1.45');
     expect(res.data?.latest?.recommendedAsset?.url).toBe(
-      'https://static.aionui.com/releases/2.1.45/AionUi-2.1.45-mac-arm64.dmg'
+      'https://static.bbui.dev/releases/2.1.45/BBUI-2.1.45-mac-arm64.dmg'
     );
   });
 
