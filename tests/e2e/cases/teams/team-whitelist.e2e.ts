@@ -103,10 +103,7 @@ test.describe('Team Assistant Leader Options', () => {
   });
 
   test('UI keeps backend team_selectable assistants selectable', async ({ page }) => {
-    test.skip(
-      process.env.BB_BYPASS_PROBE !== '1',
-      'This deterministic custom-agent e2e requires BB_BYPASS_PROBE=1.'
-    );
+    test.skip(process.env.BB_BYPASS_PROBE !== '1', 'This deterministic custom-agent e2e requires BB_BYPASS_PROBE=1.');
     test.setTimeout(90_000);
 
     const suffix = `${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;

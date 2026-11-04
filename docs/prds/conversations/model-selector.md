@@ -1,7 +1,7 @@
 # 对话 - 模型选择器（父级 + 二级子菜单）
 
 > 本文档聚焦「模型选择器」的下拉交互重构。
-> 涉及范围：对话面板（单聊 + 群聊，含 Claude/Codex 等 ACP 平台与 Aion CLI/aionrs 平台）以及首页新建对话页的模型选择器。不改后端，全部在渲染层完成。
+> 涉及范围：对话面板（单聊 + 群聊，含 Claude/Codex 等 ACP 平台与 Aion CLI/bbrs 平台）以及首页新建对话页的模型选择器。不改后端，全部在渲染层完成。
 
 ---
 
@@ -115,8 +115,8 @@
 **覆盖入口**：
 
 - **ACP 平台**（Claude / Codex 等）单聊与群聊 —— 扁平模型列表。
-- **首页新建对话页** —— ACP agent 扁平模型列表；aionrs 走 provider 分组（见 F-MODEL-06）。
-- **Aion CLI（aionrs）平台** —— 见 F-MODEL-06（模型按 provider 分组）。
+- **首页新建对话页** —— ACP agent 扁平模型列表；bbrs 走 provider 分组（见 F-MODEL-06）。
+- **Aion CLI（bbrs）平台** —— 见 F-MODEL-06（模型按 provider 分组）。
 
 **正常流程**（用户视角）：
 

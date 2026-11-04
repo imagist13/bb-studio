@@ -9,7 +9,7 @@
  *
  * This is the feature's most likely silent failure: a message that goes through
  * the queue and loses its references still sends successfully, and the agent
- * simply never receives the `[[AION_SESSIONS]]` block. Neither layer reports
+ * simply never receives the `[[BB_SESSIONS]]` block. Neither layer reports
  * anything. The passthrough therefore gets its own test rather than being
  * assumed from the type carrying the field.
  */

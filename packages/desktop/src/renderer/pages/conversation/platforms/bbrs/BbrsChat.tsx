@@ -24,13 +24,13 @@ import { usePendingConfirmationsRecovery } from '@renderer/pages/conversation/Me
 import HOC from '@renderer/utils/ui/HOC';
 import React, { useMemo } from 'react';
 import type { TeamSendBoxRuntime } from '@/renderer/pages/team/components/teamSendRuntime';
-import AionrsSendBox from './AionrsSendBox';
-import type { AionrsModelSelection } from './useAionrsModelSelection';
+import BbrsSendBox from './BbrsSendBox';
+import type { BbrsModelSelection } from './useBbrsModelSelection';
 
-const AionrsChat: React.FC<{
+const BbrsChat: React.FC<{
   conversation_id: string;
   workspace: string;
-  modelSelection: AionrsModelSelection;
+  modelSelection: BbrsModelSelection;
   session_mode?: string;
   cron_job_id?: string;
   emptySlot?: React.ReactNode;
@@ -65,7 +65,7 @@ const AionrsChat: React.FC<{
     return {
       conversation_id: conversation_id,
       workspace,
-      type: 'aionrs',
+      type: 'bbrs',
       cron_job_id,
       loadedSkills,
       loadedMcpServers,
@@ -92,7 +92,7 @@ const AionrsChat: React.FC<{
             <MessageList className='flex-1' emptySlot={emptySlot} />
           </FlexFullContainer>
           <ConversationPlanBar conversation_id={conversation_id} />
-          <AionrsSendBox
+          <BbrsSendBox
             conversation_id={conversation_id}
             modelSelection={modelSelection}
             session_mode={session_mode}
@@ -106,4 +106,4 @@ const AionrsChat: React.FC<{
   );
 };
 
-export default HOC.Wrapper(MessageListProvider, MessageListLoadingProvider, MessagePaginationProvider)(AionrsChat);
+export default HOC.Wrapper(MessageListProvider, MessageListLoadingProvider, MessagePaginationProvider)(BbrsChat);

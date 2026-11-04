@@ -76,7 +76,7 @@
 
 **BBUI sadece bir sohbet istemcisi değil.** AI Agents'ın bilgisayarınızda sizinle çalıştığı bir Cowork platformudur — dosya okuma, kod yazma, web'de gezinme ve görevleri otomatikleştirme. Agent'ın yaptığı her şeyi görürsünüz ve her zaman kontrol sizdedir.
 
-|                                        | Geleneksel AI Sohbet İstemcileri | **BBUI (Cowork)**                                                                                                    |
+|                                        | Geleneksel AI Sohbet İstemcileri | **BBUI (Cowork)**                                                                                                      |
 | :------------------------------------- | :------------------------------- | :--------------------------------------------------------------------------------------------------------------------- |
 | AI dosyalarınızda işlem yapabilir      | Sınırlı veya Yok                 | **Evet — tam dosya erişimi ile yerleşik Agent**                                                                        |
 | AI çok adımlı görevleri çalıştırabilir | Sınırlı                          | **Evet — onayınızla özerk**                                                                                            |
@@ -161,7 +161,7 @@ Office asistanları, istekleri düzenlenebilir ve yeniden kullanılabilir dosyal
 
 Zaten Claude Code, Codex, Hermes Agent veya OpenClaw kullanıyorsanız, BBUI bunları otomatik olarak algılar ve hepsiyle Cowork yapmanıza izin verir — yerleşik Agent ile birlikte.
 
-**Desteklenen Agents:** Yerleşik Agent (gömülü [aionrs](https://github.com/iOfficeAI/aionrs) Agent motoruyla çalışır) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity ve daha fazlası
+**Desteklenen Agents:** Yerleşik Agent (gömülü [bbrs](https://github.com/iOfficeAI/bbrs) Agent motoruyla çalışır) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity ve daha fazlası
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -191,7 +191,7 @@ Birden fazla AI Agent'ı organize bir ekip olarak çalıştırın: bir **Leader*
 <br>
 
 - **Paylaşılan çalışma alanı** — tüm Agent'lar aynı klasörü okur/yazar; dosya paneli süreç boyunca görünür kalır
-- **Desteklenen arka uçlar** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI (aionrs); `mcpCapabilities.stdio` ile diğer ACP arka uçları otomatik desteklenir
+- **Desteklenen arka uçlar** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI (bbrs); `mcpCapabilities.stdio` ile diğer ACP arka uçları otomatik desteklenir
 - **Dinamik ölçeklendirme** — ekip çalışırken Teammate ekleyip kaldırabilirsiniz; sessiz Agent'lar otomatik olarak başarısız durumuna yükseltilir ve tek tıkla kaldırılabilir
 - **Ayrıntılı izinler** — her Agent'ın kendi izin onay iletişim kutusu var; kenar çubuğu rozeti bekleyen onayları gösterir
 - **Dosya paylaşımı** — Leader, Teammate'lere dosya eklerini iletebilir
@@ -531,7 +531,7 @@ _Birden fazla konuşma açın, görevler karışmaz, bağımsız bellek, verimli
 
 BBUI **ücretsiz ve açık kaynaklı bir Çoklu AI Agent Masaüstü** uygulamasıdır. Sadece macOS'ta çalışan ve Claude'ye kilitli Claude Cowork ile karşılaştırıldığında, BBUI tam model, çapraz platform geliştirilmiş versiyonudur.
 
-| Boyut           | Claude Cowork | BBUI                                            |
+| Boyut           | Claude Cowork | BBUI                                              |
 | :-------------- | :------------ | :------------------------------------------------ |
 | İşletim Sistemi | Sadece macOS  | macOS / Windows / Linux                           |
 | Model Desteği   | Sadece Claude | Gemini, Claude, DeepSeek, OpenAI, Ollama, ...     |

@@ -5,7 +5,7 @@
  */
 
 /**
- * `[[AION_FILES]]` parsing, extracted from `MessageText.tsx` so it can be unit
+ * `[[BB_FILES]]` parsing, extracted from `MessageText.tsx` so it can be unit
  * tested without pulling in React and the whole message renderer.
  *
  * Behaviour is unchanged from the inline version apart from the marker-block
@@ -53,13 +53,13 @@ const isLocalMessageFilePath = (file_path: string): boolean => {
 /**
  * Split a user message into its display text and its attachment paths.
  *
- * Every non-empty line after the `[[AION_FILES]]` marker is taken as a path,
+ * Every non-empty line after the `[[BB_FILES]]` marker is taken as a path,
  * and a single non-path line abandons the whole parse — deliberately, so a
  * message that merely mentions the marker is rendered verbatim rather than
  * having its tail eaten.
  *
  * That all-or-nothing rule is why the path list stops at the next `[[…]]`
- * marker line. The backend keeps `[[AION_FILES]]` last (see
+ * marker line. The backend keeps `[[BB_FILES]]` last (see
  * `ConversationService::send_message`), but when a second block did follow it,
  * the block's own delimiter counted as a candidate path, failed the check, and
  * a message carrying both `@` files and `@@` session references lost its file

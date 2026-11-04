@@ -76,7 +76,7 @@
 
 **BBUI é mais que um cliente de chat.** É uma plataforma Cowork onde os AI Agents trabalham com você no seu computador — lendo arquivos, escrevendo código, navegando na web e automatizando tarefas. Você pode ver tudo que o Agent faz e sempre está no controle.
 
-|                                              | Clientes de chat AI tradicionais | **BBUI (Cowork)**                                                                                                                |
+|                                              | Clientes de chat AI tradicionais | **BBUI (Cowork)**                                                                                                                  |
 | :------------------------------------------- | :------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
 | AI pode operar em seus arquivos              | Limitado ou Não                  | **Sim — Agent integrado com acesso completo a arquivos**                                                                           |
 | AI pode executar tarefas de múltiplas etapas | Limitado                         | **Sim — autônomo com sua aprovação**                                                                                               |
@@ -161,7 +161,7 @@ Esses assistentes transformam pedidos em arquivos editáveis e reutilizáveis. O
 
 Se você já usa Claude Code, Codex, Hermes Agent ou OpenClaw, BBUI os detecta automaticamente e permite fazer Cowork com todos eles — junto com o Agent integrado.
 
-**Agents compatíveis:** Agent integrado (alimentado pelo motor [aionrs](https://github.com/iOfficeAI/aionrs) incorporado) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity e mais
+**Agents compatíveis:** Agent integrado (alimentado pelo motor [bbrs](https://github.com/iOfficeAI/bbrs) incorporado) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity e mais
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -191,7 +191,7 @@ Execute múltiplos AI Agents como uma equipe organizada: um agente **Leader** re
 <br>
 
 - **Workspace compartilhado** — todos os Agents leem/escrevem na mesma pasta; o painel de arquivos fica visível durante todo o processo
-- **Backends suportados** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI (aionrs); outros backends ACP com `mcpCapabilities.stdio` são suportados automaticamente
+- **Backends suportados** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI (bbrs); outros backends ACP com `mcpCapabilities.stdio` são suportados automaticamente
 - **Escalabilidade dinâmica** — adicione ou remova Teammates enquanto a equipe estiver em execução; agentes silenciosos são automaticamente escalados para falha com remoção em um clique
 - **Permissões granulares** — cada Agent tem seu próprio diálogo de confirmação de permissões; badge na barra lateral mostra aprovações pendentes
 - **Compartilhamento de arquivos** — Leader pode passar anexos de arquivo para Teammates
@@ -531,7 +531,7 @@ _Abra múltiplas conversas, as tarefas não se misturam, memória independente, 
 
 BBUI é um **Desktop Multi-AI Agent gratuito e de código aberto**. Comparado ao Claude Cowork que só roda no macOS e está bloqueado ao Claude, BBUI é sua versão aprimorada de modelo completo e multiplataforma.
 
-| Dimensão           | Claude Cowork  | BBUI                                              |
+| Dimensão           | Claude Cowork  | BBUI                                                |
 | :----------------- | :------------- | :-------------------------------------------------- |
 | SO                 | Apenas macOS   | macOS / Windows / Linux                             |
 | Suporte de modelos | Apenas Claude  | Gemini, Claude, DeepSeek, OpenAI, Ollama, ...       |

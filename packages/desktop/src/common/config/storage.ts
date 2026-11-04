@@ -447,7 +447,7 @@ export type TChatConversation =
       'model'
     >
   | IChatConversation<
-      'aionrs',
+      'bbrs',
       {
         workspace: string;
         custom_workspace?: boolean;

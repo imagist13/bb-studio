@@ -60,8 +60,9 @@ test('error bubble butler chip pre-fills a diagnosis prompt in the home chat', a
     await page.waitForFunction(
       (id) =>
         Boolean(
-          (window as unknown as { __BB_E2E_MESSAGE_STREAM__?: StreamRegistry }).__BB_E2E_MESSAGE_STREAM__
-            ?.controllers[id]
+          (window as unknown as { __BB_E2E_MESSAGE_STREAM__?: StreamRegistry }).__BB_E2E_MESSAGE_STREAM__?.controllers[
+            id
+          ]
         ),
       conversation.id,
       { timeout: 15_000 }

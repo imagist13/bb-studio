@@ -12,7 +12,7 @@
  * the `@…` text pattern, so typing `@config.json` by hand looked exactly like
  * picking it from the dropdown — while only the pick attaches a `ChatFileRef`.
  * A real user read the colour as confirmation, sent the message, and the agent
- * received no `[[AION_FILES]]` block at all. The colour was the only signal, and
+ * received no `[[BB_FILES]]` block at all. The colour was the only signal, and
  * it was not telling the truth.
  *
  * Kept as a pure function, separate from the 1900-line send box, because the

@@ -54,7 +54,7 @@ function extractBlock(
 }
 
 /**
- * Sender side: reverse the `[[AION_SESSIONS]]` block the backend appended to the
+ * Sender side: reverse the `[[BB_SESSIONS]]` block the backend appended to the
  * user's own message so the bubble shows chips instead of raw markers.
  */
 export function parseSessionsBlock(content: string): { text: string; sessions: SessionMentionChip[] } {
@@ -78,7 +78,7 @@ export function parseSessionsBlock(content: string): { text: string; sessions: S
 }
 
 /**
- * Recipient side: reverse the `[[AION_SESSION_MESSAGE]]` block so the bubble can
+ * Recipient side: reverse the `[[BB_SESSION_MESSAGE]]` block so the bubble can
  * show a "from conversation X" badge. Same content the agent read — one source
  * of truth, no artifact (spec §5.6).
  */

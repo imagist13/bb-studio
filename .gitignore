@@ -217,7 +217,7 @@ dist-server/
 # machine (e.g. ~/.bb-dev/builtin-skills/...), so committing them gives
 # everyone else broken links. The repo's own skills live in real directories
 # next to them (.claude/skills/architecture/, /testing/, ...) and stay tracked.
-.aionrs/skills/
+.bbrs/skills/
 .claude/skills/bb-config
 .claude/skills/antigravity-cli-issue-triage
 .claude/skills/cron

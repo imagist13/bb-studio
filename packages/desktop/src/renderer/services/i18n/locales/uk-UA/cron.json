@@ -107,8 +107,8 @@
       "selectFolder": "Вибрати папку",
       "clearFolder": "Очистити",
       "model": "Модель",
-      "aionrsModelRequired": "Виберіть модель для bbdev",
-      "aionrsNoProvider": "Немає доступних моделей",
+      "bbrsModelRequired": "Виберіть модель для bbdev",
+      "bbrsNoProvider": "Немає доступних моделей",
       "assistantLockedExistingConversation": "Завдання поточного діалогу мають зберігати початкового помічника. Щоб використати іншого помічника, створіть нове завдання.",
       "teamTaskExecutionModeLockedReason": "Заплановані завдання Team мають продовжувати виконуватися у своєму діалозі Team, тому режим виконання не можна змінити."
     },

@@ -116,9 +116,7 @@ childProcess.execSync = function mockedExecSync(command) {
     expect(releaseMacro).toContain('SetOutPath "$PLUGINSDIR"');
     expect(releaseMacro).not.toContain('SetOutPath $INSTDIR');
     expect(preInit).toContain('!insertmacro BB_RELEASE_INSTALL_DIR_OUTDIR');
-    expect(preInit!.indexOf('BB_RELEASE_INSTALL_DIR_OUTDIR')).toBeLessThan(
-      preInit!.indexOf('BB_SESSION_BEGIN')
-    );
+    expect(preInit!.indexOf('BB_RELEASE_INSTALL_DIR_OUTDIR')).toBeLessThan(preInit!.indexOf('BB_SESSION_BEGIN'));
   });
 
   it('uses install-directory ownership checks in the shared Windows NSIS include', () => {

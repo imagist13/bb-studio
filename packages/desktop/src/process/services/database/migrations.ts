@@ -977,17 +977,17 @@ const migration_v20: IMigration = {
 };
 
 /**
- * Migration v20 -> v21: Add 'aionrs' to conversations type CHECK constraint
+ * Migration v20 -> v21: Add 'bbrs' to conversations type CHECK constraint
  */
 const migration_v21: IMigration = {
   version: 21,
-  name: "Add 'aionrs' to conversations type CHECK",
+  name: "Add 'bbrs' to conversations type CHECK",
   up: (db) => {
     db.exec(`CREATE TABLE IF NOT EXISTS conversations_new (
         id TEXT PRIMARY KEY,
         user_id TEXT NOT NULL,
         name TEXT NOT NULL,
-        type TEXT NOT NULL CHECK(type IN ('gemini', 'acp', 'codex', 'openclaw-gateway', 'nanobot', 'remote', 'aionrs')),
+        type TEXT NOT NULL CHECK(type IN ('gemini', 'acp', 'codex', 'openclaw-gateway', 'nanobot', 'remote', 'bbrs')),
         extra TEXT NOT NULL,
         model TEXT,
         status TEXT CHECK(status IN ('pending', 'running', 'finished')),
@@ -1010,12 +1010,12 @@ const migration_v21: IMigration = {
     db.exec(
       'CREATE INDEX IF NOT EXISTS idx_conversations_source_chat ON conversations(source, channel_chat_id, updated_at DESC)'
     );
-    console.log("[Migration v21] Added 'aionrs' to conversations type CHECK");
+    console.log("[Migration v21] Added 'bbrs' to conversations type CHECK");
   },
   down: (db) => {
-    // Remove aionrs conversations before copying to table with stricter constraint
-    db.exec(`DELETE FROM messages WHERE conversation_id IN (SELECT id FROM conversations WHERE type = 'aionrs')`);
-    db.exec(`DELETE FROM conversations WHERE type = 'aionrs'`);
+    // Remove bbrs conversations before copying to table with stricter constraint
+    db.exec(`DELETE FROM messages WHERE conversation_id IN (SELECT id FROM conversations WHERE type = 'bbrs')`);
+    db.exec(`DELETE FROM conversations WHERE type = 'bbrs'`);
 
     db.exec(`CREATE TABLE IF NOT EXISTS conversations_rollback (
         id TEXT PRIMARY KEY,
@@ -1045,7 +1045,7 @@ const migration_v21: IMigration = {
       'CREATE INDEX IF NOT EXISTS idx_conversations_source_chat ON conversations(source, channel_chat_id, updated_at DESC)'
     );
 
-    console.log("[Migration v21] Rolled back: Removed 'aionrs' from conversations type CHECK");
+    console.log("[Migration v21] Rolled back: Removed 'bbrs' from conversations type CHECK");
   },
 };
 
@@ -1219,6 +1219,55 @@ const migration_v26: IMigration = {
 };
 
 /**
+ * Migration v26 -> v27: Rename the built-in engine from 'aionrs' to 'bbrs'
+ * Rewrites persisted conversation types, team member snapshots, and the
+ * protocol markers embedded in stored message content. The runtime accepts
+ * 'bbrs' only, so this is the sole compatibility path for existing rows.
+ */
+const migration_v27: IMigration = {
+  version: 27,
+  name: "Rename built-in engine to 'bbrs'",
+  up: (db) => {
+    db.exec(`UPDATE conversations SET type = 'bbrs' WHERE type = 'aionrs'`);
+    db.exec(`UPDATE messages SET content = replace(replace(replace(replace(replace(
+      content,
+      '[[AION_FILES]]', '[[BB_FILES]]'),
+      '[[AION_SESSIONS]]', '[[BB_SESSIONS]]'),
+      '[[/AION_SESSIONS]]', '[[/BB_SESSIONS]]'),
+      '[[AION_SESSION_MESSAGE]]', '[[BB_SESSION_MESSAGE]]'),
+      '[[/AION_SESSION_MESSAGE]]', '[[/BB_SESSION_MESSAGE]]')
+      WHERE content LIKE '%[[AION_%'`);
+    db.exec(`UPDATE teams SET agents = replace(replace(replace(replace(
+      agents,
+      '"backend":"aionrs"', '"backend":"bbrs"'),
+      '"backend": "aionrs"', '"backend": "bbrs"'),
+      '"conversation_type":"aionrs"', '"conversation_type":"bbrs"'),
+      '"conversation_type": "aionrs"', '"conversation_type": "bbrs"')
+      WHERE agents LIKE '%aionrs%'`);
+    console.log("[Migration v27] Renamed built-in engine to 'bbrs'");
+  },
+  down: (db) => {
+    db.exec(`UPDATE conversations SET type = 'aionrs' WHERE type = 'bbrs'`);
+    db.exec(`UPDATE messages SET content = replace(replace(replace(replace(replace(
+      content,
+      '[[BB_FILES]]', '[[AION_FILES]]'),
+      '[[BB_SESSIONS]]', '[[AION_SESSIONS]]'),
+      '[[/BB_SESSIONS]]', '[[/AION_SESSIONS]]'),
+      '[[BB_SESSION_MESSAGE]]', '[[AION_SESSION_MESSAGE]]'),
+      '[[/BB_SESSION_MESSAGE]]', '[[/AION_SESSION_MESSAGE]]')
+      WHERE content LIKE '%[[BB_%'`);
+    db.exec(`UPDATE teams SET agents = replace(replace(replace(replace(
+      agents,
+      '"backend":"bbrs"', '"backend":"aionrs"'),
+      '"backend": "bbrs"', '"backend": "aionrs"'),
+      '"conversation_type":"bbrs"', '"conversation_type":"aionrs"'),
+      '"conversation_type": "bbrs"', '"conversation_type": "aionrs"')
+      WHERE agents LIKE '%bbrs%'`);
+    console.log("[Migration v27] Rolled back: renamed built-in engine to 'aionrs'");
+  },
+};
+
+/**
  * All migrations in order
  */
 // prettier-ignore
@@ -1227,7 +1276,7 @@ export const ALL_MIGRATIONS: IMigration[] = [
   migration_v7, migration_v8, migration_v9, migration_v10, migration_v11, migration_v12,
   migration_v13, migration_v14, migration_v15, migration_v16, migration_v17, migration_v18,
   migration_v19, migration_v20, migration_v21, migration_v22, migration_v23, migration_v24,
-  migration_v25, migration_v26,
+  migration_v25, migration_v26, migration_v27,
 ];
 
 /**

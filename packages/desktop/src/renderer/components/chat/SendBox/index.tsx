@@ -1094,9 +1094,9 @@ const SendBox: React.FC<{
     targetConversationId === undefined || targetConversationId === conversationContext?.conversation_id;
 
   useAddEventListener(
-    'aionrs.selected.file.append',
+    'bbrs.selected.file.append',
     (items: FileSelectionItem[], targetConversationId: string | undefined) => {
-      if (conversationContext?.type === 'aionrs' && acceptsTarget(targetConversationId)) {
+      if (conversationContext?.type === 'bbrs' && acceptsTarget(targetConversationId)) {
         handleExternalSelectionAppend(items);
       }
     },
@@ -1127,8 +1127,8 @@ const SendBox: React.FC<{
       // here, not to same-type peers on the team route.
       const targetId = conversationContext?.conversation_id;
       switch (conversationContext?.type) {
-        case 'aionrs':
-          emitter.emit('aionrs.selected.file.append', [item], targetId);
+        case 'bbrs':
+          emitter.emit('bbrs.selected.file.append', [item], targetId);
           break;
         case 'acp':
           emitter.emit('acp.selected.file.append', [item], targetId);
@@ -1796,7 +1796,7 @@ const SendBox: React.FC<{
    * dropdown — and only the pick attaches anything. Select-all + cut + paste is
    * the sharpest version: the reconciliation retracts the references while the
    * input is momentarily empty, the pasted text looks identical, and the message
-   * goes out with no `[[AION_FILES]]` / `[[AION_SESSIONS]]` block at all. The
+   * goes out with no `[[BB_FILES]]` / `[[BB_SESSIONS]]` block at all. The
    * references cannot be recovered from the pasted text (a conversation name is
    * not a unique address), so making the loss VISIBLE is the fix.
    */

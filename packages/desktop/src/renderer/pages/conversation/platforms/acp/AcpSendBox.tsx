@@ -284,7 +284,7 @@ const AcpSendBox: React.FC<{
   const executeCommand = useCallback(
     async ({ input, files, sessions }: Pick<ConversationCommandQueueItem, 'input' | 'files' | 'sessions'>) => {
       // Plain user text; the backend resolves each ChatFileRef and injects the
-      // [[AION_FILES]] marker at the send edge (no front-end path/marker building).
+      // [[BB_FILES]] marker at the send edge (no front-end path/marker building).
       try {
         if (teamPermission) await teamPermission.warmupSession();
         void checkAndUpdateTitle(conversation_id, input);

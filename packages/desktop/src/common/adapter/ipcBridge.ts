@@ -275,12 +275,12 @@ export const conversation = {
   ),
   createWithConversation: withResponseMap(
     httpPost<TChatConversation, { conversation: TChatConversation }>('/api/conversations/clone', (p) => {
-      const isAionrs = p.conversation.type === 'aionrs';
+      const isBbrs = p.conversation.type === 'bbrs';
       const { model: _rawModel, ...rest } = p.conversation as TChatConversation & {
         model?: TProviderWithModel;
       };
       const clonedConversation: Record<string, unknown> = { ...rest };
-      if (isAionrs) {
+      if (isBbrs) {
         const model = toApiModelOptional(_rawModel);
         if (model) clonedConversation.model = model;
       }
@@ -1057,7 +1057,7 @@ export const googleAuth = {
 };
 
 // ---------------------------------------------------------------------------
-// Google subscription status (Google OAuth provider path, used by aionrs)
+// Google subscription status (Google OAuth provider path, used by bbrs)
 // ---------------------------------------------------------------------------
 
 export const google = {
@@ -1810,7 +1810,7 @@ export interface IConfirmMessageParams {
 }
 
 export interface ICreateConversationParams {
-  type?: 'acp' | 'aionrs';
+  type?: 'acp' | 'bbrs';
   id?: string;
   name?: string;
   model?: TProviderWithModel;

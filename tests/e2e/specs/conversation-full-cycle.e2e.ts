@@ -29,7 +29,7 @@ import {
   httpGet,
   httpPost,
   httpDelete,
-  resolveAionrsPreconditions,
+  resolveBbrsPreconditions,
 } from '../helpers';
 
 // Generous timeout for AI responses
@@ -1239,7 +1239,7 @@ test.describe('Conversation Full Cycle', () => {
     stopAutoApprove?.();
   });
 
-  const cronConversationAgents = ['claude', 'codex', 'gemini', 'aionrs', 'opencode'] as const;
+  const cronConversationAgents = ['claude', 'codex', 'gemini', 'bbrs', 'opencode'] as const;
 
   for (const backend of cronConversationAgents) {
     test(`cron -- ${backend} conversation skill creates task with full-auto job mode`, async ({ page }) => {
@@ -1255,10 +1255,10 @@ test.describe('Conversation Full Cycle', () => {
         await page
           .waitForFunction(() => (document.body.textContent?.length ?? 0) > 200, { timeout: 15_000 })
           .catch(() => {});
-        if (backend === 'aionrs') {
-          const preconditions = await resolveAionrsPreconditions(page);
+        if (backend === 'bbrs') {
+          const preconditions = await resolveBbrsPreconditions(page);
           if (!preconditions.binary || !preconditions.models) {
-            test.skip(true, 'No aionrs-compatible provider found, skipping E2E tests');
+            test.skip(true, 'No bbrs-compatible provider found, skipping E2E tests');
             return;
           }
         }

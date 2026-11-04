@@ -53,8 +53,8 @@ import { Brain, Lightning, MagicHat, Shield } from '@icon-park/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classifyConversationBusyError } from '../conversationBusyError';
-import { useAionrsMessage } from './useAionrsMessage';
-import type { AionrsModelSelection } from './useAionrsModelSelection';
+import { useBbrsMessage } from './useBbrsMessage';
+import type { BbrsModelSelection } from './useBbrsModelSelection';
 
 const configErrorMessageKey = (error: unknown) => {
   const errorKind = classifyConfigSetError(error);
@@ -73,8 +73,8 @@ const toModeLabel = (value: string): string =>
 const modeOptionsFromCapabilities = (modes: string[]): AgentModeOption[] =>
   modes.map((value) => ({ value, label: toModeLabel(value) }));
 
-const useAionrsSendBoxDraft = getSendBoxDraftHook('aionrs', {
-  _type: 'aionrs',
+const useBbrsSendBoxDraft = getSendBoxDraftHook('bbrs', {
+  _type: 'bbrs',
   atPath: [],
   content: '',
   uploadFile: [],
@@ -84,7 +84,7 @@ const EMPTY_AT_PATH: Array<string | FileOrFolderItem> = [];
 const EMPTY_UPLOAD_FILES: string[] = [];
 
 const useSendBoxDraft = (conversation_id: string) => {
-  const { data, mutate } = useAionrsSendBoxDraft(conversation_id);
+  const { data, mutate } = useBbrsSendBoxDraft(conversation_id);
 
   const atPath = data?.atPath ?? EMPTY_AT_PATH;
   const uploadFile = data?.uploadFile ?? EMPTY_UPLOAD_FILES;
@@ -116,9 +116,9 @@ const useSendBoxDraft = (conversation_id: string) => {
   };
 };
 
-const AionrsSendBox: React.FC<{
+const BbrsSendBox: React.FC<{
   conversation_id: string;
-  modelSelection: AionrsModelSelection;
+  modelSelection: BbrsModelSelection;
   session_mode?: string;
   agent_name?: string;
   teamSendMessage?: (payload: { input: string; files: ChatFileRef[] }) => Promise<void>;
@@ -144,7 +144,7 @@ const AionrsSendBox: React.FC<{
   const teamPermission = useTeamPermission();
   const propagateMode = teamPermission?.propagateMode;
 
-  const { thought, running, turnStartedAtMs, setActiveMsgId, setWaitingResponse, resetState } = useAionrsMessage(
+  const { thought, running, turnStartedAtMs, setActiveMsgId, setWaitingResponse, resetState } = useBbrsMessage(
     conversation_id,
     {
       onConfigChanged: (capabilities) => {
@@ -206,7 +206,7 @@ const AionrsSendBox: React.FC<{
   }, [conversation_id, prepareRuntimeSync, t]);
 
   const slash_commands = useSlashCommands(conversation_id, {
-    conversation_type: 'aionrs',
+    conversation_type: 'bbrs',
     agentStatus: agentWarmed ? 'active' : null,
     prepareRuntime: teamPermission ? prepareRuntimeSync : undefined,
   });
@@ -260,7 +260,7 @@ const AionrsSendBox: React.FC<{
       }
 
       // The message body is plain user text; the backend resolves each
-      // ChatFileRef to an absolute path and injects the [[AION_FILES]] marker at
+      // ChatFileRef to an absolute path and injects the [[BB_FILES]] marker at
       // the send edge — the front-end no longer builds paths nor the marker.
       try {
         void checkAndUpdateTitle(conversation_id, input);
@@ -268,7 +268,7 @@ const AionrsSendBox: React.FC<{
           await teamSendMessage({ input, files });
           emitter.emit('chat.history.refresh');
           if (files.length > 0) {
-            emitter.emit('aionrs.workspace.refresh');
+            emitter.emit('bbrs.workspace.refresh');
           }
           return;
         }
@@ -287,7 +287,7 @@ const AionrsSendBox: React.FC<{
         markSendAccepted(res.turn_id, res.runtime, res.msg_id);
         emitter.emit('chat.history.refresh');
         if (files.length > 0) {
-          emitter.emit('aionrs.workspace.refresh');
+          emitter.emit('bbrs.workspace.refresh');
         }
       } catch (error) {
         const errorMessage =
@@ -351,8 +351,8 @@ const AionrsSendBox: React.FC<{
   useEffect(() => {
     if (!conversation_id || !current_model?.use_model) return;
 
-    const storageKey = `aionrs_initial_message_${conversation_id}`;
-    const processedKey = `aionrs_initial_processed_${conversation_id}`;
+    const storageKey = `bbrs_initial_message_${conversation_id}`;
+    const processedKey = `bbrs_initial_processed_${conversation_id}`;
 
     const processInitialMessage = async () => {
       if (sessionStorage.getItem(processedKey)) return;
@@ -372,7 +372,7 @@ const AionrsSendBox: React.FC<{
           : [];
         await executeCommand({ input, files: initialRefs });
       } catch (error) {
-        console.error('[AionrsSendBox] Failed to send initial message:', error);
+        console.error('[BbrsSendBox] Failed to send initial message:', error);
         sessionStorage.removeItem(processedKey);
       }
     };
@@ -385,7 +385,7 @@ const AionrsSendBox: React.FC<{
   const [selectedSessions, setSelectedSessions] = useState<SessionRef[]>([]);
   const { enabled: crossSessionEnabled } = useCrossSessionMessageEnabled();
 
-  // aionrs backends never support mid-turn delivery: while the agent is
+  // bbrs backends never support mid-turn delivery: while the agent is
   // replying, sending is hard-blocked with a toast instead of implicitly
   // enqueuing. The only way to queue a message while busy is the explicit
   // "add to queue" entry (handleAddToQueue below).
@@ -404,7 +404,7 @@ const AionrsSendBox: React.FC<{
     const sessions = selectedSessions.length > 0 ? selectedSessions : undefined;
     clearFiles();
     setSelectedSessions([]);
-    emitter.emit('aionrs.selected.file.clear');
+    emitter.emit('bbrs.selected.file.clear');
     await executeCommand({ input: message, files: filesToSend, sessions });
   };
 
@@ -415,7 +415,7 @@ const AionrsSendBox: React.FC<{
     const input = content;
     setContent('');
     clearFiles();
-    emitter.emit('aionrs.selected.file.clear');
+    emitter.emit('bbrs.selected.file.clear');
     setInterrupting(true);
     try {
       await teamRuntime.onInterruptSend({ input, files });
@@ -444,7 +444,7 @@ const AionrsSendBox: React.FC<{
     setContent('');
     clearFiles();
     setSelectedSessions([]);
-    emitter.emit('aionrs.selected.file.clear');
+    emitter.emit('bbrs.selected.file.clear');
   }, [atPath, clearFiles, content, enqueue, selectedSessions, setContent, uploadFile]);
 
   const handleEditQueuedCommand = useCallback(
@@ -457,7 +457,7 @@ const AionrsSendBox: React.FC<{
       const { uploadFiles, atPath: restoredAtPath } = splitChatFileRefs(item.files);
       setUploadFile(uploadFiles);
       setAtPath(restoredAtPath);
-      emitter.emit('aionrs.selected.file.clear');
+      emitter.emit('bbrs.selected.file.clear');
     },
     [remove, setAtPath, setContent, setUploadFile]
   );
@@ -493,7 +493,7 @@ const AionrsSendBox: React.FC<{
         propagateMode?.(mode);
         Message.success(t('agentMode.switchSuccess'));
       } catch (error) {
-        console.error('[AionrsSendBox] Failed to switch mode via sheet:', error);
+        console.error('[BbrsSendBox] Failed to switch mode via sheet:', error);
         Message.error(t(configErrorMessageKey(error)));
       }
     },
@@ -671,14 +671,14 @@ const AionrsSendBox: React.FC<{
   // untargeted); stops same-type peers on the team route from receiving each
   // other's selections. See emitter EventTypes comment.
   useAddEventListener(
-    'aionrs.selected.file',
+    'bbrs.selected.file',
     (items: Array<string | FileOrFolderItem>, targetConversationId: string | undefined) => {
       if (targetConversationId === undefined || targetConversationId === conversation_id) setAtPath(items);
     },
     [conversation_id, setAtPath]
   );
   useAddEventListener(
-    'aionrs.selected.file.append',
+    'bbrs.selected.file.append',
     (selectedItems: Array<string | FileOrFolderItem>, targetConversationId: string | undefined) => {
       if (targetConversationId !== undefined && targetConversationId !== conversation_id) return;
       const merged = mergeFileSelectionItems(atPathRef.current, selectedItems);
@@ -704,7 +704,7 @@ const AionrsSendBox: React.FC<{
       const result = await ipcBridge.conversation.stop.invoke({ conversation_id, turn_id: turnId });
       runtimeView.markStopAcknowledged(turnId, result.runtime);
     } catch (error) {
-      console.warn('[AionrsSendBox] stop request failed', error);
+      console.warn('[BbrsSendBox] stop request failed', error);
       runtimeView.resetLocalGate('stop_failed');
     } finally {
       resetState();
@@ -753,13 +753,13 @@ const AionrsSendBox: React.FC<{
       />
       <CrossSessionDisabledBanner />
       <SendBox
-        data-testid='aionrs-sendbox'
+        data-testid='bbrs-sendbox'
         onMobilePlusClick={isMobile ? () => setIsMobileSheetOpen(true) : undefined}
         value={content}
         onChange={handleContentChange}
         selectedWorkspaceItems={atPath}
         onSelectedWorkspaceItemsChange={(items) => {
-          emitter.emit('aionrs.selected.file', items, conversation_id);
+          emitter.emit('bbrs.selected.file', items, conversation_id);
           setAtPath(items);
         }}
         selectedSessions={selectedSessions}
@@ -804,7 +804,7 @@ const AionrsSendBox: React.FC<{
         rightTools={
           <div className='flex items-center gap-8px min-w-0'>
             <AgentModeSelector
-              backend='aionrs'
+              backend='bbrs'
               conversation_id={conversation_id}
               compact
               initialMode={session_mode}
@@ -827,7 +827,7 @@ const AionrsSendBox: React.FC<{
                 {uploadFile.map((path) => (
                   <FilePreview
                     key={path}
-                    data-testid={`aionrs-file-tag-${uploadFile.indexOf(path)}`}
+                    data-testid={`bbrs-file-tag-${uploadFile.indexOf(path)}`}
                     path={path}
                     onRemove={() => setUploadFile(uploadFile.filter((v) => v !== path))}
                   />
@@ -843,12 +843,12 @@ const AionrsSendBox: React.FC<{
                     return (
                       <Tag
                         key={item.path}
-                        data-testid={`aionrs-folder-tag-${folderIndex}`}
+                        data-testid={`bbrs-folder-tag-${folderIndex}`}
                         color='blue'
                         closable
                         onClose={() => {
                           const newAtPath = atPath.filter((v) => (typeof v === 'string' ? true : v.path !== item.path));
-                          emitter.emit('aionrs.selected.file', newAtPath, conversation_id);
+                          emitter.emit('bbrs.selected.file', newAtPath, conversation_id);
                           setAtPath(newAtPath);
                         }}
                       >
@@ -904,4 +904,4 @@ const AionrsSendBox: React.FC<{
   );
 };
 
-export default AionrsSendBox;
+export default BbrsSendBox;

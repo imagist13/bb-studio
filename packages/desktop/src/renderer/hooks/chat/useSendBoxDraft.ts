@@ -17,7 +17,7 @@ type Draft =
       uploadFile: string[];
     }
   | {
-      _type: 'aionrs';
+      _type: 'bbrs';
       content: string;
       atPath: Array<string | FileOrFolderItem>;
       uploadFile: string[];
@@ -34,7 +34,7 @@ type SendBoxDraftStore = {
 const store: SendBoxDraftStore = {
   acp: new Map(),
   codex: new Map(),
-  aionrs: new Map(),
+  bbrs: new Map(),
 };
 
 export type ConversationSendBoxPrefill = {
@@ -136,11 +136,11 @@ const setDraft = <K extends DraftConversationType>(
         store.codex.delete(conversation_id);
       }
       break;
-    case 'aionrs':
+    case 'bbrs':
       if (draft) {
-        store.aionrs.set(conversation_id, draft as Extract<Draft, { _type: 'aionrs' }>);
+        store.bbrs.set(conversation_id, draft as Extract<Draft, { _type: 'bbrs' }>);
       } else {
-        store.aionrs.delete(conversation_id);
+        store.bbrs.delete(conversation_id);
       }
       break;
     default:
@@ -158,8 +158,8 @@ const getDraft = <K extends DraftConversationType>(
       return store.acp.get(conversation_id) as Extract<Draft, { _type: K }>;
     case 'codex':
       return store.codex.get(conversation_id) as Extract<Draft, { _type: K }>;
-    case 'aionrs':
-      return store.aionrs.get(conversation_id) as Extract<Draft, { _type: K }>;
+    case 'bbrs':
+      return store.bbrs.get(conversation_id) as Extract<Draft, { _type: K }>;
     default:
       return undefined;
   }

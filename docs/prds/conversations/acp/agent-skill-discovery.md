@@ -42,7 +42,7 @@ ACP 支持通过 `_meta` 字段和自定义扩展方法做 vendor 扩展，也�
 - `/Users/zhoukai/Documents/github/bbcore/crates/bb-conversation/src/service.rs`
   - Lines 3210-3233：ACP agent 从 `agent_metadata` 查询 native skill dirs。
 - `/Users/zhoukai/Documents/github/bbcore/crates/bb-common/src/enums.rs`
-  - Lines 68-93：注释明确说明 ACP vendors 的 skill dirs 由 `agent_metadata` 管理；非 ACP 的 `Aionrs` 使用 `.aionrs/skills`。
+  - Lines 68-93：注释明确说明 ACP vendors 的 skill dirs 由 `agent_metadata` 管理；非 ACP 的 `Bbrs` 使用 `.bbrs/skills`。
 
 ### 会话创建时链接
 
@@ -103,13 +103,13 @@ ACP 支持通过 `_meta` 字段和自定义扩展方法做 vendor 扩展，也�
 | `opencode`  | OpenCode    | `.opencode/skills`   | OpenCode 文档确认 `.opencode/skills`、`.claude/skills`、`.agents/skills` | 未确认热加载；文档只说明发现和按需加载                    |
 | `vibe`      | Vibe        | `.vibe/skills`       | Mistral 文档确认 `.vibe/skills` 和 `.agents/skills`                      | 未确认热加载；文档只说明发现路径                          |
 | `cursor`    | Cursor      | `.cursor/skills`     | 本轮未确认                                                               | 未知                                                      |
-| `auggie`    | Auggie      | `NULL`               | BBCore 行没有 native dir                                               | 只能走 prompt injection                                   |
-| `copilot`   | Copilot     | `NULL`               | BBCore 行没有 native dir                                               | 只能走 prompt injection                                   |
-| `qoder`     | Qoder       | `NULL`               | BBCore 行没有 native dir                                               | 只能走 prompt injection                                   |
-| `kiro`      | Kiro        | `NULL`               | BBCore 行没有 native dir                                               | 只能走 prompt injection                                   |
-| `hermes`    | Hermes      | `NULL`               | BBCore 行没有 native dir                                               | 只能走 prompt injection                                   |
-| `snow`      | Snow        | `NULL`               | BBCore 行没有 native dir                                               | 只能走 prompt injection                                   |
-| `openclaw`  | OpenClaw    | `NULL`               | BBCore 行没有 native dir                                               | 只能走 prompt injection                                   |
+| `auggie`    | Auggie      | `NULL`               | BBCore 行没有 native dir                                                 | 只能走 prompt injection                                   |
+| `copilot`   | Copilot     | `NULL`               | BBCore 行没有 native dir                                                 | 只能走 prompt injection                                   |
+| `qoder`     | Qoder       | `NULL`               | BBCore 行没有 native dir                                                 | 只能走 prompt injection                                   |
+| `kiro`      | Kiro        | `NULL`               | BBCore 行没有 native dir                                                 | 只能走 prompt injection                                   |
+| `hermes`    | Hermes      | `NULL`               | BBCore 行没有 native dir                                                 | 只能走 prompt injection                                   |
+| `snow`      | Snow        | `NULL`               | BBCore 行没有 native dir                                                 | 只能走 prompt injection                                   |
+| `openclaw`  | OpenClaw    | `NULL`               | BBCore 行没有 native dir                                                 | 只能走 prompt injection                                   |
 
 ## Agent 扫描 skill 目录的时机
 

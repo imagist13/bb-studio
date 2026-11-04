@@ -110,8 +110,8 @@
       "selectFolder": "Select Folder",
       "clearFolder": "Clear",
       "model": "Model",
-      "aionrsModelRequired": "Please select a model for bbdev",
-      "aionrsNoProvider": "No available models",
+      "bbrsModelRequired": "Please select a model for bbdev",
+      "bbrsNoProvider": "No available models",
       "assistantLockedExistingConversation": "Ongoing conversation tasks must keep their original assistant. Create a new task to use another assistant.",
       "teamTaskExecutionModeLockedReason": "Team scheduled tasks must keep running in the owning team conversation, so the execution mode cannot be changed."
     },

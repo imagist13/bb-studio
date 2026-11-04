@@ -54,18 +54,18 @@ export const BB_TIMESTAMP_SEPARATOR = '_bb_';
 
 /** 用于匹配和清理时间戳后缀的正则表达式 */
 export const BB_TIMESTAMP_REGEX = /_bb_\d{13}(\.\w+)?$/;
-export const BB_FILES_MARKER = '[[AION_FILES]]';
+export const BB_FILES_MARKER = '[[BB_FILES]]';
 
 // ===== 跨会话消息相关常量 =====
 // 必须与后端 crates/bb-common/src/constants.rs 中的值逐字一致。
 
 /** 发送侧：用户用 `@@` 引用其他会话后，后端追加到消息末尾的块 */
-export const BB_SESSIONS_MARKER = '[[AION_SESSIONS]]';
-export const BB_SESSIONS_END_MARKER = '[[/AION_SESSIONS]]';
+export const BB_SESSIONS_MARKER = '[[BB_SESSIONS]]';
+export const BB_SESSIONS_END_MARKER = '[[/BB_SESSIONS]]';
 
 /** 接收侧：跨会话投递时后端加在消息开头的来源块 */
-export const BB_SESSION_MESSAGE_MARKER = '[[AION_SESSION_MESSAGE]]';
-export const BB_SESSION_MESSAGE_END_MARKER = '[[/AION_SESSION_MESSAGE]]';
+export const BB_SESSION_MESSAGE_MARKER = '[[BB_SESSION_MESSAGE]]';
+export const BB_SESSION_MESSAGE_END_MARKER = '[[/BB_SESSION_MESSAGE]]';
 
 // ===== 媒体类型相关常量 =====
 

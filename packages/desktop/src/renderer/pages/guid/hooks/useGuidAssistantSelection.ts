@@ -6,7 +6,7 @@
 
 import {
   assistantRuntimeKey,
-  isAionrsAssistant,
+  isBbrsAssistant,
   isProductDefaultAssistant,
   type Assistant,
 } from '@/common/types/agent/assistantTypes';
@@ -110,8 +110,8 @@ export function pickDefaultAssistantSelectionKey(assistants: Assistant[]): strin
   const enabledAssistants = assistants.filter((assistant) => assistant.enabled !== false);
   const preferred =
     enabledAssistants.find(isProductDefaultAssistant) ??
-    enabledAssistants.find((assistant) => assistant.source === 'generated' && isAionrsAssistant(assistant)) ??
-    enabledAssistants.find((assistant) => isAionrsAssistant(assistant)) ??
+    enabledAssistants.find((assistant) => assistant.source === 'generated' && isBbrsAssistant(assistant)) ??
+    enabledAssistants.find((assistant) => isBbrsAssistant(assistant)) ??
     enabledAssistants[0];
   return preferred?.id ?? null;
 }

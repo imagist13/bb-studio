@@ -121,8 +121,8 @@
       "selectFolder": "フォルダを選択",
       "clearFolder": "クリア",
       "model": "モデル",
-      "aionrsModelRequired": "bbdev のモデルを選択してください",
-      "aionrsNoProvider": "利用可能なモデルがありません",
+      "bbrsModelRequired": "bbdev のモデルを選択してください",
+      "bbrsNoProvider": "利用可能なモデルがありません",
       "assistantLockedExistingConversation": "同じ会話で実行するタスクは元のアシスタントを維持する必要があります。別のアシスタントを使うには新しいタスクを作成してください。",
       "teamTaskExecutionModeLockedReason": "Team のスケジュールタスクは所属する Team 会話で継続実行する必要があるため、実行モードは変更できません。"
     },

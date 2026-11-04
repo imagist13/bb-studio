@@ -267,12 +267,12 @@ describe('buildAssistantEditorBackends', () => {
       [
         agent({ id: 'acp-1', agent_type: 'acp', name: 'Claude Code' }),
         agent({ id: 'a9f3c21e', agent_type: 'antigravity', backend: 'antigravity', name: 'Antigravity' }),
-        agent({ id: 'aionrs-1', agent_type: 'aionrs', backend: 'aionrs', name: 'Aion CLI' }),
+        agent({ id: 'bbrs-1', agent_type: 'bbrs', backend: 'bbrs', name: 'Aion CLI' }),
       ],
       'zh-CN'
     );
 
-    expect(backends.map((b) => b.id)).toEqual(['acp-1', 'a9f3c21e', 'aionrs-1']);
+    expect(backends.map((b) => b.id)).toEqual(['acp-1', 'a9f3c21e', 'bbrs-1']);
     const antigravity = backends.find((b) => b.id === 'a9f3c21e');
     expect(antigravity?.name).toBe('Antigravity');
     expect(antigravity?.runtimeKey).toBe('antigravity');

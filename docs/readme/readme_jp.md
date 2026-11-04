@@ -76,7 +76,7 @@
 
 **BBUI は単なるチャットクライアントではありません。** これは Cowork プラットフォームであり、AI Agent があなたのコンピューター上であなたと共に働きます——ファイルを読み、コードを書き、ウェブを閲覧し、タスクを自動化します。Agent のすべての動作を見ることができ、常にあなたがコントロールしています。
 
-|                                       | 従来の AI チャットクライアント | **BBUI (Cowork)**                                                                                                                         |
+|                                       | 従来の AI チャットクライアント | **BBUI (Cowork)**                                                                                                                           |
 | :------------------------------------ | :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------ |
 | AI がファイルを操作できる             | 限定的または不可               | **はい — 内蔵 Agent、完全なファイルアクセス**                                                                                               |
 | AI がマルチステップタスクを実行できる | 限定的                         | **はい — 自律実行、あなたの承認が必要**                                                                                                     |
@@ -161,7 +161,7 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 
 すでに Claude Code、Codex、Hermes Agent、または OpenClaw を使用している場合、BBUI は自動的に検出し、それらすべてと Cowork できます——内蔵 Agent と一緒に。
 
-**サポートされている Agent：** 内蔵 Agent（組み込みの [aionrs](https://github.com/iOfficeAI/aionrs) Agent エンジンで動作） • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity など
+**サポートされている Agent：** 内蔵 Agent（組み込みの [bbrs](https://github.com/iOfficeAI/bbrs) Agent エンジンで動作） • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity など
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -191,7 +191,7 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 <br>
 
 - **共有ワークスペース** — すべての Agent が同じフォルダを読み書き；ファイルパネルは常に表示
-- **対応バックエンド** — Claude Code、Codex、Gemini、Snow CLI、Aion CLI（aionrs）；`mcpCapabilities.stdio` を持つ他の ACP バックエンドも自動対応
+- **対応バックエンド** — Claude Code、Codex、Gemini、Snow CLI、Aion CLI（bbrs）；`mcpCapabilities.stdio` を持つ他の ACP バックエンドも自動対応
 - **動的スケーリング** — チーム実行中に Teammate の追加・削除が可能；応答しない Agent は自動的に失敗状態に昇格しワンクリックで削除
 - **細粒度の権限** — 各 Agent に独自の権限確認ダイアログ；サイドバーバッジで承認待ちを表示
 - **ファイル共有** — Leader が Teammate にファイル添付を渡せる
@@ -531,7 +531,7 @@ _複数の会話を開き、タスクが混ざらない、独立したメモリ�
 
 BBUI は**無料でオープンソースの Multi-AI Agent デスクトップ**です。macOS でのみ動作し Claude にロックされている Claude Cowork と比較して、BBUI は全モデル、クロスプラットフォームの強化版です。
 
-| 次元             | Claude Cowork    | BBUI                                                |
+| 次元             | Claude Cowork    | BBUI                                                  |
 | :--------------- | :--------------- | :---------------------------------------------------- |
 | OS               | macOS のみ       | macOS / Windows / Linux                               |
 | モデルサポート   | Claude のみ      | Gemini、Claude、DeepSeek、OpenAI、Ollama、...         |

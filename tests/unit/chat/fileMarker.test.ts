@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 
 import { parseFileMarker, resolveMessageFilePath } from '@/renderer/pages/conversation/Messages/components/fileMarker';
 
-const FILES = '[[AION_FILES]]';
+const FILES = '[[BB_FILES]]';
 
 describe('parseFileMarker', () => {
   it('is a no-op when the message cannot carry attachments', () => {
@@ -32,7 +32,7 @@ describe('parseFileMarker', () => {
     expect(parseFileMarker(content, true)).toEqual({ text: content, files: [] });
   });
 
-  // The regression this file exists for. The backend now keeps [[AION_FILES]]
+  // The regression this file exists for. The backend now keeps [[BB_FILES]]
   // last, but relying on that alone meant any future trailing block silently
   // killed the file chips and dumped the raw marker into the bubble.
   it('still parses paths when another marker block follows the files block', () => {
@@ -42,9 +42,9 @@ describe('parseFileMarker', () => {
       FILES,
       '/Users/you/proj/src/auth.rs',
       '',
-      '[[AION_SESSIONS]]',
+      '[[BB_SESSIONS]]',
       '重构-鉴权模块\tconv_019f\tworkspace: same',
-      '[[/AION_SESSIONS]]',
+      '[[/BB_SESSIONS]]',
     ].join('\n');
 
     const { text, files } = parseFileMarker(content, true);
@@ -54,7 +54,7 @@ describe('parseFileMarker', () => {
     expect(text).not.toContain('/Users/you/proj/src/auth.rs');
     // The trailing block is left in place for the session parser to consume —
     // dropping it here would swallow the `@@` chips instead.
-    expect(text).toContain('[[AION_SESSIONS]]');
+    expect(text).toContain('[[BB_SESSIONS]]');
   });
 
   it('stops at the next marker even when that block contains slashes', () => {
@@ -65,9 +65,9 @@ describe('parseFileMarker', () => {
       '',
       FILES,
       '/abs/a.rs',
-      '[[AION_SESSIONS]]',
+      '[[BB_SESSIONS]]',
       '文档站改版\tconv_01a0\tworkspace: /Users/x/docs（与你不同）',
-      '[[/AION_SESSIONS]]',
+      '[[/BB_SESSIONS]]',
     ].join('\n');
 
     expect(parseFileMarker(content, true).files).toEqual(['/abs/a.rs']);

@@ -29,9 +29,9 @@ import AcpRuntimeRestartButton from '@/renderer/components/agent/AcpRuntimeResta
 import { getConversationOrNull } from '@/renderer/pages/conversation/utils/conversationCache';
 import { getConversationCreateErrorMessage } from '@/renderer/pages/conversation/utils/conversationCreateError';
 import GoogleModelSelector from '../platforms/gemini/GoogleModelSelector';
-import AionrsChat from '../platforms/aionrs/AionrsChat';
-import AionrsModelSelector from '../platforms/aionrs/AionrsModelSelector';
-import { useAionrsModelSelection } from '../platforms/aionrs/useAionrsModelSelection';
+import BbrsChat from '../platforms/bbrs/BbrsChat';
+import BbrsModelSelector from '../platforms/bbrs/BbrsModelSelector';
+import { useBbrsModelSelection } from '../platforms/bbrs/useBbrsModelSelection';
 import { useConversationRuntimeView } from '../runtime/useConversationRuntimeView';
 import { isLegacyReadOnlyConversationType } from '../utils/conversationRuntime';
 import { resolveConversationBackend } from '../utils/conversationAssistantIdentity';
@@ -144,9 +144,9 @@ const _AddNewConversation: React.FC<{ conversation: TChatConversation }> = ({ co
   );
 };
 
-type AionrsConversation = Extract<TChatConversation, { type: 'aionrs' }>;
+type BbrsConversation = Extract<TChatConversation, { type: 'bbrs' }>;
 
-const AionrsConversationPanel: React.FC<{ conversation: AionrsConversation; sliderTitle: React.ReactNode }> = ({
+const BbrsConversationPanel: React.FC<{ conversation: BbrsConversation; sliderTitle: React.ReactNode }> = ({
   conversation,
   sliderTitle,
 }) => {
@@ -168,7 +168,7 @@ const AionrsConversationPanel: React.FC<{ conversation: AionrsConversation; slid
     [conversation.id, runtimeView]
   );
 
-  const modelSelection = useAionrsModelSelection({
+  const modelSelection = useBbrsModelSelection({
     initialModel: conversation.model,
     onSelectModel,
   });
@@ -178,7 +178,7 @@ const AionrsConversationPanel: React.FC<{ conversation: AionrsConversation; slid
   const workspaceEnabled = Boolean(conversation.extra?.workspace) && !conversation.project_id;
   const cronJobId = resolveCronJobId(conversation.extra);
   const { info: presetAssistantInfo } = usePresetAssistantInfo(conversation);
-  const aionrsAssistantId = presetAssistantInfo?.assistantId;
+  const bbrsAssistantId = presetAssistantInfo?.assistantId;
   const layout = useLayoutContext();
   // Mobile: model selection moved into the sendbox `+` action sheet to free up
   // header space; the dropdown stays available on desktop and tablets ≥768px.
@@ -210,7 +210,7 @@ const AionrsConversationPanel: React.FC<{ conversation: AionrsConversation; slid
       <div className='flex items-center gap-8px'>
         <CronJobManager conversation_id={conversation.id} cron_job_id={cronJobId} />
         {!isMobile && (
-          <AionrsModelSelector
+          <BbrsModelSelector
             selection={modelSelection}
             thoughtLevel={runtimeConfig.thoughtLevel}
             setStatus={runtimeConfig.setStatus}
@@ -231,8 +231,8 @@ const AionrsConversationPanel: React.FC<{ conversation: AionrsConversation; slid
     workspacePreferenceKey: conversation.project_id,
     isTemporaryWorkspace: (conversation.extra as { is_temporary_workspace?: boolean } | undefined)
       ?.is_temporary_workspace,
-    backend: 'aionrs' as const,
-    presetAssistant: presetAssistantInfo ? { ...presetAssistantInfo, id: aionrsAssistantId } : undefined,
+    backend: 'bbrs' as const,
+    presetAssistant: presetAssistantInfo ? { ...presetAssistantInfo, id: bbrsAssistantId } : undefined,
   };
 
   const emptySlot = (
@@ -245,7 +245,7 @@ const AionrsConversationPanel: React.FC<{ conversation: AionrsConversation; slid
 
   return (
     <ChatLayout {...chatLayoutProps} conversation_id={conversation.id}>
-      <AionrsChat
+      <BbrsChat
         conversation_id={conversation.id}
         workspace={conversation.extra.workspace}
         emptySlot={emptySlot}
@@ -258,7 +258,7 @@ const AionrsConversationPanel: React.FC<{ conversation: AionrsConversation; slid
           (conversation.extra as { mcp_statuses?: IConversationMcpStatus[] } | undefined)?.mcp_statuses
         }
         agent_name={presetAssistantInfo?.name}
-        assistantId={aionrsAssistantId}
+        assistantId={bbrsAssistantId}
         forkCapability={conversation.fork_capability}
       />
     </ChatLayout>
@@ -283,13 +283,13 @@ const ChatConversation: React.FC<{
   const layout = useLayoutContext();
   const isMobile = Boolean(layout?.isMobile);
 
-  const isAionrsConversation = conversation?.type === 'aionrs';
+  const isBbrsConversation = conversation?.type === 'bbrs';
   const isLegacyReadOnlyConversation = isLegacyReadOnlyConversationType(conversation?.type);
   const resolvedHideSendBox = hideSendBox || isLegacyReadOnlyConversationType(conversation?.type);
 
   // 使用统一的 Hook 获取预设助手信息（ACP/Codex 会话）
   // Use unified hook for preset assistant info (ACP/Codex conversations)
-  const acpConversation = isAionrsConversation ? undefined : conversation;
+  const acpConversation = isBbrsConversation ? undefined : conversation;
   const { info: presetAssistantInfo, isLoading: isLoadingPreset } = usePresetAssistantInfo(acpConversation);
   const acpAssistantId = presetAssistantInfo?.assistantId;
   const resolvedConversationBackend = resolveConversationBackend(conversation, presetAssistantInfo?.backend);
@@ -298,7 +298,7 @@ const ChatConversation: React.FC<{
   const assistantDisplayName = presetAssistantInfo?.name || conversationAgentName;
 
   const conversationNode = useMemo(() => {
-    if (!conversation || isAionrsConversation) return null;
+    if (!conversation || isBbrsConversation) return null;
     // Greeting shown while the conversation has no messages yet (freshly created
     // or cloned window). Each *Chat forwards it to MessageList's empty slot.
     const emptySlot = (
@@ -345,7 +345,7 @@ const ChatConversation: React.FC<{
     }
   }, [
     conversation,
-    isAionrsConversation,
+    isBbrsConversation,
     isLegacyReadOnlyConversation,
     resolvedConversationBackend,
     assistantDisplayName,
@@ -367,7 +367,7 @@ const ChatConversation: React.FC<{
   // Mobile: model selection moves into the sendbox `+` action sheet, so the
   // header selector is suppressed to free up vertical space.
   const modelSelector = useMemo(() => {
-    if (!conversation || isAionrsConversation) return undefined;
+    if (!conversation || isBbrsConversation) return undefined;
     if (isMobile) return undefined;
     if (isLegacyReadOnlyConversation) return undefined;
     // Antigravity included: the backend discovers agy's model list and writes it
@@ -386,10 +386,10 @@ const ChatConversation: React.FC<{
       );
     }
     return <GoogleModelSelector disabled={true} />;
-  }, [conversation, isAionrsConversation, isMobile, isLegacyReadOnlyConversation, resolvedConversationBackend]);
+  }, [conversation, isBbrsConversation, isMobile, isLegacyReadOnlyConversation, resolvedConversationBackend]);
 
-  if (conversation && conversation.type === 'aionrs') {
-    return <AionrsConversationPanel key={conversation.id} conversation={conversation} sliderTitle={sliderTitle} />;
+  if (conversation && conversation.type === 'bbrs') {
+    return <BbrsConversationPanel key={conversation.id} conversation={conversation} sliderTitle={sliderTitle} />;
   }
 
   // 如果有预设助手信息，使用预设助手的 logo 和名称；加载中时不进入 fallback；否则使用 backend 的 logo

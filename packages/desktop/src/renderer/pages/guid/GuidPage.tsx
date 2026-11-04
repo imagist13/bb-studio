@@ -130,9 +130,9 @@ const GuidPage: React.FC = () => {
   }, []);
 
   // --- Hooks ---
-  // Only aionrs uses this provider-based model picker now (Gemini runs as a
+  // Only bbrs uses this provider-based model picker now (Gemini runs as a
   // regular ACP backend with its own model selector).
-  const modelSelection = useGuidModelSelection('aionrs');
+  const modelSelection = useGuidModelSelection('bbrs');
 
   const navState = location.state as GuidNavigationState | null;
   const resetAssistantRequested = navState?.resetAssistant === true;
@@ -381,7 +381,7 @@ const GuidPage: React.FC = () => {
       },
       availableModels: {
         acp: agentSelection.currentAcpCachedModelInfo?.available_models.map((model) => model.id) ?? [],
-        aionrs: modelSelection.modelList.map((provider) => ({
+        bbrs: modelSelection.modelList.map((provider) => ({
           id: provider.id,
           models: provider.models,
         })),
@@ -400,7 +400,7 @@ const GuidPage: React.FC = () => {
       const shouldApplyDefaultModel = manualModelSelectionAssistantRef.current !== selectedAssistantId;
       const shouldApplyDefaultThoughtLevel = manualThoughtLevelSelectionAssistantRef.current !== selectedAssistantId;
 
-      if (shouldApplyDefaultModel && effectiveBackend === 'aionrs') {
+      if (shouldApplyDefaultModel && effectiveBackend === 'bbrs') {
         if (resolvedDefaults.modelId) {
           const matchedProvider = modelSelection.modelList.find((provider) =>
             provider.models.includes(resolvedDefaults.modelId!)
@@ -583,8 +583,8 @@ const GuidPage: React.FC = () => {
   }, [resetAssistantRequested, preselectAssistantId, location.pathname, location.search, location.hash, navigate]);
 
   // Agents that use configured model providers instead of ACP probe-based models.
-  // Only aionrs now — Gemini runs as a regular ACP backend with ACP-cached models.
-  const PROVIDER_BASED_AGENTS = new Set(['aionrs']);
+  // Only bbrs now — Gemini runs as a regular ACP backend with ACP-cached models.
+  const PROVIDER_BASED_AGENTS = new Set(['bbrs']);
   const isGeminiMode = PROVIDER_BASED_AGENTS.has(agentSelection.selectedAssistantBackend);
 
   // Build the mention dropdown node

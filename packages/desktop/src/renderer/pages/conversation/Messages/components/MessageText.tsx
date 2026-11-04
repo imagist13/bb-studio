@@ -139,7 +139,7 @@ const MessageText: React.FC<{
     [contentToRender, isUserMessage]
   );
   // Cross-session markers. Both live on USER messages: the sender-side
-  // `[[AION_SESSIONS]]` block is appended to the user's own message, and a
+  // `[[BB_SESSIONS]]` block is appended to the user's own message, and a
   // delivery is persisted as a user message too. Not parsing them would show
   // raw marker text in a bubble.
   const { text: textWithoutMentions, sessions: mentionedSessions } = useMemo(

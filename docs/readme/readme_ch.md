@@ -76,7 +76,7 @@
 
 **BBUI 不只是个聊天工具。** 它是一个真正的 Cowork 平台，AI Agent 就像您的得力助手，在电脑上帮您处理各种任务——读文件、写代码、查资料、自动化工作流。Agent 的一举一动都在您的掌控之中，透明可见。
 
-|                       | 传统 AI 聊天客户端 | **BBUI (Cowork)**                                                                                                     |
+|                       | 传统 AI 聊天客户端 | **BBUI (Cowork)**                                                                                                       |
 | :-------------------- | :----------------- | :---------------------------------------------------------------------------------------------------------------------- |
 | AI 可以操作您的文件   | 有限或不可用       | **是 — 内置 Agent，完全文件访问**                                                                                       |
 | AI 可以执行多步骤任务 | 有限               | **是 — 自主执行，需您批准**                                                                                             |
@@ -163,7 +163,7 @@ BBUI 自带完整的 AI Agent。不像其他工具需要你手动安装各种 CL
 
 如果你已经在用 Claude Code、Codex、Hermes Agent 或 OpenClaw，BBUI 会自动发现它们，让你同时和这些 Agent 一起协作——当然，还有内置 Agent。
 
-**支持的 Agent：** 内置 Agent（由嵌入式 [aionrs](https://github.com/iOfficeAI/aionrs) Agent 引擎驱动） • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity 等
+**支持的 Agent：** 内置 Agent（由嵌入式 [bbrs](https://github.com/iOfficeAI/bbrs) Agent 引擎驱动） • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity 等
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -193,7 +193,7 @@ BBUI 自带完整的 AI Agent。不像其他工具需要你手动安装各种 CL
 <br>
 
 - **共享工作空间** — 所有 Agent 读写同一文件夹；文件面板全程可见
-- **支持的后端** — Claude Code、Codex、Gemini、Snow CLI、Aion CLI（aionrs）；其他具备 `mcpCapabilities.stdio` 的 ACP 后端自动支持
+- **支持的后端** — Claude Code、Codex、Gemini、Snow CLI、Aion CLI（bbrs）；其他具备 `mcpCapabilities.stdio` 的 ACP 后端自动支持
 - **动态伸缩** — 可在团队运行时添加或移除 Teammate；静默 Agent 自动升级为失败状态，支持一键移除
 - **细粒度权限** — 每个 Agent 有独立的权限确认弹窗；侧边栏角标显示待确认项
 - **文件共享** — Leader 可向 Teammate 传递文件附件
@@ -206,14 +206,14 @@ BBUI 自带完整的 AI Agent。不像其他工具需要你手动安装各种 CL
 
 其他 AI 应用可能只给你个聊天窗口，**但 BBUI 给你的是完整的 Cowork Agent**。
 
-| 您的 API 密钥              | 您获得的功能                                 |
-| :------------------------- | :------------------------------------------- |
-| Gemini API 密钥            | Gemini 驱动的 Cowork Agent                   |
-| OpenAI API 密钥            | GPT 驱动的 Cowork Agent                      |
-| Anthropic API 密钥         | Claude 驱动的 Cowork Agent                   |
-| AWS Bedrock 凭证           | 通过 Aion CLI（aionrs）的 Bedrock 驱动 Agent |
-| Ollama / LM Studio（本地） | 本地模型 Cowork Agent                        |
-| NewAPI 网关                | 统一访问 20+ 模型                            |
+| 您的 API 密钥              | 您获得的功能                               |
+| :------------------------- | :----------------------------------------- |
+| Gemini API 密钥            | Gemini 驱动的 Cowork Agent                 |
+| OpenAI API 密钥            | GPT 驱动的 Cowork Agent                    |
+| Anthropic API 密钥         | Claude 驱动的 Cowork Agent                 |
+| AWS Bedrock 凭证           | 通过 Aion CLI（bbrs）的 Bedrock 驱动 Agent |
+| Ollama / LM Studio（本地） | 本地模型 Cowork Agent                      |
+| NewAPI 网关                | 统一访问 20+ 模型                          |
 
 不管用哪个模型，Agent 的能力都一样强大——文件读写、网络搜索、图像生成、工具调用，一个不少。BBUI 支持 **30+ 个 AI 平台**，云端本地都能用。
 
@@ -534,7 +534,7 @@ _同时开多个对话，任务不会乱，每个都有独立记忆，效率直�
 
 BBUI 是一个**免费开源的 Multi-AI Agent 桌面应用**。相比只能在 macOS 上用、还只能绑定 Claude 的 Claude Cowork，BBUI 支持全模型、跨平台，是它的全面升级版。
 
-| 维度     | Claude Cowork | BBUI                                                 |
+| 维度     | Claude Cowork | BBUI                                                   |
 | :------- | :------------ | :----------------------------------------------------- |
 | OS       | 仅 macOS      | macOS / Windows / Linux                                |
 | 模型支持 | 仅 Claude     | Gemini、Claude、DeepSeek、OpenAI、Ollama 等            |

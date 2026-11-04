@@ -168,7 +168,7 @@ describe('feedback logs', () => {
     try {
       writeFileSync(path.join(logsDir, '2026-05-25.log'), 'today frontend\n');
       writeFileSync(path.join(logsDir, '2026-05-25.bbcore.log'), 'today backend\n');
-      writeFileSync(path.join(logsDir, '2026-05-24.aionrs.log'), 'yesterday rust\n');
+      writeFileSync(path.join(logsDir, '2026-05-24.bbrs.log'), 'yesterday rust\n');
       writeFileSync(path.join(logsDir, '2026-05-23.log'), 'third day frontend\n');
       writeFileSync(path.join(logsDir, '2026-05-22.log'), 'too old frontend\n');
       writeFileSync(path.join(logsDir, '2026-05-25.txt'), 'not a log\n');
@@ -201,7 +201,7 @@ describe('feedback logs', () => {
       mkdirSync(oldDir, { recursive: true });
       writeFileSync(path.join(recentDir, '2026-07-02.log'), 'today frontend nested\n');
       writeFileSync(path.join(recentDir, '2026-07-02.bbcore.log'), 'today backend nested\n');
-      writeFileSync(path.join(previousDir, '2026-07-01.aionrs.log'), 'yesterday rust nested\n');
+      writeFileSync(path.join(previousDir, '2026-07-01.bbrs.log'), 'yesterday rust nested\n');
       writeFileSync(path.join(oldDir, '2026-06-30.log'), 'third day frontend nested\n');
       writeFileSync(path.join(logsDir, '2026-06-29.log'), 'too old flat\n');
 

@@ -19,8 +19,8 @@ import { useTeamPendingPermissions } from './hooks/useTeamPendingPermissions';
 import { buildTeamRetryStartHandler } from './components/teamSendRuntime';
 import AcpModelSelector, { type AcpWarmupStatus } from '@/renderer/components/agent/AcpModelSelector';
 import AcpRuntimeRestartButton, { useAcpRuntimeRestart } from '@/renderer/components/agent/AcpRuntimeRestartButton';
-import AionrsModelSelector from '@/renderer/pages/conversation/platforms/aionrs/AionrsModelSelector';
-import { useAionrsModelSelection } from '@/renderer/pages/conversation/platforms/aionrs/useAionrsModelSelection';
+import BbrsModelSelector from '@/renderer/pages/conversation/platforms/bbrs/BbrsModelSelector';
+import { useBbrsModelSelection } from '@/renderer/pages/conversation/platforms/bbrs/useBbrsModelSelection';
 import { CronJobManager } from '@/renderer/pages/cron';
 import { resolveCronJobId } from '@/renderer/pages/cron/cronUtils';
 import TeamTabs from './components/TeamTabs';
@@ -50,7 +50,7 @@ type Props = {
   team: TTeam;
 };
 
-const NON_ACP_BACKENDS = new Set(['aionrs', 'openclaw-gateway', 'nanobot', 'remote']);
+const NON_ACP_BACKENDS = new Set(['bbrs', 'openclaw-gateway', 'nanobot', 'remote']);
 
 function isAcpLikeBackend(backend: string | undefined): boolean {
   if (!backend) return false;
@@ -73,8 +73,8 @@ const configErrorMessageKey = (error: unknown) => {
   return 'agent.config.failed';
 };
 
-/** Compact aionrs model selector for the agent header */
-const AionrsHeaderModelSelector: React.FC<{ conversation_id: string; initialModel?: TProviderWithModel }> = ({
+/** Compact bbrs model selector for the agent header */
+const BbrsHeaderModelSelector: React.FC<{ conversation_id: string; initialModel?: TProviderWithModel }> = ({
   conversation_id,
   initialModel,
 }) => {
@@ -88,7 +88,7 @@ const AionrsHeaderModelSelector: React.FC<{ conversation_id: string; initialMode
     },
     [conversation_id]
   );
-  const modelSelection = useAionrsModelSelection({ initialModel, onSelectModel });
+  const modelSelection = useBbrsModelSelection({ initialModel, onSelectModel });
   const runtimeConfig = useAcpConfigOptions({
     conversation_id,
     prepareSetRuntime: teamPermission?.warmupSession,
@@ -109,7 +109,7 @@ const AionrsHeaderModelSelector: React.FC<{ conversation_id: string; initialMode
     [runtimeConfig, t]
   );
   return (
-    <AionrsModelSelector
+    <BbrsModelSelector
       selection={modelSelection}
       disabled={runtimeConfig.isConfigOptionBlocked?.('model') ?? false}
       thoughtLevel={runtimeConfig.thoughtLevel}
@@ -398,7 +398,7 @@ const AssistantChatSlot: React.FC<{
     () => getConversationOrNull(assistant.conversation_id)
   );
 
-  const isAionrs = conversation?.type === 'aionrs';
+  const isBbrs = conversation?.type === 'bbrs';
   const initialModelId = (conversation?.extra as { current_model_id?: string })?.current_model_id;
   const isAcpLike = conversation?.type === 'acp' || isAcpLikeBackend(assistant.assistant_backend);
   const cronJobId = resolveCronJobId(conversation?.extra);
@@ -449,7 +449,7 @@ const AssistantChatSlot: React.FC<{
         />
         <div className='flex items-center gap-8px shrink-0'>
           {conversation && <CronJobManager conversation_id={conversation.id} cron_job_id={cronJobId} />}
-          {!isMobile && assistant.conversation_id && !isAionrs && isAcpLike && (
+          {!isMobile && assistant.conversation_id && !isBbrs && isAcpLike && (
             <div className='min-w-0 max-w-140px [&_button]:max-w-full [&_button_span]:truncate'>
               <AcpModelSelector
                 key={assistant.conversation_id}
@@ -462,7 +462,7 @@ const AssistantChatSlot: React.FC<{
               />
             </div>
           )}
-          {assistant.conversation_id && !isAionrs && isAcpLike && isLeader && (
+          {assistant.conversation_id && !isBbrs && isAcpLike && isLeader && (
             <div className='shrink-0'>
               <AcpRuntimeRestartButton
                 conversation_id={assistant.conversation_id}
@@ -475,7 +475,7 @@ const AssistantChatSlot: React.FC<{
               />
             </div>
           )}
-          {assistant.conversation_id && !isAionrs && isAcpLike && !isLeader && (
+          {assistant.conversation_id && !isBbrs && isAcpLike && !isLeader && (
             <div className='shrink-0'>
               <TeamAgentActions
                 assistant={assistant}
@@ -486,9 +486,9 @@ const AssistantChatSlot: React.FC<{
               />
             </div>
           )}
-          {!isMobile && isAionrs && assistant.conversation_id && (
+          {!isMobile && isBbrs && assistant.conversation_id && (
             <div className='min-w-0 max-w-140px [&_button]:max-w-full [&_button_span]:truncate'>
-              <AionrsHeaderModelSelector
+              <BbrsHeaderModelSelector
                 key={assistant.conversation_id}
                 conversation_id={assistant.conversation_id}
                 initialModel={conversation?.model as TProviderWithModel | undefined}

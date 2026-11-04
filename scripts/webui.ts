@@ -85,8 +85,7 @@ function resolveBackendDataDir(): string {
     fs.mkdirSync(resolved, { recursive: true });
     return resolved;
   }
-  const suffix =
-    process.env.NODE_ENV === 'production' ? '' : process.env.BB_MULTI_INSTANCE === '1' ? '-dev-2' : '-dev';
+  const suffix = process.env.NODE_ENV === 'production' ? '' : process.env.BB_MULTI_INSTANCE === '1' ? '-dev-2' : '-dev';
   const dir = path.join(os.homedir(), `.bb-web${suffix}`);
   fs.mkdirSync(dir, { recursive: true });
   return dir;
@@ -152,9 +151,7 @@ function resolveBackendBinary(): string {
     // fall through
   }
 
-  throw new Error(
-    `Cannot find "${BACKEND_BINARY}". Set BB_BACKEND_BIN, put it on PATH, or place it at ${bundled}.`
-  );
+  throw new Error(`Cannot find "${BACKEND_BINARY}". Set BB_BACKEND_BIN, put it on PATH, or place it at ${bundled}.`);
 }
 
 /**

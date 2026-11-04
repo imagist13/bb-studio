@@ -94,7 +94,7 @@ describe('listLogFilesSync', () => {
       const datedDir = path.join(logsDir, '2026', '07', '02');
       mkdirSync(datedDir, { recursive: true });
       writeFileSync(path.join(datedDir, '2026-07-02.bbcore.log'), 'backend\n');
-      writeFileSync(path.join(datedDir, '2026-07-02.aionrs.log'), 'aionrs\n');
+      writeFileSync(path.join(datedDir, '2026-07-02.bbrs.log'), 'bbrs\n');
       writeFileSync(path.join(logsDir, '2026-07-02.log'), 'frontend\n');
 
       const files = listLogFilesSync(logsDir);
@@ -103,7 +103,7 @@ describe('listLogFilesSync', () => {
       expect(relative).toEqual([
         '2026-07-02.log',
         '2026/07/02/2026-07-02.bbcore.log',
-        '2026/07/02/2026-07-02.aionrs.log',
+        '2026/07/02/2026-07-02.bbrs.log',
       ]);
     } finally {
       rmSync(logsDir, { recursive: true, force: true });
@@ -292,10 +292,7 @@ describe('captureBackendStartupFailure', () => {
     await captureBackendStartupFailure(error);
 
     expect(scopeSetTag).toHaveBeenCalledWith('bb.backend_startup.reason', 'backend_local_data_repair_failed');
-    expect(scopeSetTag).toHaveBeenCalledWith(
-      'bb.backend_startup.local_data_issue_kind',
-      'agent_metadata_invalid_utf8'
-    );
+    expect(scopeSetTag).toHaveBeenCalledWith('bb.backend_startup.local_data_issue_kind', 'agent_metadata_invalid_utf8');
     expect(scopeSetTag).toHaveBeenCalledWith('bb.backend_startup.boundary_code', 'BOOTSTRAP_SERVICE_INIT_FAILED');
     expect(scopeSetTag).toHaveBeenCalledWith('bb.backend_startup.boundary_stage', 'services.init');
   });

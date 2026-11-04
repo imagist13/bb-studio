@@ -15,9 +15,9 @@ describe('parseSessionsBlock', () => {
     const content = [
       '问下他那边接口定完了没',
       '',
-      '[[AION_SESSIONS]]',
+      '[[BB_SESSIONS]]',
       '重构-鉴权模块\tconv_1\tworkspace: same',
-      '[[/AION_SESSIONS]]',
+      '[[/BB_SESSIONS]]',
     ].join('\n');
     const parsed = parseSessionsBlock(content);
     expect(parsed.text).toBe('问下他那边接口定完了没');
@@ -27,7 +27,7 @@ describe('parseSessionsBlock', () => {
   it('never leaves a bare marker in the rendered text', () => {
     // The backend persists the block VERBATIM into the user's own message, so
     // failing to strip it shows raw markers in the sender's own bubble.
-    const content = 'hi\n\n[[AION_SESSIONS]]\nA\tconv_1\tworkspace: same\n[[/AION_SESSIONS]]';
+    const content = 'hi\n\n[[BB_SESSIONS]]\nA\tconv_1\tworkspace: same\n[[/BB_SESSIONS]]';
     expect(parseSessionsBlock(content).text).not.toContain('AION_SESSIONS');
   });
 
@@ -39,10 +39,10 @@ describe('parseSessionsBlock', () => {
     const content = [
       'hi',
       '',
-      '[[AION_SESSIONS]]',
+      '[[BB_SESSIONS]]',
       'A\tconv_1\tworkspace: same',
       'B\tconv_2\tworkspace: /w/b（与你不同）',
-      '[[/AION_SESSIONS]]',
+      '[[/BB_SESSIONS]]',
     ].join('\n');
     const parsed = parseSessionsBlock(content);
     expect(parsed.sessions).toEqual([
@@ -53,7 +53,7 @@ describe('parseSessionsBlock', () => {
 
   it('does not swallow content when the closing marker is missing', () => {
     // A truncated block must degrade to showing the text, not eat the message.
-    const content = 'hi\n\n[[AION_SESSIONS]]\nA\tconv_1\tworkspace: same';
+    const content = 'hi\n\n[[BB_SESSIONS]]\nA\tconv_1\tworkspace: same';
     const parsed = parseSessionsBlock(content);
     expect(parsed.sessions).toEqual([]);
     expect(parsed.text).toBe(content);
@@ -63,16 +63,16 @@ describe('parseSessionsBlock', () => {
     const content = [
       'hi',
       '',
-      '[[AION_SESSIONS]]',
+      '[[BB_SESSIONS]]',
       'no tabs here',
       'A\tconv_1\tworkspace: same',
-      '[[/AION_SESSIONS]]',
+      '[[/BB_SESSIONS]]',
     ].join('\n');
     expect(parseSessionsBlock(content).sessions).toEqual([{ name: 'A', id: 'conv_1', workspace: 'same' }]);
   });
 
   it('handles an empty block', () => {
-    const content = 'hi\n\n[[AION_SESSIONS]]\n[[/AION_SESSIONS]]';
+    const content = 'hi\n\n[[BB_SESSIONS]]\n[[/BB_SESSIONS]]';
     const parsed = parseSessionsBlock(content);
     expect(parsed.sessions).toEqual([]);
     expect(parsed.text).toBe('hi');
@@ -82,11 +82,11 @@ describe('parseSessionsBlock', () => {
 describe('parseSessionMessageBlock', () => {
   it('extracts the source and strips the block', () => {
     const content = [
-      '[[AION_SESSION_MESSAGE]]',
+      '[[BB_SESSION_MESSAGE]]',
       'from: 重构-鉴权模块\tconv_1',
       'workspace: same',
       'reply_to: conv_1\t（回信: session send-message, to=reply_to）',
-      '[[/AION_SESSION_MESSAGE]]',
+      '[[/BB_SESSION_MESSAGE]]',
       '',
       '接口定完了吗？',
     ].join('\n');
@@ -106,11 +106,11 @@ describe('parseSessionMessageBlock', () => {
 
   it('keeps a cross-workspace warning value intact', () => {
     const content = [
-      '[[AION_SESSION_MESSAGE]]',
+      '[[BB_SESSION_MESSAGE]]',
       'from: A\tconv_1',
       'workspace: /w/a（与你不同，勿用相对路径，勿假设可读）',
       'reply_to: conv_1\t（回信: session send-message, to=reply_to）',
-      '[[/AION_SESSION_MESSAGE]]',
+      '[[/BB_SESSION_MESSAGE]]',
       '',
       'body',
     ].join('\n');
@@ -118,7 +118,7 @@ describe('parseSessionMessageBlock', () => {
   });
 
   it('does not swallow the body when the closing marker is missing', () => {
-    const content = '[[AION_SESSION_MESSAGE]]\nfrom: A\tconv_1\nworkspace: same';
+    const content = '[[BB_SESSION_MESSAGE]]\nfrom: A\tconv_1\nworkspace: same';
     const parsed = parseSessionMessageBlock(content);
     expect(parsed.source).toBeNull();
     expect(parsed.text).toBe(content);
@@ -126,11 +126,11 @@ describe('parseSessionMessageBlock', () => {
 
   it('leaves a multi-line body intact', () => {
     const content = [
-      '[[AION_SESSION_MESSAGE]]',
+      '[[BB_SESSION_MESSAGE]]',
       'from: A\tconv_1',
       'workspace: same',
       'reply_to: conv_1\t（回信）',
-      '[[/AION_SESSION_MESSAGE]]',
+      '[[/BB_SESSION_MESSAGE]]',
       '',
       'line one',
       'line two',
@@ -140,11 +140,11 @@ describe('parseSessionMessageBlock', () => {
 
   it('never leaves a bare marker in the rendered text', () => {
     const content = [
-      '[[AION_SESSION_MESSAGE]]',
+      '[[BB_SESSION_MESSAGE]]',
       'from: A\tconv_1',
       'workspace: same',
       'reply_to: conv_1\t（回信）',
-      '[[/AION_SESSION_MESSAGE]]',
+      '[[/BB_SESSION_MESSAGE]]',
       '',
       'body',
     ].join('\n');
@@ -155,19 +155,19 @@ describe('parseSessionMessageBlock', () => {
 describe('the two markers do not interfere', () => {
   it('a delivered message that itself used `@@` renders both parts', () => {
     // B receives a delivery, and A's original message carried its own
-    // `[[AION_SESSIONS]]` block. Both must resolve.
+    // `[[BB_SESSIONS]]` block. Both must resolve.
     const content = [
-      '[[AION_SESSION_MESSAGE]]',
+      '[[BB_SESSION_MESSAGE]]',
       'from: A\tconv_1',
       'workspace: same',
       'reply_to: conv_1\t（回信）',
-      '[[/AION_SESSION_MESSAGE]]',
+      '[[/BB_SESSION_MESSAGE]]',
       '',
       'ask them',
       '',
-      '[[AION_SESSIONS]]',
+      '[[BB_SESSIONS]]',
       'C\tconv_3\tworkspace: same',
-      '[[/AION_SESSIONS]]',
+      '[[/BB_SESSIONS]]',
     ].join('\n');
     const delivered = parseSessionMessageBlock(content);
     expect(delivered.source?.fromId).toBe('conv_1');
