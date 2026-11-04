@@ -79,8 +79,8 @@ export interface ModalContentStyleConfig {
   maxHeight?: string | number;
 }
 
-/** AionModal 组件 Props */
-export interface AionModalProps extends Omit<ModalProps, 'title' | 'footer'> {
+/** BbModal 组件 Props */
+export interface BbModalProps extends Omit<ModalProps, 'title' | 'footer'> {
   children?: React.ReactNode;
 
   /**
@@ -147,17 +147,17 @@ const STD_CLOSE_BTN_CLASS =
  * @example
  * ```tsx
  * // 基本用法 / Basic usage
- * <AionModal visible={true} onCancel={handleClose} header="标题">
+ * <BbModal visible={true} onCancel={handleClose} header="标题">
  *   内容
- * </AionModal>
+ * </BbModal>
  *
  * // 预设尺寸 / Preset size
- * <AionModal visible={true} size="large" header="大型弹窗">
+ * <BbModal visible={true} size="large" header="大型弹窗">
  *   内容
- * </AionModal>
+ * </BbModal>
  *
  * // 自定义 header / Custom header
- * <AionModal
+ * <BbModal
  *   visible={true}
  *   header={{
  *     title: "自定义标题",
@@ -166,10 +166,10 @@ const STD_CLOSE_BTN_CLASS =
  *   }}
  * >
  *   内容
- * </AionModal>
+ * </BbModal>
  *
  * // 自定义 footer / Custom footer
- * <AionModal
+ * <BbModal
  *   visible={true}
  *   header="标题"
  *   footer={
@@ -180,7 +180,7 @@ const STD_CLOSE_BTN_CLASS =
  *   }
  * >
  *   内容
- * </AionModal>
+ * </BbModal>
  * ```
  */
 const dimensionKeys = ['width', 'minWidth', 'maxWidth', 'height', 'minHeight', 'maxHeight'] as const;
@@ -191,7 +191,7 @@ const formatDimensionValue = (value?: string | number) => {
   return typeof value === 'number' ? `${value}px` : value;
 };
 
-const AionModal: React.FC<AionModalProps> = ({
+const BbModal: React.FC<BbModalProps> = ({
   children,
   variant,
   size,
@@ -463,6 +463,6 @@ const AionModal: React.FC<AionModalProps> = ({
   );
 };
 
-AionModal.displayName = 'AionModal';
+BbModal.displayName = 'BbModal';
 
-export default AionModal;
+export default BbModal;

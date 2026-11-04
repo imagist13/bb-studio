@@ -11,7 +11,7 @@ import SkillUsedByStack, { getAssistantsUsingSkill } from './SkillUsedByStack';
 import SettingsPageWrapper from '../components/SettingsPageWrapper';
 import SettingsPageHeader from '../components/SettingsPageHeader';
 import TalkToButlerButton from '@/renderer/components/base/TalkToButlerButton';
-import { AionSearchInput } from '@/renderer/components/base';
+import { BbSearchInput } from '@/renderer/components/base';
 import { formatDateTime } from '@/renderer/services/i18n/format';
 import { buildSkillImportNotice, getSkillImportErrorMessage } from './skillImportMessages';
 
@@ -692,7 +692,7 @@ const SkillsHubSettings: React.FC<SkillsHubSettingsProps> = ({ withWrapper = tru
   };
 
   const searchBox = (testId: string) => (
-    <AionSearchInput
+    <BbSearchInput
       className='shrink-0 w-[200px] hidden md:flex'
       data-testid={testId}
       placeholder={t('settings.skillsHub.searchPlaceholder', { defaultValue: 'Search skills...' })}

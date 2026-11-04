@@ -3,17 +3,17 @@
 **Buckyball Studio** —— 面向 [Buckyball](https://github.com/DangoSys/buckyball)（DSA 硬件框架）的 AI agent 桌面工作台（Electron 壳）。
 
 > 二次开发自 [AionUi](https://github.com/iOfficeAI/AionUi)（Apache-2.0），配套 runtime 为
-> `bb-agent-core`（二次开发自 [AionCore](https://github.com/iOfficeAI/AionCore)）。
+> `bb-agent-core`（二次开发自 [AionCore](https://github.com/imagist13/bb-agent-core)）。
 
 ## 是什么
 
 bb-studio 是 Buckyball 芯片开发 AI 工作台的**桌面壳**（Electron + TypeScript），负责聊天界面与工具渲染，
 并规划 EDA 面板（chip viewer / 波形 / mesh 拓扑）；agent 请求转发给本地 runtime。
 
-|组件|仓库|职责|
-|---|---|---|
-|壳|`bb-studio`（本仓库）|桌面 UI · chat · ACP host|
-|runtime|`bb-agent-core`|agent loop · MCP · skills · assistants（`bbcore` 二进制）|
+| 组件    | 仓库                  | 职责                                                      |
+| ------- | --------------------- | --------------------------------------------------------- |
+| 壳      | `bb-studio`（本仓库） | 桌面 UI · chat · ACP host                                 |
+| runtime | `bb-agent-core`       | agent loop · MCP · skills · assistants（`bbcore` 二进制） |
 
 ## 架构
 

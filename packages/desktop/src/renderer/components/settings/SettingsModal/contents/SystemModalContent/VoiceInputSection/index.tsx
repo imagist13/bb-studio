@@ -5,7 +5,7 @@
  */
 
 import type { SpeechToTextConfig } from '@/common/types/provider/speech';
-import AionSelect from '@/renderer/components/base/AionSelect';
+import BbSelect from '@/renderer/components/base/BbSelect';
 import { SPEECH_TO_TEXT_CONFIG_CHANGED_EVENT } from '@/renderer/services/SpeechToTextService';
 import { getClientBusinessSetting, setClientBusinessSetting } from '@/renderer/services/clientBusinessSettings';
 import { getModelStreamCapability } from '@/renderer/services/speech/speechStreamPolicy';
@@ -208,11 +208,11 @@ const VoiceInputSection: React.FC = () => {
 
           <Form layout='horizontal' labelAlign='left' className='space-y-12px'>
             <Form.Item label={t('settings.speechToTextSource')}>
-              <AionSelect value={source} onChange={handleSourceChange}>
-                <AionSelect.Option value='openai'>{t('settings.speechToTextSourceOpenAI')}</AionSelect.Option>
-                <AionSelect.Option value='deepgram'>{t('settings.speechToTextSourceDeepgram')}</AionSelect.Option>
-                <AionSelect.Option value='custom'>{t('settings.speechToTextSourceCustom')}</AionSelect.Option>
-              </AionSelect>
+              <BbSelect value={source} onChange={handleSourceChange}>
+                <BbSelect.Option value='openai'>{t('settings.speechToTextSourceOpenAI')}</BbSelect.Option>
+                <BbSelect.Option value='deepgram'>{t('settings.speechToTextSourceDeepgram')}</BbSelect.Option>
+                <BbSelect.Option value='custom'>{t('settings.speechToTextSourceCustom')}</BbSelect.Option>
+              </BbSelect>
             </Form.Item>
 
             {isCustom && (
@@ -238,7 +238,7 @@ const VoiceInputSection: React.FC = () => {
             </Form.Item>
 
             <Form.Item label={t('settings.speechToTextModel')}>
-              <AionSelect
+              <BbSelect
                 value={activeModel || undefined}
                 onChange={handleModelChange}
                 allowCreate={isCustom}
@@ -254,23 +254,23 @@ const VoiceInputSection: React.FC = () => {
                         ? t('settings.speechToTextWholeBadge')
                         : null;
                   return (
-                    <AionSelect.Option key={model} value={model}>
+                    <BbSelect.Option key={model} value={model}>
                       {model}
                       {badgeText !== null && <span className='text-12px text-t-tertiary ms-8px'>{badgeText}</span>}
-                    </AionSelect.Option>
+                    </BbSelect.Option>
                   );
                 })}
-              </AionSelect>
+              </BbSelect>
             </Form.Item>
 
             <Form.Item label={t('settings.speechToTextLanguage')}>
-              <AionSelect value={activeLanguage} onChange={handleLanguageChange}>
+              <BbSelect value={activeLanguage} onChange={handleLanguageChange}>
                 {SPEECH_LANGUAGE_OPTIONS.map((option) => (
-                  <AionSelect.Option key={option.value || 'auto'} value={option.value}>
+                  <BbSelect.Option key={option.value || 'auto'} value={option.value}>
                     {option.label ?? t('settings.speechToTextLanguageAuto')}
-                  </AionSelect.Option>
+                  </BbSelect.Option>
                 ))}
-              </AionSelect>
+              </BbSelect>
             </Form.Item>
           </Form>
           <SpeechTestPanel config={config} source={source} />

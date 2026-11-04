@@ -47,7 +47,7 @@
 
 **"查看配置指南"链接**：
 
-- 点击通过 `openExternalUrl` 在系统浏览器中打开 `https://github.com/iOfficeAI/AionUi/wiki/Remote-Agent-Guide-Chinese`
+- 点击通过 `openExternalUrl` 在系统浏览器中打开 `https://github.com/imagist13/bb-studio/wiki/Remote-Agent-Guide-Chinese`
 - 说明横幅和弹窗内的警告 banner 中均有此链接
 
 **异常情况**：
@@ -72,7 +72,7 @@
 **正常流程**（用户视角）：
 
 1. 用户点击"+ 添加"按钮
-2. 弹出"添加远程 Agent"弹窗（AionModal + 遮罩层）
+2. 弹出"添加远程 Agent"弹窗（BbModal + 遮罩层）
 3. 弹窗顶部显示黄色警告 banner（说明文案 + "查看配置指南"链接）
 4. 用户填写表单：
    - **Avatar**：点击头像区域打开 Emoji 选择器（8 个分类 Tab），选中后立即应用。默认值 `🤖`（`\u{1F916}`，固定值非随机）
@@ -127,7 +127,7 @@ UI 当前不暴露协议选择器，新建 Agent 硬编码为 `'openclaw'` 协�
 **正常流程**（用户视角）：
 
 1. 用户点击卡片底部"编辑"按钮
-2. 弹出"编辑远程 Agent"弹窗（AionModal）
+2. 弹出"编辑远程 Agent"弹窗（BbModal）
 3. 所有已保存数据完整回填：
    - Avatar emoji
    - 名称
@@ -177,7 +177,7 @@ Bridge 端逐字段映射到 DB 列名（仅更新 `updates` 中不为 `undefine
 **正常流程**（用户视角）：
 
 1. 用户点击卡片底部"删除"按钮（红色 danger 样式）
-2. 弹出确认对话框（Arco 原生 `Modal.confirm`，区别于创建/编辑使用的 AionModal 封装）：
+2. 弹出确认对话框（Arco 原生 `Modal.confirm`，区别于创建/编辑使用的 BbModal 封装）：
    - 标题：`settings.remoteAgent.deleteConfirm`（"删除远程 Agent"）
    - 正文：`settings.remoteAgent.deleteConfirmContent`（"确定要删除「{agent名称}」吗？"，使用直角引号包裹名称）
    - 按钮："取消" / "确定"（确定按钮为 danger 样式）
@@ -319,7 +319,7 @@ Bridge 端逐字段映射到 DB 列名（仅更新 `updates` 中不为 `undefine
 | ----------------------------- | ------------------------------------------------------------------------ |
 | `minProtocol` / `maxProtocol` | `3` / `4`（同时兼容 v3 与 v4 Gateway，2026.5.12 起 Gateway 默认要求 v4） |
 | `client.id`                   | `'gateway-client'`                                                       |
-| `client.displayName`          | `'BBUI'`                                                               |
+| `client.displayName`          | `'BBUI'`                                                                 |
 | `client.mode`                 | `'backend'`                                                              |
 | `caps`                        | `['tool-events']`（必须声明以接收 tool call 事件）                       |
 | `role`                        | `'operator'`                                                             |
@@ -676,7 +676,7 @@ Gateway 通过 `agent` / `agent.event` 事件推送工具调用信息：
 │  RemoteAgentManagement.tsx                                        │
 │    ├─ useSWR → ipcBridge.remoteAgent.list.invoke()   → 列表     │
 │    │                                                              │
-│    └─ RemoteAgentFormModal (AionModal)                            │
+│    └─ RemoteAgentFormModal (BbModal)                            │
 │       ├─ ipcBridge.remoteAgent.create.invoke()       → 创建     │
 │       ├─ ipcBridge.remoteAgent.update.invoke()       → 编辑     │
 │       ├─ ipcBridge.remoteAgent.testConnection.invoke()→ 连接测试 │
@@ -775,18 +775,18 @@ Gateway 通过 `agent` / `agent.event` 事件推送工具调用信息：
 
 ## 附录 E：设计约束
 
-| #   | 约束                   | 说明                                                               |
-| --- | ---------------------- | ------------------------------------------------------------------ |
-| 1   | OpenClaw 协议版本      | 固定 v3 (`OPENCLAW_PROTOCOL_VERSION = 3`)                          |
-| 2   | 设备密钥算法           | Ed25519，密钥对随 Agent 创建一次性生成                             |
-| 3   | 设备认证签名格式       | 管道分隔字符串，v1（无 nonce）/ v2（含 nonce）两种版本             |
-| 4   | WebSocket 最大 payload | 25MB (`maxPayload: 25 * 1024 * 1024`)                              |
-| 5   | 默认 Gateway 端口      | 18789                                                              |
-| 6   | 客户端标识             | `gateway-client` / backend / operator / operator.admin             |
-| 7   | Capabilities           | `caps: ['tool-events']` — 必须声明以接收 tool call 事件            |
-| 8   | DB 存储                | SQLite `remote_agents` 表，字段 snake_case                         |
-| 9   | 数据加载               | 使用 SWR（key: `'remote-agents.list'`），支持自动重验证            |
-| 10  | 弹窗组件               | 创建/编辑使用 AionModal 封装，删除确认使用 Arco 原生 Modal.confirm |
+| #   | 约束                   | 说明                                                             |
+| --- | ---------------------- | ---------------------------------------------------------------- |
+| 1   | OpenClaw 协议版本      | 固定 v3 (`OPENCLAW_PROTOCOL_VERSION = 3`)                        |
+| 2   | 设备密钥算法           | Ed25519，密钥对随 Agent 创建一次性生成                           |
+| 3   | 设备认证签名格式       | 管道分隔字符串，v1（无 nonce）/ v2（含 nonce）两种版本           |
+| 4   | WebSocket 最大 payload | 25MB (`maxPayload: 25 * 1024 * 1024`)                            |
+| 5   | 默认 Gateway 端口      | 18789                                                            |
+| 6   | 客户端标识             | `gateway-client` / backend / operator / operator.admin           |
+| 7   | Capabilities           | `caps: ['tool-events']` — 必须声明以接收 tool call 事件          |
+| 8   | DB 存储                | SQLite `remote_agents` 表，字段 snake_case                       |
+| 9   | 数据加载               | 使用 SWR（key: `'remote-agents.list'`），支持自动重验证          |
+| 10  | 弹窗组件               | 创建/编辑使用 BbModal 封装，删除确认使用 Arco 原生 Modal.confirm |
 
 ---
 

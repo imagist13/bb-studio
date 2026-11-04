@@ -90,12 +90,12 @@ const AgentRepairPanel: React.FC<AgentRepairPanelProps> = ({ agent, onSaved }) =
   const [error, setError] = useState('');
   const savingRef = useRef(false);
   const initialHasOverridesRef = useRef(false);
-  const isInternalAionCli = agent.agent_type === 'bbrs' && agent.agent_source === 'internal';
+  const isInternalBbrs = agent.agent_type === 'bbrs' && agent.agent_source === 'internal';
 
   // Load current overrides on mount. The repair page is itself the explicit
   // entry point, so there's no separate unlock step.
   useEffect(() => {
-    if (isInternalAionCli) return;
+    if (isInternalBbrs) return;
 
     let cancelled = false;
     void (async () => {
@@ -117,7 +117,7 @@ const AgentRepairPanel: React.FC<AgentRepairPanelProps> = ({ agent, onSaved }) =
     return () => {
       cancelled = true;
     };
-  }, [agent.id, isInternalAionCli]);
+  }, [agent.id, isInternalBbrs]);
 
   const handleReset = useCallback(() => {
     setCommandOverride('');
@@ -248,15 +248,15 @@ const AgentRepairPanel: React.FC<AgentRepairPanelProps> = ({ agent, onSaved }) =
           which field below to use. */}
       <Alert type={banner.type} title={banner.title} content={banner.content} className='!rounded-8px' />
 
-      {!isInternalAionCli && isActionable && showPath ? pathBlock : null}
-      {!isInternalAionCli && isActionable ? envBlock : null}
+      {!isInternalBbrs && isActionable && showPath ? pathBlock : null}
+      {!isInternalBbrs && isActionable ? envBlock : null}
 
       {/* Error Alert */}
       {error && <Alert type='error' content={error} closable onClose={() => setError('')} className='!rounded-8px' />}
 
       {/* Save Button — only once the agent is actionable (checked). While
           unchecked we show just the banner and steer the user to Test Connection. */}
-      {!isInternalAionCli && isActionable ? (
+      {!isInternalBbrs && isActionable ? (
         <Button
           type='primary'
           size='large'

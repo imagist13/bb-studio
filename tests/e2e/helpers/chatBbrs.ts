@@ -1,5 +1,5 @@
 /**
- * E2E test helpers for bbrs (Aion CLI) conversations.
+ * E2E test helpers for bbrs (bbrs) conversations.
  */
 import type { Page } from '@playwright/test';
 import { invokeBridge } from './bridge';

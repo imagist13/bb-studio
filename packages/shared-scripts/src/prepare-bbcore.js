@@ -21,8 +21,8 @@ const os = require('os');
 const path = require('path');
 const { verifyBundledBbcoreResources } = require('./verify-bundled-bbcore-resources');
 
-const GITHUB_OWNER = 'iOfficeAI';
-const GITHUB_REPO = 'BBCore';
+const GITHUB_OWNER = 'imagist13';
+const GITHUB_REPO = 'bb-agent-core';
 
 const ACTIONS_ARTIFACT_TARGETS = {
   'darwin-arm64': {

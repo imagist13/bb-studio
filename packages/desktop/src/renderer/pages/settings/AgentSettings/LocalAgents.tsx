@@ -11,8 +11,8 @@ import {
   managedAgentSearchText,
   type ManagedAgent,
 } from '@/renderer/utils/model/agentTypes';
-import AionModal from '@/renderer/components/base/AionModal';
-import { AionSearchInput } from '@/renderer/components/base';
+import BbModal from '@/renderer/components/base/BbModal';
+import { BbSearchInput } from '@/renderer/components/base';
 import { useLayoutContext } from '@/renderer/hooks/context/LayoutContext';
 import { useManagedAgents } from '@/renderer/hooks/agent/useManagedAgents';
 import { openExternalUrl } from '@/renderer/utils/platform';
@@ -223,7 +223,7 @@ const LocalAgents: React.FC = () => {
         actions={
           <>
             {!isMobile && (
-              <AionSearchInput
+              <BbSearchInput
                 className='shrink-0 w-[200px] hidden md:flex'
                 data-testid='input-search-agents'
                 placeholder={t('settings.agentManagement.searchPlaceholder', { defaultValue: 'Search agents...' })}
@@ -302,7 +302,7 @@ const LocalAgents: React.FC = () => {
         </Typography.Text>
       </div>
 
-      <AionModal
+      <BbModal
         visible={editorVisible}
         onCancel={() => {
           setEditorVisible(false);
@@ -339,7 +339,7 @@ const LocalAgents: React.FC = () => {
             }}
           />
         )}
-      </AionModal>
+      </BbModal>
 
       <div data-testid='agent-management-custom-section'>
         <div className='flex flex-col gap-8px rounded-12px border border-border-2 bg-2 p-8px md:rounded-16px md:p-10px'>

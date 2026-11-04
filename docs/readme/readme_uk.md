@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/iOfficeAI/AionUi?style=flat-square&color=32CD32" alt="Версія">
+  <img src="https://img.shields.io/github/v/release/imagist13/bb-studio?style=flat-square&color=32CD32" alt="Версія">
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-32CD32?style=flat-square&logo=apache&logoColor=white" alt="Ліцензія">
   &nbsp;
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/⬇️%20Завантажити-Останній%20реліз-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Завантажити останній реліз" height="50">
   </a>
 </p>
@@ -106,7 +106,7 @@ BBUI постачається з повноцінним рушієм AI-аген
 
 ### **Офісні асистенти — PPT, Word та Excel**
 
-Ці напрямки відповідають реальним можливостям додатка: пресети **Morph PPT** та навички **`pptx` / `docx` / `xlsx`**. Канонічні [визначення асистентів](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) і [вбудовані навички](https://github.com/iOfficeAI/AionCore/tree/main/crates/bb-app/assets/builtin-skills) підтримуються в BBCore. Потрібні документи чи таблиці? Вбудований **[OfficeCLI](https://github.com/iOfficeAI/OfficeCLI)** допомагає створювати PPT (Morph), Word (`.docx`) та Excel (`.xlsx/.xlsm/.csv`) швидше та надійніше.
+Ці напрямки відповідають реальним можливостям додатка: пресети **Morph PPT** та навички **`pptx` / `docx` / `xlsx`**. Канонічні [визначення асистентів](https://github.com/imagist13/bb-agent-core/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) і [вбудовані навички](https://github.com/imagist13/bb-agent-core/tree/main/crates/bb-app/assets/builtin-skills) підтримуються в BBCore. Потрібні документи чи таблиці? Вбудований **[OfficeCLI](https://github.com/iOfficeAI/OfficeCLI)** допомагає створювати PPT (Morph), Word (`.docx`) та Excel (`.xlsx/.xlsm/.csv`) швидше та надійніше.
 
 #### **Асистент PPT**
 
@@ -162,7 +162,7 @@ BBUI постачається з повноцінним рушієм AI-аген
 
 Якщо ви вже використовуєте Claude Code, Codex, Hermes Agent або OpenClaw, BBUI автоматично виявить їх і дозволить працювати з усіма ними разом із вбудованим агентом.
 
-**Підтримувані агенти:** Вбудований агент (на вбудованому рушії [bbrs](https://github.com/iOfficeAI/bbrs)) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity та інші
+**Підтримувані агенти:** Вбудований агент (на вбудованому рушії [bbrs](https://github.com/imagist13/bbrs)) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity та інші
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Мульти-агентний режим" width="800">
@@ -183,7 +183,7 @@ BBUI постачається з повноцінним рушієм AI-аген
 </p>
 
 - **Паралельне виконання кількох агентів** — Leader ділить і делегує завдання Teammate-агентам; зовнішні агенти підключаються через ACP (Agent Client Protocol), а BBUI координує команду
-- **Оркестрація Leader** — Leader призначає, відстежує та агрегує результати; підтримувані бекенди: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI, Aion CLI
+- **Оркестрація Leader** — Leader призначає, відстежує та агрегує результати; підтримувані бекенди: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI, bbrs
 - **Ізольований робочий простір команди** — всі агенти спільно використовують одну папку; кожен має свій діалог підтвердження дозволів із значком на бічній панелі для очікуваних підтверджень
 
 <details>
@@ -192,7 +192,7 @@ BBUI постачається з повноцінним рушієм AI-аген
 <br>
 
 - **Спільний робочий простір** — всі агенти читають/записують одну папку; файлова панель залишається видимою протягом усього процесу
-- **Підтримувані бекенди** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI (bbrs); інші ACP-бекенди з `mcpCapabilities.stdio` підтримуються автоматично
+- **Підтримувані бекенди** — Claude Code, Codex, Gemini, Snow CLI, bbrs; інші ACP-бекенди з `mcpCapabilities.stdio` підтримуються автоматично
 - **Динамічне масштабування** — додавайте або видаляйте Teammate-агентів під час роботи команди; мовчазні агенти автоматично переходять у статус failed із можливістю видалення в один клік
 - **Детальні дозволи** — кожен агент має свій діалог підтвердження дозволів; значок на бічній панелі показує очікувані підтвердження
 - **Обмін файлами** — Leader може передавати вкладення файлів Teammate-агентам
@@ -278,7 +278,7 @@ _Система асистентів із 21 вбудованим професі
 
 **Навички**: імпортуйте або створюйте навички в **Налаштування → Skills** і призначайте їх потрібним асистентам. Джерела навичок: вбудовані, власні та Extension. Серед вбудованих: `pptx`, `docx`, `pdf`, `xlsx`, `mermaid` та інші.
 
-> 💡 Канонічні вбудовані визначення містяться в [каталозі асистентів](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) BBCore. Правила залишаються у Markdown і налаштовуються в BBUI.
+> 💡 Канонічні вбудовані визначення містяться в [каталозі асистентів](https://github.com/imagist13/bb-agent-core/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) BBCore. Правила залишаються у Markdown і налаштовуються в BBUI.
 
 </details>
 
@@ -384,7 +384,7 @@ BBUI — це **безкоштовний Multi-AI Agent десктоп**. На �
 ### Встановлення
 
 <p>
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/Завантажити-Останній%20реліз-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Завантажити останній реліз" height="50">
   </a>
 </p>

@@ -113,7 +113,7 @@ describe('updateBridge manual download dedupe', () => {
     const handler = await getDownloadHandler();
     const request = {
       url: 'https://static.bbui.dev/releases/2.2.0/BBUI-2.2.0-mac-arm64.dmg',
-      fallbackUrl: 'https://github.com/iOfficeAI/AionUi/releases/download/v2.2.0/BBUI-2.2.0-mac-arm64.dmg',
+      fallbackUrl: 'https://github.com/imagist13/bb-studio/releases/download/v2.2.0/BBUI-2.2.0-mac-arm64.dmg',
       file_name: 'BBUI-2.2.0-mac-arm64.dmg',
     };
 
@@ -150,7 +150,7 @@ describe('updateBridge manual download dedupe', () => {
     const handler = await getDownloadHandler();
     const request = {
       url: 'https://static.bbui.dev/releases/2.2.0/BBUI-2.2.0-mac-arm64.dmg',
-      fallbackUrl: 'https://github.com/iOfficeAI/AionUi/releases/download/v2.2.0/BBUI-2.2.0-mac-arm64.dmg',
+      fallbackUrl: 'https://github.com/imagist13/bb-studio/releases/download/v2.2.0/BBUI-2.2.0-mac-arm64.dmg',
       file_name: 'BBUI-2.2.0-mac-arm64.dmg',
     };
 
@@ -194,7 +194,7 @@ describe('updateBridge manual download dedupe', () => {
     const { download, cancel, ipcBridge } = await getDownloadHandlers();
     const request = {
       url: 'https://static.bbui.dev/releases/2.2.0/BBUI-2.2.0-mac-arm64.dmg',
-      fallbackUrl: 'https://github.com/iOfficeAI/AionUi/releases/download/v2.2.0/BBUI-2.2.0-mac-arm64.dmg',
+      fallbackUrl: 'https://github.com/imagist13/bb-studio/releases/download/v2.2.0/BBUI-2.2.0-mac-arm64.dmg',
       file_name: 'BBUI-2.2.0-mac-arm64.dmg',
     };
 

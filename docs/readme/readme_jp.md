@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/iOfficeAI/AionUi?style=flat-square&color=32CD32" alt="Version">
+  <img src="https://img.shields.io/github/v/release/imagist13/bb-studio?style=flat-square&color=32CD32" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-32CD32?style=flat-square&logo=apache&logoColor=white" alt="License">
   &nbsp;
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/⬇️%20今すぐダウンロード-最新版-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="最新版をダウンロード" height="50">
   </a>
 </p>
@@ -161,7 +161,7 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 
 すでに Claude Code、Codex、Hermes Agent、または OpenClaw を使用している場合、BBUI は自動的に検出し、それらすべてと Cowork できます——内蔵 Agent と一緒に。
 
-**サポートされている Agent：** 内蔵 Agent（組み込みの [bbrs](https://github.com/iOfficeAI/bbrs) Agent エンジンで動作） • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity など
+**サポートされている Agent：** 内蔵 Agent（組み込みの [bbrs](https://github.com/imagist13/bbrs) Agent エンジンで動作） • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity など
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -182,7 +182,7 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 </p>
 
 - **並列マルチエージェント実行** — Leader がタスクを分割して Teammate に並列委任；外部 Agent は ACP（Agent Client Protocol）で接続し、チームの調整は BBUI が担当
-- **Leader によるオーケストレーション** — Leader が割り当て、追跡、集約；対応バックエンドは Claude Code、Codex、Hermes Agent、Gemini、Snow CLI、Aion CLI
+- **Leader によるオーケストレーション** — Leader が割り当て、追跡、集約；対応バックエンドは Claude Code、Codex、Hermes Agent、Gemini、Snow CLI、bbrs
 - **チーム隔離ワークスペース** — すべての Agent が同じフォルダを共有；各エージェントに独自の権限確認ダイアログがあり、サイドバーバッジで承認待ちを表示
 
 <details>
@@ -191,7 +191,7 @@ Office アシスタントは、依頼を編集・再利用できるファイル�
 <br>
 
 - **共有ワークスペース** — すべての Agent が同じフォルダを読み書き；ファイルパネルは常に表示
-- **対応バックエンド** — Claude Code、Codex、Gemini、Snow CLI、Aion CLI（bbrs）；`mcpCapabilities.stdio` を持つ他の ACP バックエンドも自動対応
+- **対応バックエンド** — Claude Code、Codex、Gemini、Snow CLI、bbrs；`mcpCapabilities.stdio` を持つ他の ACP バックエンドも自動対応
 - **動的スケーリング** — チーム実行中に Teammate の追加・削除が可能；応答しない Agent は自動的に失敗状態に昇格しワンクリックで削除
 - **細粒度の権限** — 各 Agent に独自の権限確認ダイアログ；サイドバーバッジで承認待ちを表示
 - **ファイル共有** — Leader が Teammate にファイル添付を渡せる
@@ -279,7 +279,7 @@ BBUI には、事前定義された機能を持つ **21 個のプロフェッシ
 
 **カスタムスキル**：**設定 → Skills** からスキルをインポートまたは作成し、必要なアシスタントに割り当てます。スキルは内蔵、カスタム、Extension の三つのソースから提供されます。内蔵スキルには `pptx`、`docx`、`pdf`、`xlsx`、`mermaid` などが含まれます。
 
-> 💡 内蔵定義の正規情報は BBCore の[アシスタントカタログ](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json)にあります。ルールは引き続き Markdown で、BBUI 内からカスタマイズできます。
+> 💡 内蔵定義の正規情報は BBCore の[アシスタントカタログ](https://github.com/imagist13/bb-agent-core/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json)にあります。ルールは引き続き Markdown で、BBUI 内からカスタマイズできます。
 
 </details>
 
@@ -625,7 +625,7 @@ A: すべてのデータはローカルの SQLite データベースに保存さ
 ### インストール
 
 <p>
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/ダウンロード-最新版-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="最新版をダウンロード" height="50">
   </a>
 </p>
@@ -686,7 +686,7 @@ brew install bb
 
 - [GitHub Discussions](https://github.com/iOfficeAI/AionUi/discussions) — アイデアを共有し、ヒントを交換
 - [問題を報告](https://github.com/iOfficeAI/AionUi/issues) — バグと機能リクエスト
-- [リリース更新](https://github.com/iOfficeAI/AionUi/releases) — 最新版を取得
+- [リリース更新](https://github.com/imagist13/bb-studio/releases) — 最新版を取得
 - [Discord コミュニティ](https://discord.gg/2QAwJn7Egx) — 英語コミュニティ
 - [WeChat グループ](../../resources/wx-26.png) — 中国語コミュニティ
 

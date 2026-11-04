@@ -60,7 +60,7 @@ interface AutoUpdateCheckParams {
   includePrerelease?: boolean;
 }
 
-const DEFAULT_REPO = 'iOfficeAI/AionUi';
+const DEFAULT_REPO = 'imagist13/bb-studio';
 const DEFAULT_USER_AGENT = 'BBUI';
 const ALLOWED_ASSET_EXTS = new Set(['.exe', '.msi', '.dmg', '.zip', '.deb', '.rpm']);
 const CDN_HOST = 'static.bbui.dev';

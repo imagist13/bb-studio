@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/iOfficeAI/AionUi?style=flat-square&color=32CD32" alt="Version">
+  <img src="https://img.shields.io/github/v/release/imagist13/bb-studio?style=flat-square&color=32CD32" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-32CD32?style=flat-square&logo=apache&logoColor=white" alt="License">
   &nbsp;
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/⬇️%20Descargar%20ahora-Última%20versión-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Descargar última versión" height="50">
   </a>
 </p>
@@ -161,7 +161,7 @@ Estos asistentes convierten una petición en archivos editables y reutilizables.
 
 Si ya usas Claude Code, Codex, Hermes Agent u OpenClaw, BBUI los detecta automáticamente y te permite hacer Cowork con todos ellos — junto con el Agent integrado.
 
-**Agents compatibles:** Agent integrado (impulsado por el motor [bbrs](https://github.com/iOfficeAI/bbrs) incluido) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity y más
+**Agents compatibles:** Agent integrado (impulsado por el motor [bbrs](https://github.com/imagist13/bbrs) incluido) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity y más
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -182,7 +182,7 @@ Ejecuta múltiples AI Agents como un equipo organizado: un agente **Leader** rec
 </p>
 
 - **Ejecución paralela multi-agent** — Leader divide y delega tareas a Teammates en paralelo; los Agents externos se conectan mediante ACP (Agent Client Protocol) y BBUI coordina el equipo
-- **Orquestación del Leader** — Leader asigna, rastrea y agrega resultados; backends compatibles: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI y Aion CLI
+- **Orquestación del Leader** — Leader asigna, rastrea y agrega resultados; backends compatibles: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI y bbrs
 - **Espacio de trabajo aislado por equipo** — todos los Agents comparten la misma carpeta; cada uno tiene su propio diálogo de permisos con badge en la barra lateral para aprobaciones pendientes
 
 <details>
@@ -191,7 +191,7 @@ Ejecuta múltiples AI Agents como un equipo organizado: un agente **Leader** rec
 <br>
 
 - **Espacio de trabajo compartido** — todos los Agents leen/escriben en la misma carpeta; el panel de archivos permanece visible durante todo el proceso
-- **Backends compatibles** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI (bbrs); otros backends ACP con `mcpCapabilities.stdio` son compatibles automáticamente
+- **Backends compatibles** — Claude Code, Codex, Gemini, Snow CLI, bbrs; otros backends ACP con `mcpCapabilities.stdio` son compatibles automáticamente
 - **Escalado dinámico** — agrega o elimina Teammates mientras el equipo está en ejecución; los agentes silenciosos se escalan automáticamente a fallido con eliminación en un clic
 - **Permisos granulares** — cada Agent tiene su propio diálogo de confirmación de permisos; el badge en la barra lateral muestra aprobaciones pendientes
 - **Compartir archivos** — Leader puede pasar archivos adjuntos a los Teammates
@@ -279,7 +279,7 @@ BBUI incluye **21 asistentes profesionales** con capacidades predefinidas, exten
 
 **Habilidades personalizadas**: Importa o crea habilidades desde **Configuración → Skills** y asígnalas a los asistentes que las necesiten. Las habilidades proceden de tres fuentes: integradas, personalizadas y Extension. Las integradas incluyen `pptx`, `docx`, `pdf`, `xlsx`, `mermaid` y más.
 
-> 💡 Las definiciones integradas oficiales están en el [catálogo de asistentes](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) de BBCore. Las reglas siguen usando Markdown y se pueden personalizar en BBUI.
+> 💡 Las definiciones integradas oficiales están en el [catálogo de asistentes](https://github.com/imagist13/bb-agent-core/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) de BBCore. Las reglas siguen usando Markdown y se pueden personalizar en BBUI.
 
 </details>
 
@@ -625,7 +625,7 @@ R: Todos los datos se almacenan localmente en una base de datos SQLite. No se su
 ### Instalar
 
 <p>
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/Descargar-Última%20versión-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Descargar última versión" height="50">
   </a>
 </p>
@@ -686,7 +686,7 @@ brew install bb
 
 - [GitHub Discussions](https://github.com/iOfficeAI/AionUi/discussions) — comparte ideas e intercambia consejos
 - [Reportar problemas](https://github.com/iOfficeAI/AionUi/issues) — errores y solicitudes de funciones
-- [Actualizaciones de lanzamiento](https://github.com/iOfficeAI/AionUi/releases) — obtén la última versión
+- [Actualizaciones de lanzamiento](https://github.com/imagist13/bb-studio/releases) — obtén la última versión
 - [Comunidad Discord](https://discord.gg/2QAwJn7Egx) — comunidad en inglés
 - [Grupo WeChat](../../resources/wx-26.png) — comunidad china
 

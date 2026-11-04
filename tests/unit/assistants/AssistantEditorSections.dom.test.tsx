@@ -688,7 +688,7 @@ describe('AssistantEditorSections', () => {
           agent: {
             value: 'agent-bbrs',
             setValue: vi.fn(),
-            availableBackends: [backendOption('agent-bbrs', 'bbrs', 'Aion CLI')],
+            availableBackends: [backendOption('agent-bbrs', 'bbrs', 'bbdev')],
           },
         })}
         activeAssistant={null}

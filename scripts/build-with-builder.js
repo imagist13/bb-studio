@@ -844,9 +844,9 @@ try {
     const winUnpackedDir = path.join(outDir, 'win-unpacked');
     let cleaned = tryRemoveDir(winUnpackedDir);
     if (!cleaned) {
-      const aionRunning = isProcessRunningWindows('BBUI.exe');
+      const bbRunning = isProcessRunningWindows('BBUI.exe');
       const electronRunning = isProcessRunningWindows('electron.exe');
-      if (aionRunning || electronRunning) {
+      if (bbRunning || electronRunning) {
         console.log('⚠️  Detected running BBUI/Electron process. Attempting to close...');
         killWindowsProcesses(['BBUI.exe', 'electron.exe']);
         cleaned = tryRemoveDir(winUnpackedDir);

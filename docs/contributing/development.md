@@ -14,8 +14,8 @@ On Windows, install the Rust MSVC toolchain. If Rust compilation fails because n
 
 BBUI development uses two repositories:
 
-- **BBCore** (`https://github.com/iOfficeAI/AionCore.git`) builds the local backend binary: `bbcore` on macOS/Linux and `bbcore.exe` on Windows.
-- **BBUI** (`https://github.com/iOfficeAI/AionUi.git`) starts the Electron desktop app and launches the backend binary automatically.
+- **BBCore** (`https://github.com/imagist13/bb-agent-core.git`) builds the local backend binary: `bbcore` on macOS/Linux and `bbcore.exe` on Windows.
+- **BBUI** (`https://github.com/imagist13/bb-studio.git`) starts the Electron desktop app and launches the backend binary automatically.
 
 Keep the repositories side by side when possible:
 
@@ -32,8 +32,8 @@ The desktop development server resolves the backend from the `PATH` inherited by
 ### 1. Clone Both Repositories
 
 ```bash
-git clone https://github.com/iOfficeAI/AionCore.git
-git clone https://github.com/iOfficeAI/AionUi.git
+git clone https://github.com/imagist13/bb-agent-core.git
+git clone https://github.com/imagist13/bb-studio.git
 ```
 
 Use the `main` branch for both repositories unless a maintainer asks you to test another branch.

@@ -48,7 +48,7 @@ const skillPaths = await invokeBridge(page, 'fs.getSkillPaths');
 - `~/.claude/skills` — Claude Code CLI
 - `~/.gemini/skills` — Gemini CLI
 - `~/.copilot/skills` — Copilot CLI
-- `/usr/local/share/aion-skills` — 系统级共享路径
+- `/usr/local/share/bb-skills` — 系统级共享路径
 - **自定义路径**: 通过 `fs.addCustomExternalPath` 动态添加
 
 ---
@@ -444,7 +444,7 @@ await expect(page.locator('[data-testid="my-skill-card-E2E-Test-Skill-1"]')).toB
 | `extension-skills-section`                            | 扩展技能板块容器            | line ~440 `<div className="extension-skills">`  | -                                     |
 | `extension-skill-card-${normalizeTestId(skill.name)}` | 扩展技能卡片                | line ~460 `<div className="skill-card">`        | `extension-skill-card-test-extension` |
 | `auto-skills-section`                                 | 自动注入技能板块容器        | line ~500 `<div className="auto-skills">`       | -                                     |
-| `auto-skill-card-${normalizeTestId(skill.name)}`      | 自动注入技能卡片            | line ~520 `<div className="skill-card">`        | `auto-skill-card-bb-skills`       |
+| `auto-skill-card-${normalizeTestId(skill.name)}`      | 自动注入技能卡片            | line ~520 `<div className="skill-card">`        | `auto-skill-card-bb-skills`           |
 | `my-skills-empty-state`                               | 我的技能空状态容器          | line ~585 `<div>No skills found</div>`          | -                                     |
 | `external-skills-no-results`                          | 外部技能搜索无结果提示      | line ~380 `<div>No matching skills found</div>` | -                                     |
 

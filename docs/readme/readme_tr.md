@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/iOfficeAI/AionUi?style=flat-square&color=32CD32" alt="Version">
+  <img src="https://img.shields.io/github/v/release/imagist13/bb-studio?style=flat-square&color=32CD32" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-32CD32?style=flat-square&logo=apache&logoColor=white" alt="License">
   &nbsp;
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/⬇️%20Şimdi%20İndir-En%20Son%20Sürüm-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="En Son Sürümü İndir" height="50">
   </a>
 </p>
@@ -161,7 +161,7 @@ Office asistanları, istekleri düzenlenebilir ve yeniden kullanılabilir dosyal
 
 Zaten Claude Code, Codex, Hermes Agent veya OpenClaw kullanıyorsanız, BBUI bunları otomatik olarak algılar ve hepsiyle Cowork yapmanıza izin verir — yerleşik Agent ile birlikte.
 
-**Desteklenen Agents:** Yerleşik Agent (gömülü [bbrs](https://github.com/iOfficeAI/bbrs) Agent motoruyla çalışır) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity ve daha fazlası
+**Desteklenen Agents:** Yerleşik Agent (gömülü [bbrs](https://github.com/imagist13/bbrs) Agent motoruyla çalışır) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity ve daha fazlası
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -182,7 +182,7 @@ Birden fazla AI Agent'ı organize bir ekip olarak çalıştırın: bir **Leader*
 </p>
 
 - **Paralel çoklu agent çalıştırma** — Leader görevleri bölüp Teammate'lere paralel olarak devreder; harici Agent'lar ACP (Agent Client Protocol) ile bağlanır ve ekibi BBUI koordine eder
-- **Leader orkestrasyonu** — Leader atar, izler ve sonuçları toplar; desteklenen arka uçlar: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI ve Aion CLI
+- **Leader orkestrasyonu** — Leader atar, izler ve sonuçları toplar; desteklenen arka uçlar: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI ve bbrs
 - **Ekip izole çalışma alanı** — tüm Agent'lar aynı klasörü paylaşır; her birinin bekleyen onaylar için kenar çubuğu rozeti ile kendi izin onay iletişim kutusu vardır
 
 <details>
@@ -191,7 +191,7 @@ Birden fazla AI Agent'ı organize bir ekip olarak çalıştırın: bir **Leader*
 <br>
 
 - **Paylaşılan çalışma alanı** — tüm Agent'lar aynı klasörü okur/yazar; dosya paneli süreç boyunca görünür kalır
-- **Desteklenen arka uçlar** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI (bbrs); `mcpCapabilities.stdio` ile diğer ACP arka uçları otomatik desteklenir
+- **Desteklenen arka uçlar** — Claude Code, Codex, Gemini, Snow CLI, bbrs; `mcpCapabilities.stdio` ile diğer ACP arka uçları otomatik desteklenir
 - **Dinamik ölçeklendirme** — ekip çalışırken Teammate ekleyip kaldırabilirsiniz; sessiz Agent'lar otomatik olarak başarısız durumuna yükseltilir ve tek tıkla kaldırılabilir
 - **Ayrıntılı izinler** — her Agent'ın kendi izin onay iletişim kutusu var; kenar çubuğu rozeti bekleyen onayları gösterir
 - **Dosya paylaşımı** — Leader, Teammate'lere dosya eklerini iletebilir
@@ -279,7 +279,7 @@ BBUI önceden tanımlanmış yeteneklere sahip **21 profesyonel asistan** içeri
 
 **Özel Beceriler**: **Ayarlar → Skills** bölümünden beceri içe aktarın veya oluşturun ve gerekli asistanlara bağlayın. Beceriler yerleşik, özel ve Extension olmak üzere üç kaynaktan gelir. Yerleşik beceriler `pptx`, `docx`, `pdf`, `xlsx`, `mermaid` ve daha fazlasını içerir.
 
-> 💡 Yerleşik tanımların resmi kaynağı BBCore içindeki [asistan kataloğudur](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json). Kurallar Markdown olarak kalır ve BBUI içinde özelleştirilebilir.
+> 💡 Yerleşik tanımların resmi kaynağı BBCore içindeki [asistan kataloğudur](https://github.com/imagist13/bb-agent-core/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json). Kurallar Markdown olarak kalır ve BBUI içinde özelleştirilebilir.
 
 </details>
 
@@ -625,7 +625,7 @@ C: Tüm veriler yerel olarak bir SQLite veritabanında saklanır. Hiçbir şey h
 ### Kurulum
 
 <p>
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/İndir-En%20Son%20Sürüm-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="En Son Sürümü İndir" height="50">
   </a>
 </p>
@@ -686,7 +686,7 @@ brew install bb
 
 - [GitHub Discussions](https://github.com/iOfficeAI/AionUi/discussions) — fikirleri paylaşın ve ipuçları alışverişi yapın
 - [Sorun Bildir](https://github.com/iOfficeAI/AionUi/issues) — hatalar ve özellik istekleri
-- [Sürüm Güncellemeleri](https://github.com/iOfficeAI/AionUi/releases) — en son sürümü alın
+- [Sürüm Güncellemeleri](https://github.com/imagist13/bb-studio/releases) — en son sürümü alın
 - [Discord Topluluğu](https://discord.gg/2QAwJn7Egx) — İngilizce topluluk
 - [WeChat Grubu](../../resources/wx-26.png) — Çince topluluk
 

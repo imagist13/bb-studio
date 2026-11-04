@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/iOfficeAI/AionUi?style=flat-square&color=32CD32" alt="Version">
+  <img src="https://img.shields.io/github/v/release/imagist13/bb-studio?style=flat-square&color=32CD32" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-32CD32?style=flat-square&logo=apache&logoColor=white" alt="License">
   &nbsp;
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/⬇️%20지금%20다운로드-최신%20버전-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="최신 버전 다운로드" height="50">
   </a>
 </p>
@@ -161,7 +161,7 @@ Office 어시스턴트는 요청을 편집하고 재사용할 수 있는 파일�
 
 이미 Claude Code, Codex, Hermes Agent 또는 OpenClaw를 사용 중이라면, BBUI가 자동으로 감지하여 모두와 Cowork할 수 있게 해줍니다——내장 Agent와 함께.
 
-**지원되는 Agent:** 내장 Agent(내장 [bbrs](https://github.com/iOfficeAI/bbrs) Agent 엔진 기반) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity 등
+**지원되는 Agent:** 내장 Agent(내장 [bbrs](https://github.com/imagist13/bbrs) Agent 엔진 기반) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity 등
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -182,7 +182,7 @@ Office 어시스턴트는 요청을 편집하고 재사용할 수 있는 파일�
 </p>
 
 - **병렬 멀티 에이전트 실행** — Leader가 작업을 나누어 Teammate에게 병렬 위임하며, 외부 Agent는 ACP(Agent Client Protocol)로 연결되고 팀 조정은 BBUI가 담당합니다
-- **Leader 오케스트레이션** — Leader가 할당, 추적, 집계; 지원 백엔드: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI, Aion CLI
+- **Leader 오케스트레이션** — Leader가 할당, 추적, 집계; 지원 백엔드: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI, bbrs
 - **팀 격리 워크스페이스** — 모든 Agent가 같은 폴더 공유; 각 Agent에 독립적인 권한 확인 다이얼로그가 있으며 사이드바 배지로 승인 대기 표시
 
 <details>
@@ -191,7 +191,7 @@ Office 어시스턴트는 요청을 편집하고 재사용할 수 있는 파일�
 <br>
 
 - **공유 워크스페이스** — 모든 Agent가 같은 폴더 읽기/쓰기; 파일 패널이 항상 표시
-- **지원 백엔드** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI(bbrs); `mcpCapabilities.stdio`를 가진 다른 ACP 백엔드도 자동 지원
+- **지원 백엔드** — Claude Code, Codex, Gemini, Snow CLI, bbrs(bbrs); `mcpCapabilities.stdio`를 가진 다른 ACP 백엔드도 자동 지원
 - **동적 스케일링** — 팀 실행 중 Teammate 추가/제거 가능; 응답 없는 Agent는 자동으로 실패 상태로 전환되고 원클릭 제거 지원
 - **세밀한 권한** — 각 Agent에 독립적인 권한 확인 다이얼로그; 사이드바 배지로 승인 대기 표시
 - **파일 공유** — Leader가 Teammate에게 파일 첨부 전달 가능
@@ -279,7 +279,7 @@ BBUI는 사전 정의된 기능을 가진 **21개의 전문 어시스턴트**를
 
 **커스텀 스킬**: **설정 → Skills**에서 스킬을 가져오거나 만들고 필요한 어시스턴트에 연결합니다. 스킬은 내장, 커스텀, Extension의 세 가지 소스에서 제공됩니다. 내장 스킬에는 `pptx`, `docx`, `pdf`, `xlsx`, `mermaid` 등이 포함됩니다.
 
-> 💡 내장 정의의 기준은 BBCore의 [어시스턴트 카탈로그](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json)입니다. 규칙은 계속 Markdown을 사용하며 BBUI에서 사용자 지정할 수 있습니다.
+> 💡 내장 정의의 기준은 BBCore의 [어시스턴트 카탈로그](https://github.com/imagist13/bb-agent-core/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json)입니다. 규칙은 계속 Markdown을 사용하며 BBUI에서 사용자 지정할 수 있습니다.
 
 </details>
 
@@ -625,7 +625,7 @@ A: 모든 데이터는 로컬 SQLite 데이터베이스에 저장됩니다. 어�
 ### 설치
 
 <p>
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/다운로드-최신%20버전-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="최신 버전 다운로드" height="50">
   </a>
 </p>
@@ -686,7 +686,7 @@ brew install bb
 
 - [GitHub Discussions](https://github.com/iOfficeAI/AionUi/discussions) — 아이디어를 공유하고 팁을 교환하세요
 - [문제 보고](https://github.com/iOfficeAI/AionUi/issues) — 버그 및 기능 요청
-- [릴리스 업데이트](https://github.com/iOfficeAI/AionUi/releases) — 최신 버전 받기
+- [릴리스 업데이트](https://github.com/imagist13/bb-studio/releases) — 최신 버전 받기
 - [Discord 커뮤니티](https://discord.gg/2QAwJn7Egx) — 영어 커뮤니티
 - [WeChat 그룹](../../resources/wx-26.png) — 중국어 커뮤니티
 

@@ -11,7 +11,7 @@ import React, { useMemo, useState } from 'react';
 /**
  * 可折叠面板组件属性 / Collapsible panel component props
  */
-export interface AionCollapseProps {
+export interface BbCollapseProps {
   children: React.ReactNode;
   /** 额外的类名 / Additional class name */
   className?: string;
@@ -34,7 +34,7 @@ export interface AionCollapseProps {
 /**
  * 可折叠面板子项属性 / Collapsible panel item props
  */
-export interface AionCollapseItemProps {
+export interface BbCollapseItemProps {
   /** 唯一标识符 / Unique identifier */
   name: string;
   /** 面板标题 / Panel header */
@@ -76,8 +76,8 @@ const DefaultIcon: React.FC<{ active: boolean }> = ({ active }) => (
  * 折叠面板子项组件（仅用于类型检查和结构化）
  * Collapse item component (used for type checking and structure only)
  */
-const AionCollapseItem: React.FC<AionCollapseItemProps> = ({ children }) => <>{children}</>;
-AionCollapseItem.displayName = 'AionCollapseItem';
+const BbCollapseItem: React.FC<BbCollapseItemProps> = ({ children }) => <>{children}</>;
+BbCollapseItem.displayName = 'BbCollapseItem';
 
 /**
  * 可折叠面板组件 / Collapsible panel component
@@ -88,31 +88,31 @@ AionCollapseItem.displayName = 'AionCollapseItem';
  * @example
  * ```tsx
  * // 基本用法 / Basic usage
- * <AionCollapse defaultActiveKey={['1']}>
- *   <AionCollapse.Item name="1" header="面板1">
+ * <BbCollapse defaultActiveKey={['1']}>
+ *   <BbCollapse.Item name="1" header="面板1">
  *     内容1
- *   </AionCollapse.Item>
- *   <AionCollapse.Item name="2" header="面板2">
+ *   </BbCollapse.Item>
+ *   <BbCollapse.Item name="2" header="面板2">
  *     内容2
- *   </AionCollapse.Item>
- * </AionCollapse>
+ *   </BbCollapse.Item>
+ * </BbCollapse>
  *
  * // 手风琴模式 / Accordion mode
- * <AionCollapse accordion defaultActiveKey="1">
- *   <AionCollapse.Item name="1" header="面板1">内容1</AionCollapse.Item>
- *   <AionCollapse.Item name="2" header="面板2">内容2</AionCollapse.Item>
- * </AionCollapse>
+ * <BbCollapse accordion defaultActiveKey="1">
+ *   <BbCollapse.Item name="1" header="面板1">内容1</BbCollapse.Item>
+ *   <BbCollapse.Item name="2" header="面板2">内容2</BbCollapse.Item>
+ * </BbCollapse>
  *
  * // 自定义图标 / Custom icon
- * <AionCollapse
+ * <BbCollapse
  *   expandIcon={(active) => <Icon type={active ? 'up' : 'down'} />}
  *   expandIconPosition="right"
  * >
- *   <AionCollapse.Item name="1" header="面板1">内容1</AionCollapse.Item>
- * </AionCollapse>
+ *   <BbCollapse.Item name="1" header="面板1">内容1</BbCollapse.Item>
+ * </BbCollapse>
  * ```
  */
-const AionCollapseComponent: React.FC<AionCollapseProps> & { Item: typeof AionCollapseItem } = ({
+const BbCollapseComponent: React.FC<BbCollapseProps> & { Item: typeof BbCollapseItem } = ({
   children,
   className,
   defaultActiveKey,
@@ -130,8 +130,8 @@ const AionCollapseComponent: React.FC<AionCollapseProps> & { Item: typeof AionCo
 
   // 提取并过滤有效的子面板项 / Extract and filter valid child panel items
   const items = useMemo(() => {
-    return React.Children.toArray(children).filter((child): child is React.ReactElement<AionCollapseItemProps> => {
-      return React.isValidElement(child) && child.type === AionCollapseItem;
+    return React.Children.toArray(children).filter((child): child is React.ReactElement<BbCollapseItemProps> => {
+      return React.isValidElement(child) && child.type === BbCollapseItem;
     });
   }, [children]);
 
@@ -223,6 +223,6 @@ const AionCollapseComponent: React.FC<AionCollapseProps> & { Item: typeof AionCo
   );
 };
 
-AionCollapseComponent.Item = AionCollapseItem;
+BbCollapseComponent.Item = BbCollapseItem;
 
-export default AionCollapseComponent;
+export default BbCollapseComponent;

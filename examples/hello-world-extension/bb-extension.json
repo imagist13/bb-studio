@@ -1,5 +1,5 @@
 {
-  "$schema": "../../schemas/aion-extension-v1.json",
+  "$schema": "../../schemas/bb-extension-v1.json",
   "name": "hello-world",
   "displayName": "Hello World Extension",
   "version": "1.0.0",

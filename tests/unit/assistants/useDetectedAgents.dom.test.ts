@@ -61,8 +61,8 @@ describe('buildAssistantEditorBackends', () => {
         id: 'agent-bbrs',
         backend: undefined,
         agent_type: 'bbrs',
-        name: 'Aion CLI',
-        name_i18n: { 'zh-CN': 'Aion 命令行' },
+        name: 'bbdev',
+        name_i18n: { 'zh-CN': 'bbdev' },
         status: 'online',
       }),
     ];
@@ -70,7 +70,7 @@ describe('buildAssistantEditorBackends', () => {
     expect(buildAssistantEditorBackends(agents, 'zh-CN')).toEqual([
       {
         id: 'agent-bbrs',
-        name: 'Aion 命令行',
+        name: 'bbdev',
         runtimeKey: 'bbrs',
         modelOptions: [],
       },

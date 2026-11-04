@@ -49,7 +49,7 @@ const ExtensionSettingsTabContent: React.FC<ExtensionSettingsTabContentProps> = 
 
       frameWindow.postMessage(
         {
-          type: 'aion:init',
+          type: 'bb:init',
           locale: i18n.language,
           extensionName,
           translations,
@@ -72,7 +72,7 @@ const ExtensionSettingsTabContent: React.FC<ExtensionSettingsTabContentProps> = 
       const data = event.data as { type?: string; reqId?: string } | undefined;
       if (!data) return;
 
-      if (data.type === 'aion:get-locale') {
+      if (data.type === 'bb:get-locale') {
         void postLocaleInit();
         return;
       }

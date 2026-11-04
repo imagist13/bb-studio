@@ -130,7 +130,7 @@ describe('mapCdnManifestToRelease', () => {
   it('maps files to CDN-primary assets with GitHub fallback URLs', () => {
     const manifest = parseCdnManifest(SAMPLE_YML);
     if (!manifest) throw new Error('manifest should parse');
-    const release = mapCdnManifestToRelease(manifest, 'iOfficeAI/AionUi');
+    const release = mapCdnManifestToRelease(manifest, 'imagist13/bb-studio');
     expect(release).not.toBeNull();
     expect(release?.version).toBe('2.1.45');
     expect(release?.tagName).toBe('v2.1.45');
@@ -139,7 +139,7 @@ describe('mapCdnManifestToRelease', () => {
     const dmg = release?.assets.find((a) => a.name.endsWith('.dmg'));
     expect(dmg?.url).toBe('https://static.bbui.dev/releases/2.1.45/BBUI-2.1.45-mac-arm64.dmg');
     expect(dmg?.fallbackUrl).toBe(
-      'https://github.com/iOfficeAI/AionUi/releases/download/v2.1.45/BBUI-2.1.45-mac-arm64.dmg'
+      'https://github.com/imagist13/bb-studio/releases/download/v2.1.45/BBUI-2.1.45-mac-arm64.dmg'
     );
     expect(dmg?.size).toBe(469685641);
     expect(release?.recommendedAsset).toBeDefined();
@@ -148,7 +148,7 @@ describe('mapCdnManifestToRelease', () => {
   it('returns null when version is not valid semver', () => {
     const release = mapCdnManifestToRelease(
       { version: 'not-a-version', files: [{ url: 'a.dmg' }] },
-      'iOfficeAI/AionUi'
+      'imagist13/bb-studio'
     );
     expect(release).toBeNull();
   });

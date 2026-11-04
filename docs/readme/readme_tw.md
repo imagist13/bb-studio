@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/iOfficeAI/AionUi?style=flat-square&color=32CD32" alt="Version">
+  <img src="https://img.shields.io/github/v/release/imagist13/bb-studio?style=flat-square&color=32CD32" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-32CD32?style=flat-square&logo=apache&logoColor=white" alt="License">
   &nbsp;
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/⬇️%20立即下載-最新版本-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="下載最新版本" height="50">
   </a>
 </p>
@@ -163,7 +163,7 @@ BBUI 自帶完整的 AI Agent 引擎。不像其他工具需要您手動安裝�
 
 如果您已經在用 Claude Code、Codex 或 Qwen Code，BBUI 會自動發現它們，讓您同時和這些 Agent 一起 Cowork——當然，還有內建 Agent。
 
-**支援的 Agent：** 內建 Agent（由嵌入式 [bbrs](https://github.com/iOfficeAI/bbrs) Agent 引擎驅動） • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity 等
+**支援的 Agent：** 內建 Agent（由嵌入式 [bbrs](https://github.com/imagist13/bbrs) Agent 引擎驅動） • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity 等
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -184,7 +184,7 @@ BBUI 自帶完整的 AI Agent 引擎。不像其他工具需要您手動安裝�
 </p>
 
 - **多 Agent 並行執行** — Leader 將任務拆分並委派給並行運行的 Teammate；外部 Agent 透過 ACP（Agent Client Protocol）連線，由 BBUI 負責團隊協調
-- **Leader 統籌編排** — Leader 分配、追蹤並彙總結果；支援的後端包括 Claude Code、Codex、Hermes Agent、Gemini、Snow CLI 和 Aion CLI
+- **Leader 統籌編排** — Leader 分配、追蹤並彙總結果；支援的後端包括 Claude Code、Codex、Hermes Agent、Gemini、Snow CLI 和 bbrs
 - **團隊隔離工作空間** — 所有 Agent 共享同一資料夾；每個 Agent 有獨立的權限確認彈窗，側邊欄角標顯示待確認項
 
 <details>
@@ -193,7 +193,7 @@ BBUI 自帶完整的 AI Agent 引擎。不像其他工具需要您手動安裝�
 <br>
 
 - **共享工作空間** — 所有 Agent 讀寫同一資料夾；檔案面板全程可見
-- **支援的後端** — Claude Code、Codex、Gemini、Snow CLI、Aion CLI（bbrs）；其他具備 `mcpCapabilities.stdio` 的 ACP 後端自動支援
+- **支援的後端** — Claude Code、Codex、Gemini、Snow CLI、bbrs；其他具備 `mcpCapabilities.stdio` 的 ACP 後端自動支援
 - **動態伸縮** — 可在團隊運行時新增或移除 Teammate；靜默 Agent 自動升級為失敗狀態，支援一鍵移除
 - **細粒度權限** — 每個 Agent 有獨立的權限確認彈窗；側邊欄角標顯示待確認項
 - **檔案共享** — Leader 可向 Teammate 傳遞檔案附件
@@ -206,14 +206,14 @@ BBUI 自帶完整的 AI Agent 引擎。不像其他工具需要您手動安裝�
 
 其他 AI 應用可能只給您個聊天視窗，**但 BBUI 給您的是完整的 Cowork Agent**。
 
-| 您的 API 金鑰              | 您獲得的功能                               |
-| :------------------------- | :----------------------------------------- |
-| Gemini API 金鑰            | Gemini 驅動的 Cowork Agent                 |
-| OpenAI API 金鑰            | GPT 驅動的 Cowork Agent                    |
-| Anthropic API 金鑰         | Claude 驅動的 Cowork Agent                 |
-| AWS Bedrock 憑證           | 透過 Aion CLI（bbrs）的 Bedrock 驅動 Agent |
-| Ollama / LM Studio（本地） | 本地模型 Cowork Agent                      |
-| NewAPI 閘道                | 統一存取 20+ 模型                          |
+| 您的 API 金鑰              | 您獲得的功能                   |
+| :------------------------- | :----------------------------- |
+| Gemini API 金鑰            | Gemini 驅動的 Cowork Agent     |
+| OpenAI API 金鑰            | GPT 驅動的 Cowork Agent        |
+| Anthropic API 金鑰         | Claude 驅動的 Cowork Agent     |
+| AWS Bedrock 憑證           | 透過 bbrs的 Bedrock 驅動 Agent |
+| Ollama / LM Studio（本地） | 本地模型 Cowork Agent          |
+| NewAPI 閘道                | 統一存取 20+ 模型              |
 
 不管用哪個模型，Agent 的能力都一樣強大——檔案讀寫、網路搜尋、圖像生成、工具調用，一個不少。BBUI 支援 **30+ 個 AI 平台**，雲端本地都能用。
 
@@ -282,7 +282,7 @@ BBUI 內建 **21 個專業助手**，每個都有獨特能力，還能透過自�
 
 **自訂技能**：在 **設定 → Skills** 中匯入或建立技能，再按需綁定到助手。技能來源分三層：內建（隨 BBUI 附帶）、自訂（您自己的）以及擴展（透過擴展 SDK 貢獻）。內建技能有 `pptx`、`docx`、`pdf`、`xlsx`、`mermaid` 等。
 
-> 💡 內建定義的權威來源是 BBCore 的[助手目錄](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json)；助手規則仍使用 Markdown，並可在 BBUI 中自訂。
+> 💡 內建定義的權威來源是 BBCore 的[助手目錄](https://github.com/imagist13/bb-agent-core/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json)；助手規則仍使用 Markdown，並可在 BBUI 中自訂。
 
 </details>
 
@@ -628,7 +628,7 @@ BBUI 是一個**免費開源的 Multi-AI Agent 桌面應用**。相比只能在 
 ### 安裝
 
 <p>
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/下載-最新版本-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="下載最新版本" height="50">
   </a>
 </p>
@@ -689,7 +689,7 @@ brew install bb
 
 - [GitHub Discussions](https://github.com/iOfficeAI/AionUi/discussions) — 分享想法，交流使用技巧
 - [報告問題](https://github.com/iOfficeAI/AionUi/issues) — 遇到 bug 或有新功能想法？告訴我們
-- [發布更新](https://github.com/iOfficeAI/AionUi/releases) — 取得最新版本
+- [發布更新](https://github.com/imagist13/bb-studio/releases) — 取得最新版本
 - [Discord 社群](https://discord.gg/2QAwJn7Egx) — 英語社群
 - [微信群](../../resources/wx-26.png) — 中文社群
 

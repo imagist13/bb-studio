@@ -16,10 +16,10 @@ BBUI owns only feedback orchestration:
 - capture `route_at_open` and `route_at_submit`
 - send the user-selected module
 - send explicit safe IDs from the feedback entry point, such as `conversation_id`, `provider_id`, `team_id`, `agent_id`, or `mcp_server_id`
-- call aionCore `GET /api/system/diagnostics/feedback-report`
+- call bb-agent-core `GET /api/system/diagnostics/feedback-report`
 - attach the returned JSON as `db-diagnostics.json.gz` when gzip is available, otherwise `db-diagnostics.json`
 
-aionCore owns all diagnostic logic:
+bb-agent-core owns all diagnostic logic:
 
 - route/module/profile resolution
 - unioning route-derived profiles, module-derived profiles, and explicit profiles
@@ -32,7 +32,7 @@ BBUI main process must not read SQLite or expose `feedback:collect-db-diagnostic
 
 ## Profile Resolution
 
-Route context is more trustworthy than the selected module because the user can choose the wrong module. The selected module is still useful user intent. aionCore must use the union of:
+Route context is more trustworthy than the selected module because the user can choose the wrong module. The selected module is still useful user intent. bb-agent-core must use the union of:
 
 - route at submit
 - route at open
@@ -42,7 +42,7 @@ Route context is more trustworthy than the selected module because the user can 
 
 Example: if the feedback is opened on `#/conversations/conv-1` and the user selects `system-settings`, the attachment should include at least `conversation-session`, `model-auth`, `mcp-tools`, and `global-summary`.
 
-## Current aionCore Profiles
+## Current bb-agent-core Profiles
 
 ### `conversation-session`
 
@@ -134,7 +134,7 @@ The response should preserve diagnostic value while excluding the few categories
 
 Conversation titles are allowed because they are needed to correlate the database snapshot with the screenshot and Sentry feedback. They are not separately redacted for generic `sk-...`, `token`, or `bearer` string shapes.
 
-The aionCore response includes a `privacy` block:
+The bb-agent-core response includes a `privacy` block:
 
 ```json
 {

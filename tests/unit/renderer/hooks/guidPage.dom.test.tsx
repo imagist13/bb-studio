@@ -34,7 +34,7 @@ const {
     selectedAssistant: {
       id: 'bare-bbrs',
       source: 'generated',
-      name: 'Aion CLI',
+      name: 'bbdev',
       name_i18n: {},
       description_i18n: {},
       enabled: true,
@@ -55,7 +55,7 @@ const {
       {
         id: 'bare-bbrs',
         source: 'generated',
-        name: 'Aion CLI',
+        name: 'bbdev',
         name_i18n: {},
         description_i18n: {},
         enabled: true,
@@ -328,7 +328,7 @@ describe('GuidPage', () => {
       {
         id: 'bare-bbrs',
         source: 'generated',
-        name: 'Aion CLI',
+        name: 'bbdev',
         name_i18n: {},
         description_i18n: {},
         enabled: true,
@@ -472,7 +472,7 @@ describe('GuidPage', () => {
       {
         id: 'bare-bbrs',
         source: 'generated',
-        name: 'Aion CLI',
+        name: 'bbdev',
         name_i18n: {},
         description_i18n: {},
         enabled: true,
@@ -527,7 +527,7 @@ describe('GuidPage', () => {
       {
         id: 'bare-bbrs',
         source: 'generated',
-        name: 'Aion CLI',
+        name: 'bbdev',
         name_i18n: {},
         description_i18n: {},
         enabled: true,

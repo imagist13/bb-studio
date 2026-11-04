@@ -1,4 +1,4 @@
-# Aion CLI (bbrs) E2E 测试用例
+# bbrs E2E 测试用例
 
 **版本**: Gate 2 初稿
 **作者**: chat-bbrs-designer
@@ -824,13 +824,13 @@ WHERE conversation_id = ? AND position = 'left' AND type = 'text';
 
 **前置条件**:
 
-- bbrs binary **不可用**（通过环境变量 `AION_CLI_PATH=/dev/null` 模拟）
+- bbrs binary **不可用**（通过环境变量 `BBRS_CLI_PATH=/dev/null` 模拟）
 
 **维度组合**: N/A（验证前置检查逻辑）
 
 **操作步骤**:
 
-1. 设置环境变量：`process.env.AION_CLI_PATH = '/dev/null'`
+1. 设置环境变量：`process.env.BBRS_CLI_PATH = '/dev/null'`
 2. 运行测试套件（或单个用例）
 3. 验证测试被 skip（状态：skipped，原因："bbrs binary not found"）
 

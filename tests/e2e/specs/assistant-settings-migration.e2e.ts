@@ -71,7 +71,7 @@ function resolveBackendBinary(): string {
   const projectRoot = process.cwd();
   const candidates = [
     process.env.BB_BACKEND_BINARY,
-    path.join(projectRoot, '../aionCore/target/debug/bbcore'),
+    path.join(projectRoot, '../bb-agent-core/target/debug/bbcore'),
     path.join(os.homedir(), '.cargo', 'bin', 'bbcore'),
   ].filter((value): value is string => Boolean(value));
 
@@ -85,7 +85,7 @@ function resolveBackendBinary(): string {
 }
 
 function schemaPath(): string {
-  return path.join(process.cwd(), '../aionCore/crates/bb-db/migrations/001_initial_schema.sql');
+  return path.join(process.cwd(), '../bb-agent-core/crates/bb-db/migrations/001_initial_schema.sql');
 }
 
 function querySqliteValue(dataDir: string, sql: string): string {

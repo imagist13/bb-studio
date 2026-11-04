@@ -23,7 +23,7 @@ vi.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key, i18n: { language: 'en-US' } }),
 }));
 
-vi.mock('@/renderer/components/base/AionModal', () => ({
+vi.mock('@/renderer/components/base/BbModal', () => ({
   default: ({ children, visible }: { children: React.ReactNode; visible: boolean }) =>
     visible ? <div>{children}</div> : null,
 }));
@@ -85,14 +85,14 @@ describe('UpdateModal manual install fallback', () => {
           version: '2.1.14',
           name: 'v2.1.14',
           body: 'notes',
-          htmlUrl: 'https://github.com/iOfficeAI/AionUi/releases/tag/v2.1.14',
+          htmlUrl: 'https://github.com/imagist13/bb-studio/releases/tag/v2.1.14',
           prerelease: false,
           draft: false,
           assets: [],
           recommendedAsset: {
             name: 'BBUI-2.1.14-mac-arm64.dmg',
             url: 'https://static.bbui.dev/releases/2.1.14/BBUI-2.1.14-mac-arm64.dmg',
-            fallbackUrl: 'https://github.com/iOfficeAI/AionUi/releases/download/v2.1.14/BBUI-2.1.14-mac-arm64.dmg',
+            fallbackUrl: 'https://github.com/imagist13/bb-studio/releases/download/v2.1.14/BBUI-2.1.14-mac-arm64.dmg',
             size: 123,
           },
         },
@@ -142,7 +142,7 @@ describe('UpdateModal manual install fallback', () => {
     expect(mocks.updateDownloadMock).toHaveBeenCalledWith({
       downloadId: expect.any(String),
       url: 'https://static.bbui.dev/releases/2.1.14/BBUI-2.1.14-mac-arm64.dmg',
-      fallbackUrl: 'https://github.com/iOfficeAI/AionUi/releases/download/v2.1.14/BBUI-2.1.14-mac-arm64.dmg',
+      fallbackUrl: 'https://github.com/imagist13/bb-studio/releases/download/v2.1.14/BBUI-2.1.14-mac-arm64.dmg',
       file_name: 'BBUI-2.1.14-mac-arm64.dmg',
     });
     expect(screen.queryByText('update.manualInstall')).not.toBeInTheDocument();

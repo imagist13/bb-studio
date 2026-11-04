@@ -14,8 +14,8 @@ import { Help } from '@icon-park/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import useConfigModelListWithImage from '@/renderer/hooks/agent/useConfigModelListWithImage';
-import AionScrollArea from '@/renderer/components/base/AionScrollArea';
-import AionSelect from '@/renderer/components/base/AionSelect';
+import BbScrollArea from '@/renderer/components/base/BbScrollArea';
+import BbSelect from '@/renderer/components/base/BbSelect';
 import TalkToButlerButton from '@/renderer/components/base/TalkToButlerButton';
 import AddMcpServerModal from '@/renderer/pages/settings/components/AddMcpServerModal';
 import McpServerItem from '@/renderer/pages/settings/ToolsSettings/McpServerItem';
@@ -199,10 +199,7 @@ const ModalMcpManagementSection: React.FC<{
             {t('settings.mcpNoServersFound')}
           </div>
         ) : (
-          <AionScrollArea
-            className={classNames('max-h-360px', isPageMode && 'max-h-none')}
-            disableOverflow={isPageMode}
-          >
+          <BbScrollArea className={classNames('max-h-360px', isPageMode && 'max-h-none')} disableOverflow={isPageMode}>
             <div className='space-y-12px'>
               {visibleMcpServers.map((server) => (
                 <McpServerItem
@@ -233,7 +230,7 @@ const ModalMcpManagementSection: React.FC<{
                 />
               ))}
             </div>
-          </AionScrollArea>
+          </BbScrollArea>
         )}
       </div>
 
@@ -488,12 +485,12 @@ const ToolsModalContent: React.FC = () => {
       {mcpMessageContext}
 
       {/* Content Area */}
-      <AionScrollArea className='flex-1 min-h-0 pb-16px' disableOverflow={isPageMode}>
+      <BbScrollArea className='flex-1 min-h-0 pb-16px' disableOverflow={isPageMode}>
         <div className='space-y-16px'>
           {/* MCP 工具配置 */}
           <div className='px-[12px] md:px-[32px] py-[24px] bg-2 rd-12px md:rd-16px flex flex-col min-h-0 border border-border-2'>
             <div className='flex-1 min-h-0'>
-              <AionScrollArea
+              <BbScrollArea
                 className={classNames('h-full', isPageMode && 'overflow-visible')}
                 disableOverflow={isPageMode}
               >
@@ -505,7 +502,7 @@ const ToolsModalContent: React.FC = () => {
                   saveMcpServers={saveMcpServers}
                   isPageMode={isPageMode}
                 />
-              </AionScrollArea>
+              </BbScrollArea>
             </div>
           </div>
           {/* 图像生成 */}
@@ -543,7 +540,7 @@ const ToolsModalContent: React.FC = () => {
                 }
               >
                 {imageGenerationModelList.length > 0 ? (
-                  <AionSelect
+                  <BbSelect
                     value={
                       imageGenerationModel?.id && imageGenerationModel?.use_model
                         ? `${imageGenerationModel.id}|${imageGenerationModel.use_model}`
@@ -561,15 +558,15 @@ const ToolsModalContent: React.FC = () => {
                     }}
                   >
                     {imageGenerationModelList.map(({ models, ...platform }) => (
-                      <AionSelect.OptGroup label={platform.name} key={platform.id}>
+                      <BbSelect.OptGroup label={platform.name} key={platform.id}>
                         {models.map((modelName) => (
-                          <AionSelect.Option key={platform.id + modelName} value={platform.id + '|' + modelName}>
+                          <BbSelect.Option key={platform.id + modelName} value={platform.id + '|' + modelName}>
                             {modelName}
-                          </AionSelect.Option>
+                          </BbSelect.Option>
                         ))}
-                      </AionSelect.OptGroup>
+                      </BbSelect.OptGroup>
                     ))}
-                  </AionSelect>
+                  </BbSelect>
                 ) : (
                   <div className='text-t-secondary flex items-center'>
                     {t('settings.noAvailable')}
@@ -615,7 +612,7 @@ const ToolsModalContent: React.FC = () => {
             </Form>
           </div>
         </div>
-      </AionScrollArea>
+      </BbScrollArea>
     </div>
   );
 };

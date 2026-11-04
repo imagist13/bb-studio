@@ -28,7 +28,7 @@ describe('parseSessionsBlock', () => {
     // The backend persists the block VERBATIM into the user's own message, so
     // failing to strip it shows raw markers in the sender's own bubble.
     const content = 'hi\n\n[[BB_SESSIONS]]\nA\tconv_1\tworkspace: same\n[[/BB_SESSIONS]]';
-    expect(parseSessionsBlock(content).text).not.toContain('AION_SESSIONS');
+    expect(parseSessionsBlock(content).text).not.toContain('BB_SESSIONS');
   });
 
   it('leaves a message without the block untouched', () => {
@@ -148,7 +148,7 @@ describe('parseSessionMessageBlock', () => {
       '',
       'body',
     ].join('\n');
-    expect(parseSessionMessageBlock(content).text).not.toContain('AION_SESSION_MESSAGE');
+    expect(parseSessionMessageBlock(content).text).not.toContain('BB_SESSION_MESSAGE');
   });
 });
 

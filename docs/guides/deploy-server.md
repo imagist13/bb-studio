@@ -21,7 +21,7 @@ Deploy BBUI WebUI on headless Linux servers — cloud VMs, Kubernetes Pods, and 
 
 - Linux x86_64 (Ubuntu 20.04+ / Debian 11+ recommended)
 - At least 2GB RAM
-- BBUI `.deb` package from [Releases](https://github.com/iOfficeAI/AionUi/releases)
+- BBUI `.deb` package from [Releases](https://github.com/imagist13/bb-studio/releases)
 
 ---
 
@@ -29,7 +29,7 @@ Deploy BBUI WebUI on headless Linux servers — cloud VMs, Kubernetes Pods, and 
 
 ```bash
 # Download the latest .deb package
-wget https://github.com/iOfficeAI/AionUi/releases/latest/download/BBUI-linux-amd64.deb
+wget https://github.com/imagist13/bb-studio/releases/latest/download/BBUI-linux-amd64.deb
 
 # Install
 sudo dpkg -i BBUI-linux-amd64.deb
@@ -267,8 +267,8 @@ For Gemini API calls, configure the proxy inside BBUI WebUI:
 
 | Issue                                     | Solution                                                     |
 | ----------------------------------------- | ------------------------------------------------------------ |
-| `dpkg` dependency errors in containers    | `dpkg --force-all -i BBUI-linux-amd64.deb`                 |
-| BBUI can only access `/tmp`             | Set `WORKDIR` in the startup script to your workspace path   |
+| `dpkg` dependency errors in containers    | `dpkg --force-all -i BBUI-linux-amd64.deb`                   |
+| BBUI can only access `/tmp`               | Set `WORKDIR` in the startup script to your workspace path   |
 | WebUI not accessible remotely             | Check firewall rules, or use ngrok / SSH tunnel              |
 | All requests fail when proxy is down      | Use PAC file (`--proxy-pac-url`) instead of `--proxy-server` |
 | `curl` fails after SSH tunnel disconnects | Add `PROMPT_COMMAND` auto-detect to `~/.bashrc` (see Step 3) |
@@ -324,13 +324,13 @@ For Gemini API calls, configure the proxy inside BBUI WebUI:
 
 - Linux x86_64（推荐 Ubuntu 20.04+ / Debian 11+）
 - 至少 2GB 内存
-- BBUI `.deb` 安装包（[下载地址](https://github.com/iOfficeAI/AionUi/releases)）
+- BBUI `.deb` 安装包（[下载地址](https://github.com/imagist13/bb-studio/releases)）
 
 ## 安装
 
 ```bash
 # 下载最新 .deb 包
-wget https://github.com/iOfficeAI/AionUi/releases/latest/download/BBUI-linux-amd64.deb
+wget https://github.com/imagist13/bb-studio/releases/latest/download/BBUI-linux-amd64.deb
 
 # 安装
 sudo dpkg -i BBUI-linux-amd64.deb
@@ -497,7 +497,7 @@ PROMPT_COMMAND="_auto_proxy;${PROMPT_COMMAND}"
 | 问题                   | 解决方案                              |
 | ---------------------- | ------------------------------------- |
 | 容器内 dpkg 依赖报错   | `dpkg --force-all -i` 强制安装        |
-| BBUI 只能访问 /tmp   | 修改启动脚本中的 `WORKDIR`            |
+| BBUI 只能访问 /tmp     | 修改启动脚本中的 `WORKDIR`            |
 | 远程无法访问 WebUI     | 检查防火墙/安全组，或使用 ngrok       |
 | 代理断开后所有请求失败 | 用 PAC 文件替代 `--proxy-server`      |
 | SSH 断开后 curl 失败   | bashrc 添加 `PROMPT_COMMAND` 自动检测 |

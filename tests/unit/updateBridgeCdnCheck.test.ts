@@ -102,7 +102,7 @@ const GITHUB_RELEASES = [
     tag_name: 'v2.1.45',
     name: 'v2.1.45',
     body: 'changelog body',
-    html_url: 'https://github.com/iOfficeAI/AionUi/releases/tag/v2.1.45',
+    html_url: 'https://github.com/imagist13/bb-studio/releases/tag/v2.1.45',
     prerelease: false,
     draft: false,
     assets: [],
@@ -162,7 +162,7 @@ describe('update.check CDN-first', () => {
     expect(res.data?.updateAvailable).toBe(true);
     expect(res.data?.latest?.version).toBe('2.1.45');
     expect(res.data?.latest?.body).toBe('changelog body');
-    expect(res.data?.latest?.htmlUrl).toBe('https://github.com/iOfficeAI/AionUi/releases/tag/v2.1.45');
+    expect(res.data?.latest?.htmlUrl).toBe('https://github.com/imagist13/bb-studio/releases/tag/v2.1.45');
     expect(res.data?.latest?.recommendedAsset?.url).toBe(
       'https://static.bbui.dev/releases/2.1.45/BBUI-2.1.45-mac-arm64.dmg'
     );

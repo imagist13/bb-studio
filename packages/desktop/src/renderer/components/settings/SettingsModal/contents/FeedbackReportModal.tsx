@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import AionModal from '@renderer/components/base/AionModal';
+import BbModal from '@renderer/components/base/BbModal';
 import { FEEDBACK_MODULES } from './feedbackModules';
 import { useTalkToButler } from '@/renderer/hooks/assistant/useTalkToButler';
 import { useAuth } from '@/renderer/hooks/context/AuthContext';
@@ -339,7 +339,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({
   }, [handlePaste, visible]);
 
   return (
-    <AionModal
+    <BbModal
       variant='standard'
       header={{ title: t('settings.bugReportTitle'), showClose: true }}
       visible={visible}
@@ -387,7 +387,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({
       className='w-[min(600px,calc(100vw-32px))] max-w-600px'
       autoFocus={false}
       // The feedback modal is global and may be opened from inside another
-      // AionModal (e.g. the Agent editor). Arco's default z-index stacks
+      // BbModal (e.g. the Agent editor). Arco's default z-index stacks
       // modals in mount order, which leaves the feedback modal under the
       // pre-existing modal when both are open. Bump wrap+mask above the
       // standard 1001 so feedback always appears on top.
@@ -479,7 +479,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({
           ) : null}
         </div>
       </div>
-    </AionModal>
+    </BbModal>
   );
 };
 

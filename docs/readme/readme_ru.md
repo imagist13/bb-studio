@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/iOfficeAI/AionUi?style=flat-square&color=32CD32" alt="Version">
+  <img src="https://img.shields.io/github/v/release/imagist13/bb-studio?style=flat-square&color=32CD32" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-32CD32?style=flat-square&logo=apache&logoColor=white" alt="License">
   &nbsp;
@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/⬇️%20Download%20Now-Latest%20Release-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Download Latest Release" height="50">
   </a>
 </p>
@@ -106,7 +106,7 @@ BBUI поставляется с полноценным движком ИИ-аг
 
 ### **Офисные ассистенты — PPT, Word и Excel**
 
-Эти направления соответствуют тому, что приложение действительно предоставляет: предустановки **Morph PPT** и навыки **`pptx` / `docx` / `xlsx`**. Канонические [определения ассистентов](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) и [встроенные навыки](https://github.com/iOfficeAI/AionCore/tree/main/crates/bb-app/assets/builtin-skills) поддерживаются в BBCore. Нужен вывод в документы или таблицы? Встроенный **[OfficeCLI](https://github.com/iOfficeAI/OfficeCLI)** помогает превратить запрос в готовый PPT (Morph), Word (`.docx`) и Excel (`.xlsx/.xlsm/.csv`) быстрее и надёжнее.
+Эти направления соответствуют тому, что приложение действительно предоставляет: предустановки **Morph PPT** и навыки **`pptx` / `docx` / `xlsx`**. Канонические [определения ассистентов](https://github.com/imagist13/bb-agent-core/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) и [встроенные навыки](https://github.com/imagist13/bb-agent-core/tree/main/crates/bb-app/assets/builtin-skills) поддерживаются в BBCore. Нужен вывод в документы или таблицы? Встроенный **[OfficeCLI](https://github.com/iOfficeAI/OfficeCLI)** помогает превратить запрос в готовый PPT (Morph), Word (`.docx`) и Excel (`.xlsx/.xlsm/.csv`) быстрее и надёжнее.
 Три типа ассистентов соответствуют файловым рабочим процессам, а итоговые файлы можно сразу редактировать и использовать повторно.
 
 #### **Ассистент PPT**
@@ -163,7 +163,7 @@ BBUI поставляется с полноценным движком ИИ-аг
 
 Если вы уже используете Claude Code, Codex, Hermes Agent или OpenClaw, BBUI автоматически обнаружит их и позволит работать со всеми ними вместе со встроенным агентом.
 
-**Поддерживаемые агенты:** Встроенный агент (на встроенном движке [bbrs](https://github.com/iOfficeAI/bbrs)) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity и другие
+**Поддерживаемые агенты:** Встроенный агент (на встроенном движке [bbrs](https://github.com/imagist13/bbrs)) • Claude Code • Codex • Qwen Code • Gemini CLI • Goose • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder • Mistral Vibe • Nanobot • Snow • Hermes • Cursor Agent • Pi • MiMo Code • omp • Antigravity и другие
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -184,7 +184,7 @@ BBUI поставляется с полноценным движком ИИ-аг
 </p>
 
 - **Параллельное выполнение нескольких агентов** — Leader разбивает и делегирует задачи Teammate-агентам; внешние агенты подключаются через ACP (Agent Client Protocol), а BBUI координирует команду
-- **Оркестрация Leader** — Leader назначает, отслеживает и агрегирует результаты; поддерживаемые бэкенды: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI, Aion CLI
+- **Оркестрация Leader** — Leader назначает, отслеживает и агрегирует результаты; поддерживаемые бэкенды: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI, bbrs
 - **Изолированное рабочее пространство команды** — все агенты совместно используют одну папку; у каждого есть свой диалог подтверждения разрешений с бейджем на боковой панели для ожидающих подтверждений
 
 <details>
@@ -193,7 +193,7 @@ BBUI поставляется с полноценным движком ИИ-аг
 <br>
 
 - **Общее рабочее пространство** — все агенты читают/записывают одну папку; файловая панель остаётся видимой на протяжении всего процесса
-- **Поддерживаемые бэкенды** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI (bbrs); другие ACP-бэкенды с `mcpCapabilities.stdio` поддерживаются автоматически
+- **Поддерживаемые бэкенды** — Claude Code, Codex, Gemini, Snow CLI, bbrs; другие ACP-бэкенды с `mcpCapabilities.stdio` поддерживаются автоматически
 - **Динамическое масштабирование** — добавляйте или удаляйте Teammate-агентов во время работы команды; молчащие агенты автоматически переходят в статус failed с возможностью удаления в один клик
 - **Детальные разрешения** — у каждого агента есть собственный диалог подтверждения разрешений; бейдж на боковой панели показывает ожидающие подтверждения
 - **Обмен файлами** — Leader может передавать вложения файлов Teammate-агентам
@@ -206,14 +206,14 @@ BBUI поставляется с полноценным движком ИИ-аг
 
 Другие ИИ-приложения дают вам чат с вашим API-ключом. **BBUI даёт полноценного Cowork-агента.**
 
-| Ваш API-ключ                  | Что вы получаете                       |
-| :---------------------------- | :------------------------------------- |
-| API-ключ Gemini               | Cowork-агент на базе Gemini            |
-| API-ключ OpenAI               | Cowork-агент на базе GPT               |
-| API-ключ Anthropic            | Cowork-агент на базе Claude            |
-| Учётные данные AWS Bedrock    | Агент на Bedrock через Aion CLI (bbrs) |
-| Ollama / LM Studio (локально) | Локальный Cowork-агент                 |
-| NewAPI Gateway                | Единый доступ к 20+ моделям            |
+| Ваш API-ключ                  | Что вы получаете            |
+| :---------------------------- | :-------------------------- |
+| API-ключ Gemini               | Cowork-агент на базе Gemini |
+| API-ключ OpenAI               | Cowork-агент на базе GPT    |
+| API-ключ Anthropic            | Cowork-агент на базе Claude |
+| Учётные данные AWS Bedrock    | Агент на Bedrock через bbrs |
+| Ollama / LM Studio (локально) | Локальный Cowork-агент      |
+| NewAPI Gateway                | Единый доступ к 20+ моделям |
 
 Одни и те же возможности — чтение/запись файлов, поиск в интернете, генерация изображений, использование инструментов — независимо от того, какая модель лежит в основе. BBUI поддерживает **30+ ИИ-платформ**, включая облачные сервисы и локальные развёртывания.
 
@@ -284,7 +284,7 @@ BBUI включает **21 профессиональный ассистент**
 
 **Пользовательские навыки**: импортируйте или создавайте навыки в **Настройки → Skills**, затем назначайте их нужным ассистентам. Навыки поступают из трёх источников: встроенные, пользовательские и Extension. Встроенные навыки включают `pptx`, `docx`, `pdf`, `xlsx`, `mermaid` и другие.
 
-> 💡 Канонические встроенные определения находятся в [каталоге ассистентов](https://github.com/iOfficeAI/AionCore/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) BBCore. Правила остаются в Markdown и настраиваются в BBUI.
+> 💡 Канонические встроенные определения находятся в [каталоге ассистентов](https://github.com/imagist13/bb-agent-core/blob/main/crates/bb-app/assets/builtin-assistants/assistants.json) BBCore. Правила остаются в Markdown и настраиваются в BBUI.
 
 </details>
 
@@ -641,7 +641,7 @@ BBUI — это **бесплатное open-source десктопное прил
 ### Установка
 
 <p>
-  <a href="https://github.com/iOfficeAI/AionUi/releases">
+  <a href="https://github.com/imagist13/bb-studio/releases">
     <img src="https://img.shields.io/badge/Download-Latest%20Release-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Download Latest Release" height="50">
   </a>
 </p>
@@ -704,7 +704,7 @@ brew install bb
 
 - [GitHub Discussions](https://github.com/iOfficeAI/AionUi/discussions) — делитесь идеями и обменивайтесь советами
 - [Сообщить о проблемах](https://github.com/iOfficeAI/AionUi/issues) — ошибки и запросы функций
-- [Обновления релизов](https://github.com/iOfficeAI/AionUi/releases) — получите последнюю версию
+- [Обновления релизов](https://github.com/imagist13/bb-studio/releases) — получите последнюю версию
 - [Сообщество Discord](https://discord.gg/2QAwJn7Egx) — англоязычное сообщество
 - [Группа WeChat](../../resources/wx-26.png) — китайское сообщество
 
