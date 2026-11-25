@@ -195,12 +195,9 @@ class AutoUpdaterService extends EventEmitter {
   private ensureDevUpdateConfig(): void {
     try {
       const cdnFeedOptions = buildCdnFeedOptions();
-      const devConfig = [
-        'provider: generic',
-        `url: ${cdnFeedOptions.url}`,
-        'updaterCacheDirName: com.bb.app',
-        '',
-      ].join('\n');
+      const devConfig = ['provider: generic', `url: ${cdnFeedOptions.url}`, 'updaterCacheDirName: com.bb.app', ''].join(
+        '\n'
+      );
       const configPath = path.join(app.getPath('userData'), 'dev-app-update.yml');
       fs.writeFileSync(configPath, devConfig, 'utf-8');
       autoUpdater.updateConfigPath = configPath;

@@ -339,9 +339,7 @@ describe('verifyBundledBbcoreResources', () => {
       targetArch: 'x64',
     });
 
-    expect(result.missing).toContain(
-      'bundled-bbcore/win32-x64/managed-resources/node/node-v24.11.0-win-x64/node.exe'
-    );
+    expect(result.missing).toContain('bundled-bbcore/win32-x64/managed-resources/node/node-v24.11.0-win-x64/node.exe');
   });
 
   it('ignores unknown contract fields but rejects duplicate cli names', () => {

@@ -298,10 +298,7 @@ export async function captureBackendStartupFailure(error: unknown): Promise<void
         ),
       ],
       ['bb.backend_startup.health_attempts_bucket', getHealthAttemptBucket(details?.healthCheckAttempts)],
-      [
-        'bb.backend_startup.health_attempt_deficit_bucket',
-        getHealthAttemptBucket(details?.healthCheckAttemptDeficit),
-      ],
+      ['bb.backend_startup.health_attempt_deficit_bucket', getHealthAttemptBucket(details?.healthCheckAttemptDeficit)],
       ['bb.backend_startup.health_timeout_overrun_bucket', getDurationBucket(details?.healthCheckTimeoutOverrunMs)],
       ['bb.backend_startup.health_max_attempt_gap_bucket', getDurationBucket(details?.healthCheckMaxAttemptGapMs)],
       [
