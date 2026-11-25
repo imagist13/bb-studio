@@ -4,7 +4,7 @@ import type { IProvider } from '@/common/config/storage';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import useSWR, { type SWRConfiguration } from 'swr';
 import { useGoogleAuthModels } from './useGoogleAuthModels';
-import { hasSpecificModelCapability } from '@/renderer/utils/model/modelCapabilities';
+import { getProviderAvailableModels } from '@/common/utils/modelCapabilities';
 
 export interface ModelProviderListResult {
   providers: IProvider[];
@@ -55,18 +55,7 @@ export const useModelProviderList = (): ModelProviderListResult => {
     if (cache.has(cacheKey)) {
       return cache.get(cacheKey)!;
     }
-    const result: string[] = [];
-    for (const modelName of provider.models || []) {
-      // 检查模型是否被禁用（默认为启用）
-      const isModelEnabled = provider.model_enabled?.[modelName] !== false;
-      if (!isModelEnabled) continue;
-
-      const functionCalling = hasSpecificModelCapability(provider, modelName, 'function_calling');
-      const excluded = hasSpecificModelCapability(provider, modelName, 'excludeFromPrimary');
-      if ((functionCalling === true || functionCalling === undefined) && excluded !== true) {
-        result.push(modelName);
-      }
-    }
+    const result = getProviderAvailableModels(provider);
     cache.set(cacheKey, result);
     return result;
   }, []);

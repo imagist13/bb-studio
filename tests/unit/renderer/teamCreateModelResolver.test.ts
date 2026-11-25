@@ -7,6 +7,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const getAssistantMock = vi.fn();
+const listProvidersMock = vi.fn();
 
 vi.mock('@/common', () => ({
   ipcBridge: {
@@ -15,14 +16,21 @@ vi.mock('@/common', () => ({
         invoke: (...args: unknown[]) => getAssistantMock(...args),
       },
     },
+    mode: {
+      listProviders: {
+        invoke: (...args: unknown[]) => listProvidersMock(...args),
+      },
+    },
   },
 }));
 
 import { resolveDefaultTeamAgentModel } from '@/renderer/pages/team/components/teamCreateModelResolver';
+import { TeamModelUnavailableError } from '@/renderer/pages/conversation/utils/conversationCreateError';
 
 describe('resolveDefaultTeamAgentModel', () => {
   beforeEach(() => {
     getAssistantMock.mockReset();
+    listProvidersMock.mockReset();
   });
 
   it('prefers the assistant fixed default model over agent-level fallbacks', async () => {
@@ -133,12 +141,50 @@ describe('resolveDefaultTeamAgentModel', () => {
     ).resolves.toBe('');
   });
 
-  it('keeps the default placeholder for bbrs assistants', async () => {
+  it('resolves a bbrs assistant to the first model an enabled provider offers', async () => {
+    listProvidersMock.mockResolvedValue([
+      { id: 'google', platform: 'gemini-with-google-auth', models: ['gemini-2.5-pro'], enabled: true },
+      { id: 'disabled', platform: 'openai', models: ['gpt-5.4'], enabled: false },
+      { id: 'prov-1', platform: 'openai', models: ['gpt-4o', 'gpt-5.4'], enabled: true },
+    ]);
+
     await expect(
       resolveDefaultTeamAgentModel({
         assistant_backend: 'bbrs',
       })
-    ).resolves.toBe('default');
+    ).resolves.toBe('gpt-4o');
+
+    expect(listProvidersMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('skips models the user disabled or that cannot carry a conversation', async () => {
+    listProvidersMock.mockResolvedValue([
+      {
+        id: 'prov-1',
+        platform: 'openai',
+        models: ['dall-e-3', 'gpt-4o'],
+        enabled: true,
+        model_enabled: { 'gpt-4o': false },
+      },
+      { id: 'prov-2', platform: 'anthropic', models: ['claude-sonnet-4-5-20250514'], enabled: true },
+    ]);
+
+    await expect(
+      resolveDefaultTeamAgentModel({
+        assistant_backend: 'bbrs',
+      })
+    ).resolves.toBe('claude-sonnet-4-5-20250514');
+  });
+
+  it('rejects with an actionable error when no provider offers a bbrs model', async () => {
+    listProvidersMock.mockResolvedValue([]);
+
+    const result = resolveDefaultTeamAgentModel({
+      assistant_backend: 'bbrs',
+    });
+
+    await expect(result).rejects.toBeInstanceOf(TeamModelUnavailableError);
+    await expect(result).rejects.toMatchObject({ code: 'TEAM_MODEL_UNAVAILABLE' });
   });
 
   it('keeps the default placeholder for other ACP backends such as claude', async () => {

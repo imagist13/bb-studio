@@ -113,3 +113,27 @@ export const hasSpecificModelCapability = (
 
   return pattern.test(baseModelName) ? true : undefined;
 };
+
+/**
+ * Models a provider can actually run as a primary conversation model, in the
+ * provider's configured order.
+ *
+ * Filters out models the user disabled (`model_enabled`) and models that cannot
+ * carry a conversation (no function calling, or hidden from primary pickers).
+ * The model pickers and team-agent model resolution share this list so both
+ * resolve the same default.
+ */
+export const getProviderAvailableModels = (provider: IProvider): string[] => {
+  const result: string[] = [];
+  for (const modelName of provider.models || []) {
+    // 检查模型是否被禁用（默认为启用）
+    if (provider.model_enabled?.[modelName] === false) continue;
+
+    const functionCalling = hasSpecificModelCapability(provider, modelName, 'function_calling');
+    const excluded = hasSpecificModelCapability(provider, modelName, 'excludeFromPrimary');
+    if ((functionCalling === true || functionCalling === undefined) && excluded !== true) {
+      result.push(modelName);
+    }
+  }
+  return result;
+};

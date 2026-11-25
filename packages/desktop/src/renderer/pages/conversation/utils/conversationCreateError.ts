@@ -17,6 +17,20 @@ export type TeamAssistantCreateErrorCode =
 export type ConversationCreateErrorCode = 'WORKSPACE_PATH_UNAVAILABLE' | TeamAssistantCreateErrorCode;
 export type ConversationRuntimeWorkspaceErrorCode = 'WORKSPACE_PATH_RUNTIME_UNAVAILABLE';
 
+/**
+ * Raised before a team member exists: the assistant is bbrs-backed, but no
+ * enabled provider offers a model it could start on. Carries a code instead of
+ * user-facing text so the message stays translated at the display site.
+ */
+export class TeamModelUnavailableError extends Error {
+  readonly code = 'TEAM_MODEL_UNAVAILABLE';
+
+  constructor() {
+    super('No enabled provider offers a model for this bbrs team member');
+    this.name = 'TeamModelUnavailableError';
+  }
+}
+
 const BACKEND_ERROR_CODE_MAP: Record<string, WorkspacePathErrorCode> = {
   WORKSPACE_PATH_UNAVAILABLE: 'WORKSPACE_PATH_UNAVAILABLE',
   WORKSPACE_PATH_RUNTIME_UNAVAILABLE: 'WORKSPACE_PATH_RUNTIME_UNAVAILABLE',
@@ -162,6 +176,10 @@ export const normalizeConversationRuntimeWorkspaceErrorCode = (
 };
 
 export const getConversationCreateErrorMessage = (error: unknown, t: TFunction): string => {
+  if (error instanceof TeamModelUnavailableError) {
+    return t('conversation.noModelConfigured');
+  }
+
   const normalizedCode = normalizeConversationCreateErrorCode(error);
   const payload = getWorkspacePathErrorPayload(error);
   const workspacePath = getWorkspacePathFromErrorDetails(error);

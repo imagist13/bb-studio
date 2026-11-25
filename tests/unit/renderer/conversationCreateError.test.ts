@@ -1,10 +1,15 @@
 import type { TFunction } from 'i18next';
 import { describe, expect, it } from 'vitest';
 import { BackendHttpError } from '@/common/adapter/httpBridge';
-import { getConversationCreateErrorMessage } from '@/renderer/pages/conversation/utils/conversationCreateError';
+import {
+  getConversationCreateErrorMessage,
+  TeamModelUnavailableError,
+} from '@/renderer/pages/conversation/utils/conversationCreateError';
 
 const t = ((key: string, options?: Record<string, unknown>) => {
   switch (key) {
+    case 'conversation.noModelConfigured':
+      return 'No model configured. Please configure in settings.';
     case 'conversation.createError.codes.TEAM_ASSISTANT_ID_REQUIRED':
       return 'Please select an assistant before creating the team.';
     case 'conversation.createError.codes.TEAM_ASSISTANT_NOT_FOUND':
@@ -45,5 +50,11 @@ describe('getConversationCreateErrorMessage', () => {
     });
 
     expect(getConversationCreateErrorMessage(error, t)).toBe('Assistant bare:deadbeef is no longer available.');
+  });
+
+  it('localizes the client-side "no bbrs model available" failure', () => {
+    expect(getConversationCreateErrorMessage(new TeamModelUnavailableError(), t)).toBe(
+      'No model configured. Please configure in settings.'
+    );
   });
 });

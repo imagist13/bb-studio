@@ -5,7 +5,10 @@
  */
 
 import { ipcBridge } from '@/common';
+import type { IProvider } from '@/common/config/storage';
 import { assistantRuntimeKey, type AssistantDetail } from '@/common/types/agent/assistantTypes';
+import { getProviderAvailableModels } from '@/common/utils/modelCapabilities';
+import { TeamModelUnavailableError } from '@renderer/pages/conversation/utils/conversationCreateError';
 
 /**
  * Resolve the `model` value a team agent should send to `POST /api/teams`.
@@ -100,6 +103,26 @@ async function resolveGeminiDefaultModel(): Promise<string> {
   return 'auto';
 }
 
+/**
+ * bbrs has no model of its own: it runs on a provider the user configured.
+ * Pick the first model the provider list offers, the same rule the cron task
+ * dialog and the backend's provider matching use. Never send a placeholder —
+ * a fabricated id such as "default" is not offered by any provider, so the
+ * member is created and then fails to start with "Provider '…' not found".
+ */
 async function resolveBbrsDefaultModel(): Promise<string> {
-  return 'default';
+  const providers = ((await ipcBridge.mode.listProviders.invoke()) ?? []) as IProvider[];
+
+  for (const provider of providers) {
+    if (provider.enabled === false) continue;
+    // bbrs cannot run on Google-auth providers; they have their own catalogue.
+    if (provider.platform?.toLowerCase().includes('gemini-with-google-auth')) continue;
+
+    const models = getProviderAvailableModels(provider);
+    if (models.length > 0) {
+      return models[0];
+    }
+  }
+
+  throw new TeamModelUnavailableError();
 }
