@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitest/config';
+import { availableParallelism } from 'node:os';
 import path from 'path';
 
 const aliases = {
@@ -20,6 +21,18 @@ export default defineConfig({
     // CI runners (especially windows-2022) can be slow enough that dom tests
     // rendering heavy components occasionally exceed the local 10s budget.
     testTimeout: process.env.CI ? 30000 : 10000,
+    // Cap the local worker pool for BOTH projects. Vitest sizes each project's
+    // pool independently, so the root value is per project: the node and dom
+    // projects run concurrently, and the effective process count is double the
+    // number here. The dom project imports the whole renderer graph per test
+    // file; on many-core machines Vitest's CPU-derived sizing lets the two
+    // pools oversubscribe the box (import/transform thrash, page-file pressure)
+    // and the heavy preview smoke tests (PreviewPanel, OfficeWatchViewer) blow
+    // their 10s/30s import budget only in the full concurrent run — they pass
+    // in isolation and in a dom-only run. Four per pool keeps the total at eight
+    // workers, which the dom project alone handled with room to spare. CI keeps
+    // Vitest's default sizing.
+    maxWorkers: process.env.CI ? undefined : Math.min(4, Math.max(1, Math.floor(availableParallelism() / 4))),
     // Use projects to run different environments (Vitest 4+)
     projects: [
       // Node environment tests (existing tests)

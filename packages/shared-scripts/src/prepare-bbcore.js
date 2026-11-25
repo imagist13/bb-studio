@@ -72,7 +72,32 @@ function copyFileSafe(sourcePath, targetPath) {
 
 function copyDirectorySafe(sourcePath, targetPath) {
   ensureDirectory(path.dirname(targetPath));
-  fs.cpSync(sourcePath, targetPath, { recursive: true, force: true });
+  copyTree(sourcePath, targetPath);
+}
+
+/**
+ * Recursive directory copy, entry by entry.
+ *
+ * Deliberately not `fs.cpSync`: on Windows its recursive copy aborts on paths
+ * containing non-ASCII characters (`EIO, Access is denied` or a 0xC0000409
+ * fast-fail), which is common for profile temp roots such as
+ * `C:\Users\赵雷\AppData\Local\Temp`. Plain mkdir/copyFile calls handle those
+ * paths. Non-regular entries fail loudly — a bundle should contain only files
+ * and directories, and silently skipping one would ship an incomplete bundle.
+ */
+function copyTree(sourcePath, targetPath) {
+  ensureDirectory(targetPath);
+  for (const entry of fs.readdirSync(sourcePath, { withFileTypes: true })) {
+    const from = path.join(sourcePath, entry.name);
+    const to = path.join(targetPath, entry.name);
+    if (entry.isDirectory()) {
+      copyTree(from, to);
+    } else if (entry.isFile()) {
+      copyFileSafe(from, to);
+    } else {
+      throw new Error(`Unsupported entry while copying bbcore bundle: ${from}`);
+    }
+  }
 }
 
 function ensureExecutableMode(filePath) {

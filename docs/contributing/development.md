@@ -10,6 +10,8 @@
 
 On Windows, install the Rust MSVC toolchain. If Rust compilation fails because native build tools are missing, install **Microsoft C++ Build Tools** from the Visual Studio installer, then reopen your terminal.
 
+Windows also refuses to create symlinks unless **Developer Mode** is enabled (Settings → System → For developers) or the shell runs with the `Create symbolic links` privilege. The unit suite creates real symlinks in `tests/unit/common/imageGenCore.test.ts` to verify workspace containment; without Developer Mode those tests fail with `EPERM: operation not permitted, symlink`. Enabling Developer Mode is enough — no restart or extra setup is needed.
+
 ## Repository Layout
 
 BBUI development uses two repositories:
