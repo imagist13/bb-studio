@@ -72,6 +72,11 @@ export const FEEDBACK_MODULES = [
     tag: 'agent-team',
   },
   {
+    i18nKey: 'settings.bugReportModuleEda',
+    descriptionI18nKey: 'settings.bugReportModuleEdaDescription',
+    tag: 'eda-workbench',
+  },
+  {
     i18nKey: 'settings.bugReportModuleDisplaySettings',
     descriptionI18nKey: 'settings.bugReportModuleDisplaySettingsDescription',
     tag: 'display-desktop',

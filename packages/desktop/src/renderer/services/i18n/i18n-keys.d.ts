@@ -1900,6 +1900,8 @@ export type I18nKey =
   | 'settings.bugReportModuleChatDescription'
   | 'settings.bugReportModuleDisplaySettings'
   | 'settings.bugReportModuleDisplaySettingsDescription'
+  | 'settings.bugReportModuleEda'
+  | 'settings.bugReportModuleEdaDescription'
   | 'settings.bugReportModuleLabel'
   | 'settings.bugReportModuleLlmConfig'
   | 'settings.bugReportModuleLlmConfigDescription'
