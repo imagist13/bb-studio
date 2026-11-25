@@ -187,7 +187,7 @@ describe('captureBackendStartupFailure', () => {
         isPackaged: true,
         runtimeKey: 'win32-x64',
         binaryName: 'bbcore.exe',
-        resourcesPath: 'C:\\Users\\alice\\AppData\\Local\\Programs\\BBUI\\resources',
+        resourcesPath: 'C:\\Users\\alice\\AppData\\Local\\Programs\\bb\\resources',
         bundledDirExists: false,
         runtimeDirExists: false,
         resourcesDirEntries: [

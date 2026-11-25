@@ -201,8 +201,8 @@ describe('Layout sider brand Home button', () => {
     sessionStorage.setItem('bb:last-non-settings-path', '/conversation/abc');
     const { container } = renderLayout();
 
-    // The icon is the SVG-wrapping div (bg-black), separate from the wordmark.
-    const icon = container.querySelector('.bg-black') as HTMLElement;
+    // The icon is the image-wrapping div, separate from the wordmark.
+    const icon = container.querySelector('[data-testid="sider-brand-icon"]') as HTMLElement;
     expect(icon).toBeTruthy();
     for (let i = 0; i < 4; i++) fireEvent.click(icon);
     expect(openDevTools).toHaveBeenCalled();

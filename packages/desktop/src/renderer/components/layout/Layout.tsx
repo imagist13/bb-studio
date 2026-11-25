@@ -407,6 +407,7 @@ const Layout: React.FC<{
                   className={classNames('shrink-0 size-32px relative', {
                     '!size-24px': collapsed,
                   })}
+                  data-testid='sider-brand-icon'
                   onClick={onClick}
                 >
                   <img src={brandLogo} alt='BBUI' className='size-full object-contain select-none' draggable={false} />

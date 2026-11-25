@@ -203,7 +203,7 @@ describe('updateBridge CDN URL rewriting', () => {
       const handler = await getCheckHandler();
       const result = await handler({ repo: 'imagist13/bb-studio' });
       const asset = result.data?.latest?.assets?.[0];
-      expect(asset?.url).toMatch(/^https:\/\/static\.bb\.com\/releases\/1\.9\.22\//);
+      expect(asset?.url).toMatch(/^https:\/\/static\.bbui\.dev\/releases\/1\.9\.22\//);
       expect(asset?.url).not.toMatch(/\/v1\.9\.22\//);
     } finally {
       vi.unstubAllGlobals();
