@@ -1,0 +1,120 @@
+{
+  "nav": "EDA Workbench",
+  "title": "EDA Workbench",
+  "description": "Follow a chip from contract to silicon: topology, Ball gates, runs and waveform evidence in one place.",
+  "tabs": {
+    "overview": "Overview",
+    "chips": "Chips",
+    "balls": "Balls",
+    "waveforms": "Waveforms",
+    "advanced": "Advanced"
+  },
+  "common": {
+    "ball": "Ball",
+    "core": "Core",
+    "kind": "Kind",
+    "mock": "mock",
+    "mockLog": "mock log",
+    "open": "Open"
+  },
+  "actions": {
+    "askAgent": "Ask agent",
+    "explain": "Explain",
+    "rerunFrom": "Rerun from {{stage}}",
+    "runGate": "Run gate",
+    "runSim": "Run simulation"
+  },
+  "overview": {
+    "stats": {
+      "chips": "Chips",
+      "balls": "Balls",
+      "running": "Running",
+      "passRate": "Gate pass rate"
+    },
+    "jobs": {
+      "streaming": "streaming"
+    },
+    "needsYou": "Needs you",
+    "blockedAt": "blocked at {{stage}}",
+    "activeJobs": "Active jobs",
+    "noActiveJobs": "No jobs running. Start a simulation or a gate run.",
+    "recent": "Recent",
+    "allBalls": "All balls",
+    "ballStageOverview": "Ball stage overview",
+    "legend": {
+      "pass": "pass",
+      "failed": "failed",
+      "blocked": "blocked"
+    },
+    "agentHint": "The agent can read the same run and stage data and propose the next gate to fix.",
+    "agentPrompt": "chip={{chip}}: which balls are blocked, and what should I run next?"
+  },
+  "chips": {
+    "filter": "Filter chips…",
+    "noMatch": "No chips match",
+    "count": "{{count}} chips",
+    "openAdvanced": "Open in Advanced",
+    "cores": "{{count}} cores",
+    "tiles": "{{count}} tiles",
+    "balls": "{{count}} balls",
+    "designs": "Designs",
+    "tilesTab": "Tiles",
+    "targets": "Scala targets",
+    "design": "Design",
+    "kind": "Kind",
+    "modules": "Modules",
+    "owner": "Owner",
+    "status": "Status",
+    "ballCount": "{{count}} balls",
+    "agentHint": "Ask the agent to compare this topology against the mesh_shm contract.",
+    "agentPrompt": "chip={{chip}} ({{cores}} cores, {{tiles}} tiles): review the topology and the mesh_shm connection contract."
+  },
+  "balls": {
+    "filter": "Filter balls…",
+    "empty": "No balls available.",
+    "count": "{{count}} balls",
+    "gateBoard": "5-stage gate",
+    "grayHint": "Stage blocked — fix the upstream failure to continue.",
+    "redHint": "Gate failed — ask the agent for a patch, then rerun this stage.",
+    "agentPrompt": "Look at ball={{ball}} stage={{stage}}: what is the root cause and the next step?",
+    "explainPrompt": "Explain ball={{ball}} stage={{stage}} ({{metric}}) and tell me what to fix."
+  },
+  "waveforms": {
+    "files": "Waveform files",
+    "zoom": "zoom",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "fit": "Fit to window",
+    "signal": "signal",
+    "valueAt": "value @ t={{t}}",
+    "mid": "mid",
+    "cursor": "cursor",
+    "edgeStats": "edge stats",
+    "signals": "signals",
+    "transitions": "transitions",
+    "hidden": "hidden",
+    "agentPrompt": "Look at waveform {{file}} around t={{cursor}} and explain whether there is a conflict."
+  },
+  "advanced": {
+    "explorer": "Explorer",
+    "searchFiles": "Search files…",
+    "readOnly": "mock workspace · read-only",
+    "closeFile": "Close {{name}}",
+    "askAboutFile": "Ask agent about this file",
+    "filePrompt": "Look at {{path}} and explain the logic and potential issues.",
+    "toggleTerminal": "Toggle terminal",
+    "noFile": "no file open",
+    "openHint": "Open a file from the explorer.",
+    "terminal": "Terminal",
+    "problems": "Problems",
+    "output": "Output"
+  },
+  "chat": {
+    "toggle": "エージェントチャット",
+    "newChat": "新しいチャット",
+    "openInChat": "チャットページで開く",
+    "close": "閉じる",
+    "workspace": "ワークスペース",
+    "workspaceUnset": "ワークスペースを選択"
+  }
+}

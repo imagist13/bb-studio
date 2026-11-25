@@ -63,6 +63,12 @@ const ChatLayout: React.FC<{
   onRenameTitle?: (new_name: string) => Promise<boolean>;
   /** Optional override for the leading icon shown before the title (e.g. team Peoples icon) */
   headerLeading?: React.ReactNode;
+  /**
+   * Narrow host (e.g. the EDA dock): the title keeps a minimum width and the
+   * header actions shrink, so the model pill clips its label instead of pushing
+   * the title out of the header.
+   */
+  compactHeader?: boolean;
 }> = (props) => {
   const { conversation_id, workspacePath, isTemporaryWorkspace } = props;
   const { backend, presetAssistant, agent_name, workspaceEnabled = true, workspacePreferenceKey } = props;
@@ -199,10 +205,14 @@ const ChatLayout: React.FC<{
   const desktopHeader = (
     <ArcoLayout.Header
       className={classNames(
-        'min-h-44px flex items-center justify-between px-16px pt-8px pb-10px gap-16px !bg-1 chat-layout-header chat-layout-header--glass overflow-hidden'
+        'min-h-44px flex items-center justify-between px-16px pt-8px pb-10px gap-16px !bg-1 chat-layout-header chat-layout-header--glass overflow-hidden',
+        props.compactHeader && 'chat-layout-header--compact'
       )}
     >
-      <FlexFullContainer className='h-full min-w-0' containerClassName='flex items-center'>
+      <FlexFullContainer
+        className={classNames('h-full', props.compactHeader ? 'min-w-72px' : 'min-w-0')}
+        containerClassName='flex items-center'
+      >
         <ChatTitleEditor
           editingTitle={editingTitle}
           titleDraft={titleDraft}
@@ -228,7 +238,14 @@ const ChatLayout: React.FC<{
           }
         />
       </FlexFullContainer>
-      <div className='flex items-center gap-12px shrink-0'>{props.headerExtra}</div>
+      <div
+        className={classNames(
+          'chat-layout-header-actions flex items-center gap-12px',
+          props.compactHeader ? 'min-w-0' : 'shrink-0'
+        )}
+      >
+        {props.headerExtra}
+      </div>
     </ArcoLayout.Header>
   );
 

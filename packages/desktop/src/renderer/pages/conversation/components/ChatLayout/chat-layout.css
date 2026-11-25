@@ -62,6 +62,23 @@
   }
 }
 
+/* Compact header (narrow hosts such as the EDA dock): the title keeps the
+   width it is given and the actions give space back, so a long model name can
+   never push the title out or overflow the header. The pill clips its label
+   (and reveals the rest on hover through MarqueePillLabel). */
+.chat-layout-header--compact .chat-layout-header-actions {
+  min-width: 0;
+}
+
+.chat-layout-header--compact .header-model-btn {
+  max-width: 150px;
+  min-width: 0;
+}
+
+.chat-layout-header--compact .header-model-btn .arco-btn-content {
+  min-width: 0;
+}
+
 /* Mobile: conversation header pills */
 @media (max-width: 767px) {
   .agent-mode-compact-pill {

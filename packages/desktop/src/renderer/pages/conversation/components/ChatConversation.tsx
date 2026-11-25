@@ -146,10 +146,11 @@ const _AddNewConversation: React.FC<{ conversation: TChatConversation }> = ({ co
 
 type BbrsConversation = Extract<TChatConversation, { type: 'bbrs' }>;
 
-const BbrsConversationPanel: React.FC<{ conversation: BbrsConversation; sliderTitle: React.ReactNode }> = ({
-  conversation,
-  sliderTitle,
-}) => {
+const BbrsConversationPanel: React.FC<{
+  conversation: BbrsConversation;
+  sliderTitle: React.ReactNode;
+  compactHeader?: boolean;
+}> = ({ conversation, sliderTitle, compactHeader }) => {
   const runtimeView = useConversationRuntimeView(conversation.id);
   const onSelectModel = useCallback(
     async (_provider: IProvider, modelName: string) => {
@@ -233,6 +234,7 @@ const BbrsConversationPanel: React.FC<{ conversation: BbrsConversation; sliderTi
       ?.is_temporary_workspace,
     backend: 'bbrs' as const,
     presetAssistant: presetAssistantInfo ? { ...presetAssistantInfo, id: bbrsAssistantId } : undefined,
+    compactHeader,
   };
 
   const emptySlot = (
@@ -268,7 +270,12 @@ const BbrsConversationPanel: React.FC<{ conversation: BbrsConversation; sliderTi
 const ChatConversation: React.FC<{
   conversation?: TChatConversation;
   hideSendBox?: boolean;
-}> = ({ conversation, hideSendBox }) => {
+  /**
+   * Narrow host (e.g. the EDA dock): the conversation header's actions shrink so
+   * the title keeps a readable width instead of being pushed out.
+   */
+  compactHeader?: boolean;
+}> = ({ conversation, hideSendBox, compactHeader }) => {
   const [runtimeReadyConversationId, setRuntimeReadyConversationId] = useState<string | null>(null);
   const { t } = useTranslation();
   // Stable identity: the selector reports readiness from an effect keyed on this
@@ -389,7 +396,14 @@ const ChatConversation: React.FC<{
   }, [conversation, isBbrsConversation, isMobile, isLegacyReadOnlyConversation, resolvedConversationBackend]);
 
   if (conversation && conversation.type === 'bbrs') {
-    return <BbrsConversationPanel key={conversation.id} conversation={conversation} sliderTitle={sliderTitle} />;
+    return (
+      <BbrsConversationPanel
+        key={conversation.id}
+        conversation={conversation}
+        sliderTitle={sliderTitle}
+        compactHeader={compactHeader}
+      />
+    );
   }
 
   // 如果有预设助手信息，使用预设助手的 logo 和名称；加载中时不进入 fallback；否则使用 backend 的 logo
@@ -439,6 +453,7 @@ const ChatConversation: React.FC<{
         (conversation?.extra as { is_temporary_workspace?: boolean } | undefined)?.is_temporary_workspace
       }
       conversation_id={conversation?.id}
+      compactHeader={compactHeader}
     >
       {conversationNode}
     </ChatLayout>

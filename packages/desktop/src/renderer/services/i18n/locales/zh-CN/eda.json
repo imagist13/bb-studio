@@ -1,0 +1,120 @@
+{
+  "nav": "EDA 工作台",
+  "title": "EDA 工作台",
+  "description": "从契约走到流片：拓扑、Ball 门控、运行记录与波形证据都在一处。",
+  "tabs": {
+    "overview": "总览",
+    "chips": "芯片",
+    "balls": "Ball",
+    "waveforms": "波形",
+    "advanced": "高级"
+  },
+  "common": {
+    "ball": "Ball",
+    "core": "Core",
+    "kind": "类型",
+    "mock": "模拟",
+    "mockLog": "模拟日志",
+    "open": "打开"
+  },
+  "actions": {
+    "askAgent": "询问助手",
+    "explain": "解释",
+    "rerunFrom": "从 {{stage}} 重跑",
+    "runGate": "运行门控",
+    "runSim": "运行仿真"
+  },
+  "overview": {
+    "stats": {
+      "chips": "芯片",
+      "balls": "Ball",
+      "running": "运行中",
+      "passRate": "门控通过率"
+    },
+    "jobs": {
+      "streaming": "进行中"
+    },
+    "needsYou": "需要你处理",
+    "blockedAt": "阻塞于 {{stage}}",
+    "activeJobs": "运行中的任务",
+    "noActiveJobs": "没有运行中的任务。启动一次仿真或门控运行。",
+    "recent": "最近",
+    "allBalls": "全部 Ball",
+    "ballStageOverview": "Ball 阶段总览",
+    "legend": {
+      "pass": "通过",
+      "failed": "失败",
+      "blocked": "阻塞"
+    },
+    "agentHint": "助手能读取同一份运行与阶段数据，并给出下一步该修哪个门控。",
+    "agentPrompt": "chip={{chip}}：哪些 ball 卡住了？下一步应该跑什么？"
+  },
+  "chips": {
+    "filter": "筛选芯片…",
+    "noMatch": "没有匹配的芯片",
+    "count": "{{count}} 颗芯片",
+    "openAdvanced": "在高级中打开",
+    "cores": "{{count}} 个 core",
+    "tiles": "{{count}} 个 tile",
+    "balls": "{{count}} 个 Ball",
+    "designs": "设计",
+    "tilesTab": "Tiles",
+    "targets": "Scala 目标",
+    "design": "设计",
+    "kind": "类型",
+    "modules": "模块数",
+    "owner": "归属",
+    "status": "状态",
+    "ballCount": "{{count}} 个 Ball",
+    "agentHint": "让助手把这份拓扑与 mesh_shm 契约做对照。",
+    "agentPrompt": "chip={{chip}}（{{cores}} 个 core，{{tiles}} 个 tile）：检查拓扑与 mesh_shm 连接契约。"
+  },
+  "balls": {
+    "filter": "筛选 Ball…",
+    "empty": "没有可用的 Ball。",
+    "count": "{{count}} 个 Ball",
+    "gateBoard": "5 阶段门控",
+    "grayHint": "阶段已阻塞——先修复上游失败才能继续。",
+    "redHint": "门控失败——让助手给出补丁，然后重跑这个阶段。",
+    "agentPrompt": "看一下 ball={{ball}} 的 {{stage}} 阶段：根因是什么，下一步怎么做？",
+    "explainPrompt": "解释 ball={{ball}} 的 {{stage}} 阶段（{{metric}}），告诉我该修什么。"
+  },
+  "waveforms": {
+    "files": "波形文件",
+    "zoom": "缩放",
+    "zoomIn": "放大",
+    "zoomOut": "缩小",
+    "fit": "适应窗口",
+    "signal": "信号",
+    "valueAt": "取值 @ t={{t}}",
+    "mid": "中点",
+    "cursor": "光标",
+    "edgeStats": "边沿统计",
+    "signals": "信号数",
+    "transitions": "跳变数",
+    "hidden": "已隐藏",
+    "agentPrompt": "看一下波形 {{file}} 在 t={{cursor}} 附近的信号，帮我判断是否存在冲突。"
+  },
+  "advanced": {
+    "explorer": "资源管理器",
+    "searchFiles": "搜索文件…",
+    "readOnly": "模拟工作区 · 只读",
+    "closeFile": "关闭 {{name}}",
+    "askAboutFile": "就此文件询问助手",
+    "filePrompt": "看一下 {{path}}，解释这段逻辑和潜在问题。",
+    "toggleTerminal": "切换终端",
+    "noFile": "未打开文件",
+    "openHint": "从左侧资源管理器打开一个文件。",
+    "terminal": "终端",
+    "problems": "问题",
+    "output": "输出"
+  },
+  "chat": {
+    "toggle": "Agent 对话",
+    "newChat": "新对话",
+    "openInChat": "在对话页打开",
+    "close": "关闭",
+    "workspace": "工作空间",
+    "workspaceUnset": "选择工作空间"
+  }
+}

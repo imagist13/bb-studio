@@ -62,7 +62,7 @@ const BbrsModelSelector: React.FC<{
         >
           <span className='flex items-center gap-6px min-w-0'>
             {renderLogo()}
-            <span className={compact ? 'block truncate' : undefined}>{t('conversation.welcome.useCliModel')}</span>
+            <span className='block truncate'>{t('conversation.welcome.useCliModel')}</span>
           </span>
         </Button>
       </Tooltip>
@@ -173,7 +173,7 @@ const BbrsModelSelector: React.FC<{
       >
         <span className='flex items-center gap-6px min-w-0'>
           {renderLogo()}
-          <span className={compact ? 'block truncate' : undefined}>{combinedLabel}</span>
+          <span className='block truncate'>{combinedLabel}</span>
           <Down theme='outline' size={12} fill={iconColors.secondary} className='shrink-0' />
         </span>
       </Button>

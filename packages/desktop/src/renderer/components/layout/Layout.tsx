@@ -6,6 +6,7 @@
 
 import { ipcBridge } from '@/common';
 import { TEAM_MODE_ENABLED } from '@/common/config/constants';
+import brandLogo from '@renderer/assets/logos/brand/app.png';
 import PwaPullToRefresh from '@/renderer/components/layout/PwaPullToRefresh';
 import Titlebar from '@/renderer/components/layout/Titlebar';
 import { Layout as ArcoLayout, Tooltip } from '@arco-design/web-react';
@@ -146,9 +147,13 @@ const Layout: React.FC<{
   const { t } = useTranslation();
   // The "BBUI" wordmark acts as Home / Back-to-Chat, but only from settings routes.
   // In non-settings routes the user is already "home", so it is a no-op (and not actionable).
+  // Settings and the EDA workspace are peer sections of the chat page, so the
+  // wordmark turns into a "Back to Chat" control on either one.
   const isSettingsRoute = location.pathname.startsWith('/settings');
-  // Only wired to the wordmark in the isSettingsRoute branch below, so the
-  // "no-op outside settings" contract is enforced structurally — no internal
+  const isEdaRoute = location.pathname.startsWith('/eda');
+  const isSectionRoute = isSettingsRoute || isEdaRoute;
+  // Only wired to the wordmark in the section branch below, so the
+  // "no-op outside sections" contract is enforced structurally — no internal
   // route guard needed (the chat-route wordmark is a plain, inert div).
   const handleBrandHome = useCallback(() => {
     // Mirror Titlebar's handleBackToChat convention: return to the last non-settings path.
@@ -158,7 +163,7 @@ const Layout: React.FC<{
     } catch {
       // ignore
     }
-    if (target && !target.startsWith('/settings')) {
+    if (target && !target.startsWith('/settings') && !target.startsWith('/eda')) {
       void navigate(target);
       return;
     }
@@ -399,35 +404,14 @@ const Layout: React.FC<{
                 )}
               >
                 <div
-                  className={classNames('bg-black shrink-0 size-32px relative rd-0.5rem', {
+                  className={classNames('shrink-0 size-32px relative', {
                     '!size-24px': collapsed,
                   })}
                   onClick={onClick}
                 >
-                  <svg
-                    className={classNames('w-5.5 h-5.5 absolute inset-0 m-auto', {
-                      'scale-140': !collapsed,
-                    })}
-                    viewBox='0 0 80 80'
-                    fill='none'
-                  >
-                    <path
-                      key='logo-path-1'
-                      d='M40 20 Q38 22 25 40 Q23 42 26 42 L30 42 Q32 40 40 30 Q48 40 50 42 L54 42 Q57 42 55 40 Q42 22 40 20'
-                      fill='white'
-                    ></path>
-                    <circle key='logo-circle' cx='40' cy='46' r='3' fill='white'></circle>
-                    <path
-                      key='logo-path-2'
-                      d='M18 50 Q40 70 62 50'
-                      stroke='white'
-                      strokeWidth='3.5'
-                      fill='none'
-                      strokeLinecap='round'
-                    ></path>
-                  </svg>
+                  <img src={brandLogo} alt='BBUI' className='size-full object-contain select-none' draggable={false} />
                 </div>
-                {isSettingsRoute ? (
+                {isSectionRoute ? (
                   <Tooltip content={t('common.back', { defaultValue: 'Back to Chat' })} position='bottom'>
                     <div
                       className='text-16px text-t-primary collapsed-hidden font-semibold cursor-pointer'

@@ -142,13 +142,16 @@ const Titlebar: React.FC<TitlebarProps> = ({ workspaceAvailable }) => {
   const backToChatTooltip = t('common.back', { defaultValue: 'Back to Chat' });
   const feedbackTooltip = t('conversation.welcome.quickActionFeedback', { defaultValue: 'Report Issue' });
   const isSettingsRoute = location.pathname.startsWith('/settings');
+  // EDA is a peer workspace of the chat page, not a page inside the agent.
+  const isEdaRoute = location.pathname.startsWith('/eda');
+  const isSectionRoute = isSettingsRoute || isEdaRoute;
   const iconSize = 18;
   // Desktop uses slimmer strokes to match macOS-native chrome aesthetics;
   // mobile keeps the default weight so icons stay legible at larger sizes.
   const desktopIconStroke = layout?.isMobile ? undefined : 2.5;
   // 统一在标题栏左侧展示主侧栏开关 / Always expose sidebar toggle on titlebar left side
   const showSiderToggle = Boolean(layout?.setSiderCollapsed) && !(layout?.isMobile && isSettingsRoute);
-  const showBackToChatButton = Boolean(layout?.isMobile && isSettingsRoute);
+  const showBackToChatButton = Boolean(layout?.isMobile && isSectionRoute);
   const siderTooltip = layout?.siderCollapsed
     ? t('common.expandMore', { defaultValue: 'Expand sidebar' })
     : t('common.collapse', { defaultValue: 'Collapse sidebar' });
@@ -177,7 +180,7 @@ const Titlebar: React.FC<TitlebarProps> = ({ workspaceAvailable }) => {
 
   const handleBackToChat = () => {
     const target = lastNonSettingsPathRef.current;
-    if (target && !target.startsWith('/settings')) {
+    if (target && !target.startsWith('/settings') && !target.startsWith('/eda')) {
       void navigate(target);
       return;
     }
@@ -185,7 +188,7 @@ const Titlebar: React.FC<TitlebarProps> = ({ workspaceAvailable }) => {
   };
 
   useEffect(() => {
-    if (!isSettingsRoute) {
+    if (!isSectionRoute) {
       const path = `${location.pathname}${location.search}${location.hash}`;
       lastNonSettingsPathRef.current = path;
       try {
@@ -203,7 +206,7 @@ const Titlebar: React.FC<TitlebarProps> = ({ workspaceAvailable }) => {
     } catch {
       // ignore
     }
-  }, [isSettingsRoute, location.pathname, location.search, location.hash]);
+  }, [isSectionRoute, location.pathname, location.search, location.hash]);
 
   useEffect(() => {
     if (!layout?.isMobile) {

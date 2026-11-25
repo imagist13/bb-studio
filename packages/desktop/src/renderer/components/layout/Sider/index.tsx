@@ -7,13 +7,14 @@ import { useAuth } from '@renderer/hooks/context/AuthContext';
 import { useLayoutContext } from '@renderer/hooks/context/LayoutContext';
 import { blurActiveElement } from '@renderer/utils/ui/focus';
 import { useThemeContext } from '@renderer/hooks/context/ThemeContext';
-import { SiderToolbar, SiderSearchEntry, SiderScheduledEntry, SiderAssistantEntry } from './SiderNav';
+import { SiderToolbar, SiderSearchEntry, SiderScheduledEntry, SiderAssistantEntry, SiderEdaEntry } from './SiderNav';
 import SiderFooter from './SiderFooter';
 import TeamSiderSection from './TeamSiderSection';
 import siderStyles from './Sider.module.css';
 
 const WorkspaceGroupedHistory = React.lazy(() => import('@renderer/pages/conversation/GroupedHistory'));
 const SettingsSider = React.lazy(() => import('@renderer/pages/settings/components/SettingsSider'));
+const EdaSider = React.lazy(() => import('@renderer/pages/eda/components/EdaSider'));
 
 interface SiderProps {
   onSessionClick?: () => void;
@@ -32,6 +33,7 @@ const Sider: React.FC<SiderProps> = ({ onSessionClick, collapsed = false }) => {
   const { theme, setTheme } = useThemeContext();
   const [isBatchMode, setIsBatchMode] = useState(false);
   const isSettings = pathname.startsWith('/settings');
+  const isEda = pathname.startsWith('/eda');
   const lastNonSettingsPathRef = useRef('/guid');
   const showLogout =
     typeof window !== 'undefined' && !(window as { electronAPI?: unknown }).electronAPI && status === 'authenticated';
@@ -109,6 +111,21 @@ const Sider: React.FC<SiderProps> = ({ onSessionClick, collapsed = false }) => {
     }
   };
 
+  const handleEdaClick = () => {
+    cleanupSiderTooltips();
+    blurActiveElement();
+    closePreview();
+    setIsBatchMode(false);
+    if (!isEda) {
+      Promise.resolve(navigate('/eda')).catch((error) => {
+        console.error('Navigation failed:', error);
+      });
+    }
+    if (onSessionClick) {
+      onSessionClick();
+    }
+  };
+
   const handleQuickThemeToggle = () => {
     void setTheme(theme === 'dark' ? 'light' : 'dark');
   };
@@ -179,8 +196,18 @@ const Sider: React.FC<SiderProps> = ({ onSessionClick, collapsed = false }) => {
           <Suspense fallback={<div className='size-full' />}>
             <SettingsSider collapsed={collapsed} tooltipEnabled={tooltipEnabled} />
           </Suspense>
+        ) : isEda ? (
+          <Suspense fallback={<div className='size-full' />}>
+            <EdaSider collapsed={collapsed} tooltipEnabled={tooltipEnabled} />
+          </Suspense>
         ) : (
           <div className='size-full flex flex-col gap-2px'>
+            <SiderEdaEntry
+              isMobile={isMobile}
+              collapsed={collapsed}
+              siderTooltipProps={siderTooltipProps}
+              onClick={handleEdaClick}
+            />
             <SiderToolbar
               isMobile={isMobile}
               isBatchMode={isBatchMode}
